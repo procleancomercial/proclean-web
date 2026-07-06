@@ -341,12 +341,48 @@
 <!-- El Panel Desplegable (alineado a la derecha) -->
 <div id="mobile-menu" class="hidden absolute top-20 right-0 w-64 bg-white/95 backdrop-blur border-b border-l border-r border-[#CFA754] rounded-b-2xl p-6 shadow-2xl z-50">
     <nav class="flex flex-col gap-6">
-    <a href="#inicio" onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="text-[#0f172a] hover:text-[#CFA754] font-bold transition">Inicio</a>
-    <a href="#servicios" onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="text-[#0f172a] hover:text-[#CFA754] font-bold transition">Servicios</a>
-    <a href="#cotiza" onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="text-[#0f172a] hover:text-[#CFA754] font-bold transition">Promoción</a>
-    <a href="#agenda" onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="text-[#0f172a] hover:text-[#CFA754] font-bold transition">Agenda</a>
-    <a href="#quienes-somos" onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="text-[#0f172a] hover:text-[#CFA754] font-bold transition">Quiénes somos</a>
-    <a href="#seccion-equipo" onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="text-[#0f172a] hover:text-[#CFA754] font-bold transition">Únete a nuestro equipo</a>
+    <a href="#inicio" onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="flex items-center gap-2 text-[#0f172a] hover:text-[#CFA754] font-bold transition">
+    <!-- Icono de Casa -->
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+    </svg>
+    Inicio
+</a>
+    <a href="#servicios" onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="flex items-center gap-2 text-[#0f172a] hover:text-[#CFA754] font-bold transition">
+    <!-- Icono de Destellos (Sparkles) -->
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+    </svg>
+    Servicios
+</a>
+    <a href="#cotiza" onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="flex items-center gap-2 text-[#0f172a] hover:text-[#CFA754] font-bold transition">
+    <!-- Icono de Etiqueta (Tag) -->
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5a2 2 0 011.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A2 2 0 013 12V7a4 4 0 014-4z" />
+    </svg>
+    Ofertas
+</a>
+    <a href="#agenda" onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="flex items-center gap-2 text-[#0f172a] hover:text-[#CFA754] font-bold transition">
+    <!-- Icono de Calendario -->
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+    </svg>
+    Agenda
+</a>
+    <a href="#quienes-somos" onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="flex items-center gap-2 text-[#0f172a] hover:text-[#CFA754] font-bold transition">
+    <!-- Icono de Usuario -->
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+    </svg>
+    Quiénes somos
+</a>
+    <a href="#seccion-equipo" onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="flex items-center gap-2 text-[#0f172a] hover:text-[#CFA754] font-bold transition">
+    <!-- Icono de Grupo/Colaboración -->
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+    </svg>
+    Únete a nuestro equipo
+</a>
 </nav>
 </div>
             <nav class="hidden lg:flex items-center gap-9"><a data-template-id="nav-services" href="#servicios"
@@ -1231,7 +1267,7 @@
     <p data-template-id="footer-copy" class="canva-text text-sm opacity-80" 
         style="color: rgb(220, 227, 234); font-weight: 400; font-style: normal; font-size: 16px;">
         ProClean Prime · Colombia · Limpieza y cuidado que se sienten
-    </p>
+    </p> 
     <div class="mt-1">
         <a href="mailto:direccion@pro-clean-prime.com" class="text-sm hover:text-[#CFA754] transition-colors" 
             style="color: rgb(220, 227, 234); font-size: 14px;">
