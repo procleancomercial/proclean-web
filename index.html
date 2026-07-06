@@ -325,10 +325,30 @@
     <header data-template-id="site-header"
         class="canva-header fixed top-0 left-0 w-full z-50 bg-white/95 backdrop-blur border-b border-white/60"
         style="background: rgb(255, 255, 255);">
-        <div class="max-w-7xl mx-auto px-5 lg:px-8 h-20 flex items-center justify-between"><a href="#inicio"
-                class="flex items-center"> <img data-template-id="brand-logo" loading="lazy"
-                    class="canva-image h-16 w-auto object-contain max-w-[140px]" src="imagenes/logo.jpeg"
-                    alt="Logo de ProClean Prime - mano dorada sobre onda azul marino"> </a>
+        <div class="max-w-7xl mx-auto px-5 lg:px-8 h-20 flex items-center justify-between">
+    
+    <!-- Contenedor Izquierdo: Logo + Barras -->
+    <!-- Logo a la izquierda (línea 331) -->
+<div class="flex items-center">
+    <a href="#inicio">
+        <img src="imagenes/logo.jpeg" class="h-16 w-auto object-contain max-w-[140px]">
+    </a>
+</div>
+    <!-- Contenedor Derecho: Tus enlaces de servicios y botones (se mantendrán a la derecha) -->
+    <div class="flex items-center gap-6">
+        
+
+<!-- El Panel Desplegable (alineado a la derecha) -->
+<div id="mobile-menu" class="hidden absolute top-20 right-0 w-64 bg-white/95 backdrop-blur border-b border-l border-r border-[#CFA754] rounded-b-2xl p-6 shadow-2xl z-50">
+    <nav class="flex flex-col gap-6">
+    <a href="#inicio" onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="text-[#0f172a] hover:text-[#CFA754] font-bold transition">Inicio</a>
+    <a href="#servicios" onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="text-[#0f172a] hover:text-[#CFA754] font-bold transition">Servicios</a>
+    <a href="#cotiza" onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="text-[#0f172a] hover:text-[#CFA754] font-bold transition">Promoción</a>
+    <a href="#agenda" onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="text-[#0f172a] hover:text-[#CFA754] font-bold transition">Agenda</a>
+    <a href="#quienes-somos" onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="text-[#0f172a] hover:text-[#CFA754] font-bold transition">Quiénes somos</a>
+    <a href="#seccion-equipo" onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="text-[#0f172a] hover:text-[#CFA754] font-bold transition">Únete a nuestro equipo</a>
+</nav>
+</div>
             <nav class="hidden lg:flex items-center gap-9"><a data-template-id="nav-services" href="#servicios"
                     class="canva-link text-sm font-medium hover:text-[#9f8c58] transition"
                     style="color: #0F162A; font-weight: 500; font-style: normal; font-size: 16px;">Servicios</a>
@@ -344,14 +364,22 @@
                     style="color: #25d366; font-weight: 500; font-style: normal; font-size: 16px;"><i
                         data-lucide="message-circle" class="w-4 h-4"></i> WhatsApp</a>
             </nav>
-            <div class="flex items-center gap-3"><a data-template-id="header-cta" href="#agenda"
-                    class="canva-button hidden sm:inline-flex px-5 py-3 rounded-full text-sm font-semibold transition hover:-translate-y-0.5"
-                    style="background: #0F162A; color: rgb(255, 255, 255); font-weight: 600; font-style: normal; font-size: 16px;">Solicitar
-                    servicio</a> <button id="menuBtn" 
-                    class="focus-ring lg:hidden w-11 h-11 rounded-full border border-slate-200 grid place-items-center"
-                    aria-label="Abrir menú"> <i data-lucide="menu" class="w-5 h-5"></i> </button>
-            </div>
-        </div>
+            <div class="flex items-center gap-3">
+    <!-- Botón Solicitar servicio -->
+    <a data-template-id="header-cta" href="#cotiza"
+        class="canva-button hidden sm:inline-flex px-5 py-3 rounded-full text-sm font-semibold transition hover:-translate-y-0.5"
+        style="background: #0F162A; color: rgb(255, 255, 255); font-weight: 600; font-style: normal; font-size: 16px;">
+        Solicitar servicio
+    </a> 
+
+    <!-- Botón Hamburguesa ajustado -->
+    <button id="menuBtn" 
+            onclick="document.getElementById('mobile-menu').classList.toggle('hidden')"
+            class="focus-ring  w-11 h-11 rounded-full border border-slate-200 grid place-items-center"
+            aria-label="Abrir menú"> 
+        <i data-lucide="menu" class="w-5 h-5"></i> 
+    </button>
+</div>
     </header>
     <div id="menuOverlay" class="overlay fixed inset-0 bg-black/35 z-30"></div>
     <aside id="mobileMenu" data-template-id="mobile-menu"
@@ -374,6 +402,9 @@
                 style="color: rgb(255, 255, 255); font-weight: 400; font-style: normal; font-size: 16px;">Promoción</a>
             <a data-template-id="menu-book" href="#agenda" class="canva-link block hover:text-[#cbbf94] transition"
                 style="color: rgb(255, 255, 255); font-weight: 400; font-style: normal; font-size: 16px;">Agenda</a>
+                <a data-template-id="menu-quienes" href="#quienes-somos" 
+    class="canva-link block border-b border-white/10 pb-3 hover:text-[#cbbf94] transition" 
+    style="color: rgb(255, 255, 255); font-weight: 400; font-size: 16px;">Quiénes somos</a>
         </nav>
         <div class="flex items-center gap-3">
 
@@ -717,7 +748,7 @@
                                     ✅ Altos estándares de calidad</p>
                             </div>
 
-                            <div class="mt-4 pt-6 w-full px-6 bg-[#E0F2FE] border-t border-blue-100 min-w-full clear-both block" style="overflow: visible; box-sizing: border-box;">
+                            <!-- <div class="mt-4 pt-6 w-full px-6 bg-[#E0F2FE] border-t border-blue-100 min-w-full clear-both block" style="overflow: visible; box-sizing: border-box;">
                                 <p class="text-xs tracking-wider uppercase font-bold mb-6" style="color: #CFA754; font-family: inherit;">
                                     Conoce a nuestro equipo
                                 </p>
@@ -807,7 +838,7 @@
                                 </div>
                             </div>
                         </div>
-                    </article>
+                    </article> -->
         
         <!-- FIN DE SECCIÓN: CONOCE A NUESTRO EQUIPO -->
                             </div>
@@ -830,15 +861,31 @@
                         Tarifa de bienvenida</h2>
                     <p data-template-id="promo-main" class="canva-text mb-3"
                         style="color: #CFA754; font-weight: 700; font-style: normal; font-size: 26px;">Tu
-                        primer servicio por solo $150.000</p>
-                    <p data-template-id="promo-copy" class="canva-text text-white/72 leading-7 mb-8 max-w-lg"
-                        style="color: rgb(219, 228, 235); font-weight: 400; font-style: normal; font-size: 16px;">
-                        Promoción válida para todo Medellín. Descubre la tranquilidad de dejar tus espacios en manos
-                        expertas.</p><a data-template-id="promo-cta" href="#agenda"
-                        class="canva-button inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold"
-                        style="background: #CFA754; color: #0F162A; font-weight: 700; font-style: normal; font-size: 16px;">Solicitar
-                        promoción</a>
-                </div>
+                        primer servicio por solo $149.900</p>
+                    <p data-template-id="promo-copy" class="canva-text text-white/72 leading-7 mb-2 max-w-lg"
+   style="color: rgb(219, 228, 235); font-weight: 400; font-style: normal; font-size: 16px;">
+    Promoción válida para todo Medellín y Área Metropolitana.
+</p>
+
+<!-- Segundo párrafo: La propuesta de valor -->
+<p data-template-id="promo-copy" class="canva-text text-white/72 leading-7 mb-2 max-w-lg"
+   style="color: rgb(219, 228, 235); font-weight: 400; font-style: normal; font-size: 16px;">
+    Descubre la tranquilidad de dejar tus espacios en manos expertas.
+</p>
+
+<!-- Tercer párrafo: La urgencia (fecha) resaltada -->
+<p data-template-id="promo-copy" class="canva-text text-[#CFA754] leading-7 mb-6 max-w-lg"
+   style="font-weight: 600; font-style: italic; font-size: 15px;">
+    * Vigente hasta el 31 de agosto.
+</p>
+
+<!-- Botón -->
+<a data-template-id="promo-cta" href="#agenda"
+    class="canva-button inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold"
+    style="background: #CFA754; color: #0F162A; font-weight: 700; font-style: normal; font-size: 16px;">
+    Solicitar promoción
+</a>
+</div>
                 <div class="relative">
                     <div
                         class="promo-orb absolute z-10 -top-6 -left-4 w-20 h-20 rounded-full bg-[#cbbf94] text-[#0d152b] grid place-items-center shadow-xl">
@@ -846,7 +893,7 @@
                     </div>
                     <div class="rounded-[2rem] overflow-hidden border border-white/10 shadow-2xl"><img
                             data-template-id="promo-image" loading="lazy"
-                            class="canva-image w-full h-[300px] md:h-[420px]" src="imagenes/mascota.jpeg"
+                            class="canva-image w-full h-[300px] md:h-[420px]" src="imagenes/Burbi_niño-removebg-preview.png"
                             alt="ProClean Prime mascot - personaje de limpiador alegre con burbujas de jabón">
                     </div>
                 </div>
@@ -1013,7 +1060,7 @@
                 
                 <div>
                     <label for="promoPrimerServicio" class="block text-xs font-bold text-amber-800 uppercase tracking-wider cursor-pointer">¿Primer servicio?</label>
-                    <span class="text-xs text-slate-600 mt-0.5 block">Activa tarifa especial de $150.000</span>
+                    <span class="text-xs text-slate-600 mt-0.5 block">Activa tarifa especial de $149.900</span>
                 </div>
                 <input type="checkbox" id="promoPrimerServicio" onchange="calcularPrecioDinamico()" class="w-5 h-5 accent-[#0F162A] cursor-pointer" onclick="event.stopPropagation();">
             </div>
@@ -1034,8 +1081,8 @@
     
     <!-- PSE -->
     <a href="https://checkout.bold.co/payment/LNK_QMFMMNY3DK" target="_blank" 
-       onclick="document.getElementById('paymentMethod').value = 'PSE / Tarjeta';"
-       class="flex items-center justify-between p-4 bg-white border-2 border-[#cbbf94] rounded-2xl shadow-sm hover:shadow-md hover:border-[#0F162A] transition-all group">
+        onclick="document.getElementById('paymentMethod').value = 'PSE / Tarjeta';"
+        class="flex items-center justify-between p-4 bg-white border-2 border-[#cbbf94] rounded-2xl shadow-sm hover:shadow-md hover:border-[#0F162A] transition-all group">
         <div class="flex items-center gap-3">
             <img src="imagenes/pse-logo2.png" class="w-10 h-10 rounded-full object-cover bg-gray-50">
             <div>
@@ -1183,7 +1230,7 @@
                 style="color: rgb(220, 227, 234); font-weight: 400; font-style: normal; font-size: 16px;"><div class="flex flex-col items-center text-center">
     <p data-template-id="footer-copy" class="canva-text text-sm opacity-80" 
         style="color: rgb(220, 227, 234); font-weight: 400; font-style: normal; font-size: 16px;">
-        ProClean Prime · Medellín · Limpieza y cuidado que se sienten
+        ProClean Prime · Colombia · Limpieza y cuidado que se sienten
     </p>
     <div class="mt-1">
         <a href="mailto:direccion@pro-clean-prime.com" class="text-sm hover:text-[#CFA754] transition-colors" 
@@ -1222,7 +1269,18 @@
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp ProClean" class="w-full h-full object-contain pointer-events-none">
     </a>
 
-</div>
+<!-- Botón "¡Únete a nuestro equipo!" (Versión Ampliada) -->
+<div id="seccion-equipo">
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSf2O0w4qvQoeFa_lJXHnzfA-0TG8tnAEHgM5g_rev4Ns6zZPA/viewform?usp=preview" 
+       target="_blank" 
+       title="¡Únete a nuestro equipo!"
+       class="inline-flex items-center gap-4 px-8 py-4 border-2 border-[#CFA754] rounded-full transition-all hover:scale-105 hover:bg-[#1e293b]/50 shadow-lg group">
+    <!-- Icono más grande -->
+    <img src="imagenes/LogoTCN2-removebg-preview.png" alt="Icono" class="w-9 h-9 object-contain">
+    
+    <!-- Texto más grande y destacado -->
+    <span class="text-[#CFA754] font-bold text-lg tracking-wide">¡Únete a nuestro equipo!</span>
+</a>
         </div>
     </footer><a data-template-id="whatsapp-float" href="https://wa.me/573046048958" target="_blank"
         rel="noopener noreferrer"
@@ -1236,6 +1294,8 @@
                 class="canva-text block text-[11px] leading-none mt-1 text-white/85"
                 style="color: rgb(255, 255, 255); font-weight: 400; font-style: normal; font-size: 16px;">+57 304 604
                 8958</span> </span> </a>
+
+                
     <script>
         lucide.createIcons();
 
@@ -1458,7 +1518,7 @@ function calcularPrecioDinamico() {
             sumaTarifasBase += 85000; 
         } else {
             // Si es cualquier otro servicio de limpieza, usa la tarifa normal o promo
-            sumaTarifasBase += esPromoPrimerServicio ? 150000 : 178000;
+            sumaTarifasBase += esPromoPrimerServicio ? 149900 : 178000;
         }
     });
     
