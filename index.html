@@ -10,6 +10,10 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;display=swap"
         rel="stylesheet">
     <style>
+
+        html {
+    scroll-behavior: smooth;
+}
         
         :root {
             --navy: #0d152b;
@@ -27,6 +31,7 @@
             scroll-behavior: smooth;
             overflow-x: hidden
         }
+        
 
         body {
             margin: 0;
@@ -309,7 +314,9 @@
     border-radius: 16px !important;
 }
 
+
     </style>
+
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-GJ0GMTX6PZ"></script>
 <script>
     window.dataLayer = window.dataLayer || [];
@@ -336,6 +343,8 @@
 </div>
     <!-- Contenedor Derecho: Tus enlaces de servicios y botones (se mantendrán a la derecha) -->
     <div class="flex items-center gap-6">
+
+    
         
 
 <!-- El Panel Desplegable (alineado a la derecha) -->
@@ -367,15 +376,28 @@
     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
     </svg>
-    Agenda
+    Reserva tu servicio 
 </a>
-    <a href="#quienes-somos" onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="flex items-center gap-2 text-[#0f172a] hover:text-[#CFA754] font-bold transition">
-    <!-- Icono de Usuario -->
-    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+    <a href="quienes-somos.html"
+    onclick="document.getElementById('mobile-menu').classList.add('hidden')"
+    class="flex items-center gap-2 text-[#0f172a] hover:text-[#CFA754] font-bold transition">
+
+    <!-- Icono -->
+    <svg xmlns="http://www.w3.org/2000/svg"
+            class="w-5 h-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor">
+        <path stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
     </svg>
+
     Quiénes somos
+
 </a>
+    
     <a href="#seccion-equipo" onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="flex items-center gap-2 text-[#0f172a] hover:text-[#CFA754] font-bold transition">
     <!-- Icono de Grupo/Colaboración -->
     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -438,7 +460,7 @@
                 style="color: rgb(255, 255, 255); font-weight: 400; font-style: normal; font-size: 16px;">Promoción</a>
             <a data-template-id="menu-book" href="#agenda" class="canva-link block hover:text-[#cbbf94] transition"
                 style="color: rgb(255, 255, 255); font-weight: 400; font-style: normal; font-size: 16px;">Agenda</a>
-                <a data-template-id="menu-quienes" href="#quienes-somos" 
+                <a data-template-id="menu-quienes" href="quienes-somos.html" 
     class="canva-link block border-b border-white/10 pb-3 hover:text-[#cbbf94] transition" 
     style="color: rgb(255, 255, 255); font-weight: 400; font-size: 16px;">Quiénes somos</a>
         </nav>
@@ -1256,69 +1278,230 @@
     <div class="absolute top-0 right-0 h-full w-12 bg-gradient-to-l from-white to-transparent decorative"></div>
 </div>
     </main>
-    <footer data-template-id="footer-section" class="canva-footer bg-[#0d152b] text-white py-10"
-        style="background: #0F162A;">
-        <div class="max-w-7xl mx-auto px-5 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6"><img
-                data-template-id="footer-logo" loading="lazy" class="canva-image w-[115px] h-auto object-contain"
+    <footer id="footer" data-template-id="footer-section"
+class="canva-footer bg-[#0F162A] text-white py-5 border-t border-[#CFA754]/20">
+
+<div class="max-w-7xl mx-auto px-6">
+
+    <div class="grid lg:grid-cols-4 md:grid-cols-2 gap-6 items-center">
+
+        <!-- ===================== -->
+        <!-- LOGO -->
+        <!-- ===================== -->
+
+        <div class="flex flex-col items-center lg:items-start text-center lg:text-left">
+
+            <img
                 src="imagenes/logoazul.png"
-                alt="Logo de ProClean Prime - mano dorada sobre trapo azul con estrellas y texto completo">
-            <p data-template-id="footer-copy" class="canva-text text-sm text-white/70 text-center"
-                style="color: rgb(220, 227, 234); font-weight: 400; font-style: normal; font-size: 16px;"><div class="flex flex-col items-center text-center">
-    <p data-template-id="footer-copy" class="canva-text text-sm opacity-80" 
-        style="color: rgb(220, 227, 234); font-weight: 400; font-style: normal; font-size: 16px;">
-        ProClean Prime · Colombia · Limpieza y cuidado que se sienten
-    </p> 
-    <div class="mt-1">
-        <a href="mailto:direccion@pro-clean-prime.com" class="text-sm hover:text-[#CFA754] transition-colors" 
-            style="color: rgb(220, 227, 234); font-size: 14px;">
-            direccion@pro-clean-prime.com
-        </a>
-    </div>
-</div>
-            <div class="flex items-center gap-3">
+                alt="Logo ProClean Prime"
+                class="w-24 mb-2">
 
-    <!-- 1. INSTAGRAM (Logo original a color) -->
-    <a data-template-id="footer-instagram" href="https://www.instagram.com/procleanprime" target="_blank" rel="noopener noreferrer" 
-        class="canva-button w-10 h-10 grid place-items-center cursor-pointer transition-transform duration-200 hover:scale-110" 
-        title="Visitar nuestro Instagram">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram ProClean" class="w-full h-full object-contain pointer-events-none">
-    </a>
-    
-    <!-- 2. FACEBOOK (Logo original a color) -->
-    <a data-template-id="footer-facebook" href="https://www.facebook.com/share/1B85Xq61bz/" target="_blank" rel="noopener noreferrer" 
-        class="canva-button w-10 h-10 grid place-items-center cursor-pointer transition-transform duration-200 hover:scale-110" 
-        title="Visitar nuestro Facebook">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b9/2023_Facebook_icon.svg" alt="Facebook ProClean" class="w-full h-full object-contain pointer-events-none">
-    </a>
-    
-    <!-- 3. TIKTOK (Logo original sobre círculo negro para que resalte) -->
-    <a data-template-id="footer-tiktok" href="https://www.tiktok.com/@proclean_prime?_r=1&_t=ZS-97GP9oD4r8S" target="_blank" rel="noopener noreferrer" 
-        class="canva-button w-10 h-10 grid place-items-center cursor-pointer transition-transform duration-200 hover:scale-110 bg-black rounded-full p-2" 
-        title="Visitar nuestro TikTok">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/3/34/Ionicons_logo-tiktok.svg" alt="TikTok ProClean" class="w-full h-full object-contain invert pointer-events-none">
-    </a>
-    
-    <!-- 4. WHATSAPP (Logo original a color) -->
-    <a data-template-id="footer-whatsapp" href="https://wa.me/573046048958" target="_blank" rel="noopener noreferrer" 
-        class="canva-button w-10 h-10 grid place-items-center cursor-pointer transition-transform duration-200 hover:scale-110" 
-        title="Escríbenos por WhatsApp">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp ProClean" class="w-full h-full object-contain pointer-events-none">
-    </a>
+            <h3 class="text-xl font-bold">
 
-<!-- Botón "¡Únete a nuestro equipo!" (Versión Ampliada) -->
-<div id="seccion-equipo">
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSf2O0w4qvQoeFa_lJXHnzfA-0TG8tnAEHgM5g_rev4Ns6zZPA/viewform?usp=preview" 
-       target="_blank" 
-       title="¡Únete a nuestro equipo!"
-       class="inline-flex items-center gap-4 px-8 py-4 border-2 border-[#CFA754] rounded-full transition-all hover:scale-105 hover:bg-[#1e293b]/50 shadow-lg group">
-    <!-- Icono más grande -->
-    <img src="imagenes/LogoTCN2-removebg-preview.png" alt="Icono" class="w-9 h-9 object-contain">
-    
-    <!-- Texto más grande y destacado -->
-    <span class="text-[#CFA754] font-bold text-lg tracking-wide">¡Únete a nuestro equipo!</span>
-</a>
+                ProClean Prime Colombia
+
+            </h3>
+
+            <p class="text-white/70 mt-2">
+
+                Soluciones profesionales de limpieza.
+
+            </p>
+
+            <p class="text-[#CFA754] font-bold mt-3">
+
+                NIT: 902067282-0
+
+            </p>
+
         </div>
-    </footer><a data-template-id="whatsapp-float" href="https://wa.me/573046048958" target="_blank"
+
+        <!-- ===================== -->
+        <!-- CONTACTO -->
+        <!-- ===================== -->
+
+        <div class="space-y-3">
+
+            <div>
+
+                <h4 class="font-semibold text-white mb-1">
+
+                    Comercial
+
+                </h4>
+
+                <a href="mailto:procleanprime.comercial@gmail.com"
+                    class="text-white/70 hover:text-[#CFA754] transition">
+
+                    procleanprime.comercial@gmail.com
+
+                </a>
+
+            </div>
+
+            <div>
+
+                <h4 class="font-semibold text-white mb-1">
+
+                    Talento Humano
+
+                </h4>
+
+                <a href="mailto:procleanprimecolombia@gmail.com"
+                    class="text-white/70 hover:text-[#CFA754] transition">
+
+                    procleanprimecolombia@gmail.com
+
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- ===================== -->
+        <!-- DIRECCIÓN -->
+        <!-- ===================== -->
+
+        <div>
+
+            <h4 class="font-semibold text-white mb-3">
+
+                Dirección
+
+            </h4>
+
+            <p class="text-white/70">
+
+                Calle 61 #75-116
+
+            </p>
+
+            <p class="text-white/70">
+
+                Medellín - Colombia
+
+            </p>
+
+        </div>
+
+        <!-- ===================== -->
+        <!-- REDES + BOTÓN -->
+        <!-- ===================== -->
+
+        <div class="flex flex-col items-center">
+
+            <h4 class="font-semibold mb-4">
+
+                Síguenos
+
+            </h4>
+
+            <div class="flex items-center gap-4 mb-6">
+
+                <a href="https://www.instagram.com/procleanprime"
+                    target="_blank">
+
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg"
+                        class="w-11 h-11 hover:scale-110 transition">
+
+                </a>
+
+                <a href="https://www.facebook.com/share/1B85Xq61bz/"
+                    target="_blank">
+
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b9/2023_Facebook_icon.svg"
+                        class="w-11 h-11 hover:scale-110 transition">
+
+                </a>
+
+                <a href="https://www.tiktok.com/@proclean_prime?_r=1&_t=ZS-97GP9oD4r8S"
+                    target="_blank">
+
+                    <div class="bg-black rounded-full p-2">
+
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/3/34/Ionicons_logo-tiktok.svg"
+                            class="w-7 invert">
+
+                    </div>
+
+                </a>
+
+                <a href="https://wa.me/573046048958"
+                    target="_blank">
+
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+                        class="w-11 h-11 hover:scale-110 transition">
+
+                </a>
+
+            </div>
+
+            <!-- BOTÓN -->
+            <a id="seccion-equipo"
+
+            href="https://docs.google.com/forms/d/e/1FAIpQLSf2O0w4qvQoeFa_lJXHnzfA-0TG8tnAEHgM5g_rev4Ns6zZPA/viewform?usp=preview"
+
+                target="_blank"
+
+                class="inline-flex items-center gap-2 px-5 py-2.5 border-2 border-[#CFA754] rounded-full hover:bg-[#1e293b] transition-all hover:scale-105">
+
+                <img
+
+                    src="imagenes/LogoTCN2-removebg-preview.png"
+
+                    class="w-10 h-10">
+
+                <span class="text-[#CFA754] font-bold text-base">
+
+                    ¡Únete a nuestro equipo!
+
+                </span>
+
+            </a>
+
+        </div>
+
+    </div>
+
+    <hr class="border-white/10 my-8">
+
+    <div class="flex flex-col lg:flex-row justify-between items-center gap-5">
+
+        <p class="text-sm text-white/60 text-center">
+
+            © 2026 ProClean Prime Colombia. Todos los derechos reservados.
+
+        </p>
+
+        <div class="flex flex-wrap justify-center gap-6 text-sm">
+
+            <a href="#" class="hover:text-[#CFA754] transition">
+
+                Política de Privacidad
+
+            </a>
+
+            <a href="#" class="hover:text-[#CFA754] transition">
+
+                Tratamiento de Datos Personales
+
+            </a>
+
+            <a href="#" class="hover:text-[#CFA754] transition">
+
+                Términos y Condiciones
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+</footer>
+    <a id="whatsappFloat"
+    data-template-id="whatsapp-float" href="https://wa.me/573046048958" target="_blank"
         rel="noopener noreferrer"
         class="canva-button wa-float fixed z-40 right-4 bottom-28 md:right-6 md:bottom-32 rounded-full bg-[#25D366] text-white pl-3 pr-4 py-3 flex items-center gap-3"
         style="background: #25d366; color: rgb(255, 255, 255);"> <span
@@ -1717,8 +1900,47 @@ if (!selectedDate) {
     });
 }
 
+// ==========================
+// DETENER WHATSAPP ANTES DEL FOOTER
+// ==========================
+
+const footer = document.getElementById("footer");
+const whatsapp = document.getElementById("whatsappFloat");
+
+const observer = new IntersectionObserver(
+    (entries) => {
+
+        entries.forEach(entry => {
+
+            if (entry.isIntersecting) {
+
+                whatsapp.style.bottom = (footer.offsetHeight + 20) + "px";
+
+            } else {
+
+                whatsapp.style.bottom = "8rem"; // tu posición original
+
+            }
+
+        });
+
+    },
+    {
+        threshold: 0
+    }
+);
+
+observer.observe(footer);
+
+
+
+
     </script>
     <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-3 pointer-events-none"></div>
+
+    
+
+
 </body>
 
 </html>
