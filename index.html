@@ -314,8 +314,10 @@
     border-radius: 16px !important;
 }
 
-
     </style>
+    <link rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-GJ0GMTX6PZ"></script>
 <script>
@@ -324,6 +326,8 @@
     gtag('js', new Date());
 
     gtag('config', 'G-GJ0GMTX6PZ');
+
+    
     
 </script>
 </head>
@@ -559,7 +563,7 @@ class="hidden canva-sidebar mobile-menu fixed top-0 left-0 h-full w-[82%] max-w-
                     aria-label="Imagen 3"></button>
             </div>
             <div data-template-id="hero-floating-card"
-                class="canva-card hidden lg:block absolute z-20 right-8 bottom-24 bg-white/90 rounded-3xl p-5 w-[270px] shadow-2xl"
+                class="hidden"
                 style="background: rgba(255, 255, 255, 0.91);">
                 <div class="flex items-center gap-3 mb-3">
                     <div class="w-11 h-11 rounded-full bg-[#cbbf94] grid place-items-center text-[#0d152b]">
@@ -629,7 +633,7 @@ class="hidden canva-sidebar mobile-menu fixed top-0 left-0 h-full w-[82%] max-w-
                             <div class="grid md:grid-cols-[180px_1fr]">
                                 <div class="h-48 md:h-56 overflow-hidden">
                                     <img data-template-id="service-1-image" loading="lazy"
-                                        class="canva-image w-full h-full" src="imagenes/home.jpeg"
+                                        class="canva-image w-full h-full" src="imagenes/sala1.jpg"
                                         alt="Elegant modern living room with cream curved sofas, geometric rug, and minimalist decor.">
                                 </div>
                                 <div class="p-5 md:p-6 flex items-center justify-between gap-4">
@@ -672,7 +676,7 @@ class="hidden canva-sidebar mobile-menu fixed top-0 left-0 h-full w-[82%] max-w-
                             <div class="grid md:grid-cols-[180px_1fr]">
                                 <div class="h-48 md:h-56 overflow-hidden">
                                     <img data-template-id="service-2-image" loading="lazy"
-                                        class="canva-image w-full h-full" src="imagenes/oficina.jpeg"
+                                        class="canva-image w-full h-full" src="imagenes/Oficina1.jpg"
                                         alt="Modern conference room with long wooden table, ergonomic chairs, glass partitions, and professional lighting.">
                                 </div>
                                 <div class="p-5 md:p-6 flex items-center justify-between gap-4">
@@ -1028,7 +1032,7 @@ class="hidden canva-sidebar mobile-menu fixed top-0 left-0 h-full w-[82%] max-w-
                             <div>
                                 <h3 data-template-id="booking-form-title" class="canva-text font-semibold"
                                     style="color: #0F162A; font-weight: 700; font-style: normal; font-size: 19px;">
-                                    Agenda tu Servicio aquí </h3>
+                                    Agenda tu Servicio </h3>
                                 <p data-template-id="booking-form-copy" class="canva-text text-sm"
                                     style="color: #93B6CE; font-weight: 400; font-style: normal; font-size: 16px;">
                                     Déjanos tus datos y los servicios que deseas para agendar tu visita.</p>
@@ -1037,84 +1041,36 @@ class="hidden canva-sidebar mobile-menu fixed top-0 left-0 h-full w-[82%] max-w-
                 <div class="w-full px-4 py-6" style="max-width: 1200px; margin: 0 auto;">
     
     
-    <!-- TARJETA DEL CALENDARIO CON EL DEGRADADO OSCURO EN MOVIMIENTO -->
-                    <div class="mi-calendario-animado p-5 rounded-3xl border border-slate-200 shadow-lg w-full mb-6 bg-[#fdfcf8]">
-    <h3 class="text-lg font-bold text-[#0F162A] flex items-center gap-2 mb-4">
-        <span class="bg-[#CFA754] text-[#0F162A] rounded-full w-6 h-6 inline-flex items-center justify-center text-sm font-bold flex-shrink-0">1</span>
-        Selecciona tu visita
+    <!-- INPUTS OCULTOS (Por si tus funciones JS los necesitan para procesar el formulario) -->
+<input type="hidden" id="bookingDate" value="2026-06-30">
+<input type="hidden" id="bookingTime" value="15:30">
+
+<!-- COLUMNA: Datos de contacto (Ahora es el bloque principal) -->
+<div class="canva-card p-5 bg-white rounded-3xl border border-slate-100 shadow-sm">
+    <h3 class="text-lg font-bold text-[#0F162A] mb-4 flex items-center gap-2">
+        Datos de contacto
     </h3>
-    
-    <div id="calendarContainer" class="mb-5"></div>
+    <form id="procleanForm" class="space-y-4">
+        <input type="hidden" id="paymentMethod" name="formadepago" value="No seleccionado">
 
-    <input type="hidden" id="bookingDate" value="2026-06-30">
-    <input type="hidden" id="bookingTime" value="15:30">
-</div>
-
-    <!-- COLUMNA 2: Datos de contacto -->
-    </div> <!-- 👈 ESTE CIERRE CIERRA LA COLUMNA 1 DEL CALENDARIO -->
-    <div class="canva-card p-5 bg-white rounded-3xl border border-slate-100 shadow-sm">
-        <h3 class="text-lg font-bold text-[#0F162A] mb-4 flex items-center gap-2">
-            <span class="bg-[#0F162A] text-white rounded-full w-6 h-6 inline-flex items-center justify-center text-sm">2</span>
-            Datos de contacto
-        </h3>
-<form id="procleanForm" class="space-y-4">
-    <input type="hidden" id="paymentMethod" name="formadepago" value="No seleccionado">
-
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div>
-            <label class="block text-xs font-semibold text-slate-500 uppercase mb-1">Nombre completo</label>
-            <input id="fullName" type="text" class="w-full rounded-2xl border border-slate-200 px-4 py-3 bg-[#fbfbfa]" placeholder="" required>
-        </div>
-                <div>
-                    <label class="block text-xs font-semibold text-slate-500 uppercase mb-1">Teléfono</label>
-                    <input id="phone" type="tel" class="w-full rounded-2xl border border-slate-200 px-4 py-3 bg-[#fbfbfa]" placeholder="" required>
-                </div>
-            </div>
-
+        <!-- Campos: Nombre completo y Teléfono -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             <div>
-                <label class="block text-xs font-semibold text-slate-500 uppercase mb-2">Selecciona los servicios que necesitas</label>
-                <div class="flex flex-col space-y-2">
-                    <label class="flex items-center p-3 rounded-xl border border-slate-200 bg-[#fbfbfa] cursor-pointer hover:border-slate-400">
-                        <input type="checkbox" name="services" value="Limpieza residencial" onchange="calcularPrecioDinamico()" class="w-5 h-5 accent-[#0F162A] mr-3">
-                        <span class="text-sm font-medium text-[#0F162A]">Limpieza residencial ($178.000 / día)</span>
-                    </label>
-                    <label class="flex items-center p-3 rounded-xl border border-slate-200 bg-[#fbfbfa] cursor-pointer hover:border-slate-400">
-                        <input type="checkbox" name="services" value="Limpieza de oficinas" onchange="calcularPrecioDinamico()" class="w-5 h-5 accent-[#0F162A] mr-3">
-                        <span class="text-sm font-medium text-[#0F162A]">Limpieza de oficinas ($178.000 / día)</span>
-                    </label>
-                    <label class="flex items-center p-3 rounded-xl border border-slate-200 bg-[#fbfbfa] cursor-pointer hover:border-slate-400">
-                        <input type="checkbox" name="services" value="Home Pet Grooming" onchange="calcularPrecioDinamico()" class="w-5 h-5 accent-[#0F162A] mr-3">
-                        <span class="text-sm font-medium text-[#0F162A]">Home Pet Grooming ($85.000 / día)</span>
-                    </label>
-                </div>
+                <label class="block text-xs font-semibold text-slate-500 uppercase mb-1">Nombre completo</label>
+                <input id="fullName" type="text" class="w-full rounded-2xl border border-slate-200 px-3 py-3 bg-[#fbfbfa] focus:border-slate-200 outline-none" placeholder="" required>
             </div>
-
-            <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200/60 space-y-3">
-                <p class="text-xs font-bold text-[#0F162A] uppercase tracking-wider">⚡ Cotiza tu servicio en segundos</p>
-                
-                <div>
-                    <label class="block text-sm font-medium text-[#0F162A] mb-1">¿Cuántos días necesitas al mes?</label>
-                    <div class="flex items-center gap-4">
-                        <input type="range" id="cleaningDays" min="1" max="30" value="1" oninput="document.getElementById('daysDisplay').value = this.value; calcularPrecioDinamico();" class="w-full accent-[#0F162A]">
-                        <input type="number" id="daysDisplay" min="1" max="30" value="1" oninput="document.getElementById('cleaningDays').value = this.value; calcularPrecioDinamico();" class="w-16 text-center font-bold border border-slate-300 rounded-xl py-1">
-                    </div>
-                </div>
-
-                <!-- <div>
-                    <label class="block text-sm font-medium text-[#0F162A] mb-1">Plan de continuidad</label>
-                    <select id="frequencyPlan" onchange="calcularPrecioDinamico()" class="w-full rounded-xl border border-slate-200 px-3 py-2 bg-white text-sm">
-                        <option value="Ninguno">Servicio Individual (Sin plan adicional)</option>
-                        <option value="Trimestral">Plan Trimestral (8% desc. adicional)</option>
-                        <option value="Semestral">Plan Semestral (10% desc. adicional)</option>
-                        <option value="Anual">Plan Anual (16% desc. adicional)</option>
-                    </select>
-                </div> -->
+            <div>
+                <label class="block text-xs font-semibold text-slate-500 uppercase mb-1">Teléfono</label>
+                <input id="phone" type="tel" class="w-full rounded-2xl border border-slate-200 px-3 py-3 bg-[#fbfbfa] focus:border-slate-200 outline-none" placeholder="" required>
             </div>
+        </div>
 
-            <div class="p-4 rounded-2xl border flex justify-between items-center transition-colors duration-300" 
-                    style="background-color: #f7f5ef; border-color: #e2e8f0;"
-                    onclick="const cb=this.querySelector('#promoPrimerServicio'); this.style.backgroundColor=cb.checked ? '#E0F2FE' : '#f7f5ef'; this.style.borderColor=cb.checked ? '#60A5FA' : '#e2e8f0';">
-                
+        <!-- Casilla: ¿Primer servicio? -->
+        <div>
+            <div class="p-4 rounded-2xl border flex justify-between items-center transition-colors duration-300 mb-5" 
+                style="background-color: #f7f5ef; border-color: #e2e8f0;"
+                onclick="const cb=this.querySelector('#promoPrimerServicio'); this.style.backgroundColor=cb.checked ? '#E0F2FE' : '#f7f5ef'; this.style.borderColor=cb.checked ? '#60A5FA' : '#e2e8f0';">
+            
                 <div>
                     <label for="promoPrimerServicio" class="block text-xs font-bold text-amber-800 uppercase tracking-wider cursor-pointer">¿Primer servicio?</label>
                     <span class="text-xs text-slate-600 mt-0.5 block">Activa tarifa especial de $149.900</span>
@@ -1122,85 +1078,242 @@ class="hidden canva-sidebar mobile-menu fixed top-0 left-0 h-full w-[82%] max-w-
                 <input type="checkbox" id="promoPrimerServicio" onchange="calcularPrecioDinamico()" class="w-5 h-5 accent-[#0F162A] cursor-pointer" onclick="event.stopPropagation();">
             </div>
 
-            <div>
-                <label class="block text-xs font-semibold text-slate-500 uppercase mb-1">Dirección</label>
-                <input id="address" type="text" class="w-full rounded-2xl border border-slate-200 px-4 py-3 bg-[#fbfbfa] focus:bg-blue-50 focus:border-blue-400 focus:outline-none transition-colors duration-300" placeholder="" required>
-            </div>
+            <!-- Selección de servicios -->
+            <label class="block text-xs font-semibold text-slate-500 uppercase mb-2">Selecciona los servicios que necesitas</label>
 
-            <div>
-                <label class="block text-xs font-semibold text-slate-500 uppercase mb-1">Cuéntanos un poco más (Notas)</label>
-                <textarea id="observations" rows="2" class="w-full rounded-2xl border border-slate-200 px-4 py-3 bg-[#fbfbfa] focus:bg-blue-50 focus:border-blue-400 focus:outline-none transition-colors duration-300" placeholder=""></textarea>
-            </div>
-                <div class="mt-4">
-    <label class="block text-xs font-semibold text-slate-500 uppercase mb-3">Forma de Pago</label>
-    
-    <div class="grid grid-cols-1 gap-4">
-    
-    <!-- PSE -->
-    <a href="https://checkout.bold.co/payment/LNK_QMFMMNY3DK" target="_blank" 
-        onclick="document.getElementById('paymentMethod').value = 'PSE / Tarjeta';"
-        class="flex items-center justify-between p-4 bg-white border-2 border-[#cbbf94] rounded-2xl shadow-sm hover:shadow-md hover:border-[#0F162A] transition-all group">
-        <div class="flex items-center gap-3">
-            <img src="imagenes/pse-logo2.png" class="w-10 h-10 rounded-full object-cover bg-gray-50">
-            <div>
-                <p class="font-bold text-[#0F162A] text-sm group-hover:text-blue-600 transition-colors">Pagar con PSE / Tarjetas</p>
-                <p class="text-xs text-slate-500">segura Bold - Todos los bancos</p>
+            <div class="flex flex-col space-y-2">
+                <label class="flex items-center p-3 rounded-xl border border-slate-200 bg-[#fbfbfa] cursor-pointer hover:border-slate-400">
+                    <input type="checkbox" name="services" value="Limpieza residencial" onchange="calcularPrecioDinamico()" class="w-5 h-5 accent-[#0F162A] mr-3">
+                    <span class="text-sm font-medium text-[#0F162A]">Limpieza residencial ($178.000 / día)</span>
+                </label>
+                <label class="flex items-center p-3 rounded-xl border border-slate-200 bg-[#fbfbfa] cursor-pointer hover:border-slate-400">
+                    <input type="checkbox" name="services" value="Limpieza de oficinas" onchange="cleaningDayscalcularPrecioDinamico()" class="w-5 h-5 accent-[#0F162A] mr-3">
+                    <span class="text-sm font-medium text-[#0F162A]">Limpieza de oficinas ($178.000 / día)</span>
+                </label>
+                <label class="flex items-center p-3 rounded-xl border border-slate-200 bg-[#fbfbfa] cursor-pointer hover:border-slate-400">
+                    <input type="checkbox" name="services" value="Home Pet Grooming" onchange="calcularPrecioDinamico()" class="w-5 h-5 accent-[#0F162A] mr-3">
+                    <span class="text-sm font-medium text-[#0F162A]">Home Pet Grooming ($85.000 / día)</span>
+                </label>
             </div>
         </div>
-        <span class="text-slate-400 group-hover:translate-x-1 transition-transform text-lg font-bold">→</span>
-    </a>
 
-    <!-- Bre-B -->
-    <button type="button" onclick="document.getElementById('paymentMethod').value = 'Bre-B';"
-            class="flex items-center justify-between p-4 bg-white border border-slate-200 rounded-2xl shadow-sm hover:border-[#cbbf94] transition-all group text-left">
-        <div class="flex items-center gap-3">
-            <img src="imagenes/bre-b.avif" class="w-10 h-10 rounded-full object-cover bg-gray-50">
+        <!-- Bloque de cotización dinámica -->
+        <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200/60 space-y-3">
+            <p class="text-xs font-bold text-[#0F162A] uppercase tracking-wider">⚡ Cotiza tu servicio en segundos</p>
+            
             <div>
-                <p class="font-bold text-[#0F162A] text-sm">Paga con tu llave Bre-B</p>
-                <p class="text-xs text-slate-500">Transferencia inmediata</p>
+                <label class="block text-sm font-medium text-[#0F162A] mb-1">¿Cuántos días necesitas al mes?</label>
+                <div class="flex items-center gap-4">
+                    <input type="range" id="cleaningDays" min="1" max="30" value="1" oninput="document.getElementById('daysDisplay').value = this.value; calcularPrecioDinamico();" class="w-full accent-[#0F162A]">
+                    <input type="number" id="daysDisplay" min="1" max="30" value="1" oninput="document.getElementById('cleaningDays').value = this.value; calcularPrecioDinamico();" class="w-16 text-center font-bold border border-slate-300 rounded-xl py-1">
+                </div>
             </div>
         </div>
-        <span class="text-xs font-semibold bg-green-100 text-green-700 px-2 py-1 rounded-md">Nuevo</span>
-    </button>
 
-    <!-- Transferencia -->
-    <button type="button" onclick="document.getElementById('paymentMethod').value = 'Transferencia Bancaria';"
-            class="flex items-center justify-between p-4 bg-white border border-slate-200 rounded-2xl shadow-sm hover:border-[#cbbf94] transition-all group text-left">
-        <div class="flex items-center gap-3">
-            <img src="imagenes/transfe.jpg"alt="Bancos" class="w-10 h-10 rounded-full object-cover bg-gray-50">
-            <div>
-                <p class="font-bold text-[#0F162A] text-sm">Transferencia Bancaria Directa</p>
-                <p class="text-xs text-slate-500">Bancolombia,Davivienda</p>
-            </div>
+        <!-- Dirección -->
+        <div>
+            <label class="block text-xs font-semibold text-slate-500 uppercase mb-1">Dirección</label>
+            <input id="address" type="text" class="w-full rounded-2xl border border-slate-200 px-4 py-3 bg-[#fbfbfa] focus:bg-blue-50 focus:border-blue-400 focus:outline-none transition-colors duration-300" placeholder="" required>
         </div>
-        <span class="text-slate-400 text-lg">›</span>
-    </button>
-</div>
 
-</div>
-</div>
+        <!-- Notas / Observaciones -->
+        <div>
+            <label class="block text-xs font-semibold text-slate-500 uppercase mb-1">Cuéntanos un poco más (Notas)</label>
+            <textarea id="observations" rows="2" class="w-full rounded-2xl border border-slate-200 px-4 py-3 bg-[#fbfbfa] focus:bg-blue-50 focus:border-blue-400 focus:outline-none transition-colors duration-300" placeholder=""></textarea>
+        </div>
 
-            <div class="bg-[#f7f5ef] rounded-2xl p-4 border border-amber-100/50 flex justify-between items-center">
+        <!-- Forma de Pago -->
+        <div class="mt-4">
+        <label class="block text-xs font-semibold text-slate-500 uppercase mb-3">
+            Forma de Pago
+        </label>
+
+        <!-- PSE -->
+        <a href="https://checkout.bold.co/payment/LNK_QMFMMNY3DK"
+           target="_blank"
+           onclick="document.getElementById('paymentMethod').value='PSE / Tarjeta';"
+           class="flex items-center justify-between p-4 bg-white border-2 border-[#cbbf94] rounded-2xl shadow-sm hover:shadow-md hover:border-[#0F162A] transition-all group">
+
+            <div class="flex items-center gap-3">
+                <img src="imagenes/pse-logo2.png"
+                     class="w-10 h-10 rounded-full object-cover bg-gray-50">
+
                 <div>
-                    <p class="text-xs uppercase tracking-wider text-[#CFA754] font-bold">Resumen de Cotización</p>
-                    <p id="bookingSummary" class="text-xs font-medium text-slate-600 mt-0.5">Selecciona tus servicios</p>
-                    <p id="discountSummary" class="text-[11px] text-emerald-600 font-semibold mt-0.5"></p>
-                </div>
-                <div class="text-right">
-                    <span class="text-xs text-slate-500 block">Total Estimado</span>
-                    <span id="totalPriceDisplay" class="text-xl font-bold text-[#0F162A]">$0</span>
+                    <p class="font-bold text-[#0F162A] text-sm">
+                        Pagar con PSE / Tarjetas
+                    </p>
+
+                    <p class="text-xs text-slate-500">
+                        segura Bold - Todos los bancos
+                    </p>
                 </div>
             </div>
 
-            <div id="bookingMessage" class="hidden mt-4 rounded-2xl px-4 py-3 text-sm"></div>
+            <span class="text-slate-400 text-lg font-bold">→</span>
+        </a>
 
-            <button id="submitBooking" type="button" onclick="saveService()" class="w-full rounded-full bg-[#0F162A] text-white px-5 py-3.5 font-bold flex justify-center items-center gap-2 hover:bg-slate-800 transition-all">
-                <span>Solicitar servicio </span>
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l7-7m-7 7H3"></path></svg>
-            </button>
-        </form>
+        <!-- Bre-B -->
+        <button type="button"
+                onclick="document.getElementById('paymentMethod').value='Bre-B';"
+                class="flex items-center justify-between p-4 bg-white border border-slate-200 rounded-2xl shadow-sm hover:border-[#cbbf94] transition-all group text-left w-full mt-3">
+
+            <div class="flex items-center gap-3">
+                <img src="imagenes/bre-b.avif"
+                     class="w-10 h-10 rounded-full object-cover">
+
+                <div>
+                    <p class="font-bold text-[#0F162A] text-sm">
+                        Paga con tu llave Bre-B
+                    </p>
+
+                    <p class="text-xs text-slate-500">
+                        Transferencia inmediata
+                    </p>
+                </div>
+            </div>
+
+            <span class="text-xs font-semibold bg-green-100 text-green-700 px-2 py-1 rounded-md">
+                Nuevo
+            </span>
+
+        </button>
+
+        <!-- Transferencia -->
+        <button type="button"
+                onclick="document.getElementById('paymentMethod').value='Transferencia Bancaria';"
+                class="flex items-center justify-between p-4 bg-white border border-slate-200 rounded-2xl shadow-sm hover:border-[#cbbf94] transition-all group text-left w-full mt-3">
+
+            <div class="flex items-center gap-3">
+                <img src="imagenes/transfe.jpg"
+                     class="w-10 h-10 rounded-full object-cover">
+
+                <div>
+                    <p class="font-bold text-[#0F162A] text-sm">
+                        Transferencia Bancaria Directa
+                    </p>
+
+                    <p class="text-xs text-slate-500">
+                        Bancolombia, Davivienda
+                    </p>
+                </div>
+            </div>
+
+            <span class="text-slate-400 text-lg font-bold">
+                →
+            </span>
+
+        </button>
+
     </div>
+
+    <!-- RESUMEN -->
+    <div class="bg-[#f7f5ef] rounded-2xl p-4 border border-amber-100/50 flex justify-between items-center mt-6">
+
+        <div>
+
+            <p class="text-xs uppercase tracking-wider text-[#CFA754] font-bold">
+                Resumen de Cotización
+            </p>
+
+            <p id="bookingSummary"
+               class="text-xs font-medium text-slate-600 mt-1">
+                Selecciona un día
+            </p>
+
+            <p id="discountSummary"
+               class="text-[11px] text-emerald-600 font-semibold">
+            </p>
+
+        </div>
+
+        <div class="text-right">
+
+            <span class="text-xs text-slate-500">
+                Total Estimado
+            </span>
+
+            <p id="totalPriceDisplay"
+               class="text-2xl font-bold text-[#0F162A]">
+                $0
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- MENSAJE -->
+    <div id="bookingMessage"
+         class="hidden mt-4 rounded-2xl px-4 py-3 text-sm">
+    </div>
+
+    <!-- BOTÓN -->
+    <button id="submitBooking"
+            type="button"
+            onclick="saveService()"
+            class="w-full rounded-full bg-[#0F162A] text-white px-5 py-3.5 font-bold mt-4 hover:bg-slate-800 transition">
+
+        Solicitar servicio →
+
+    </button>
+
+</form>
+</div> <!-- FIN p-10 -->
+
+            </div> <!-- FIN tarjeta blanca -->
+
+        </div> <!-- FIN grid -->
+
+    </div> <!-- FIN max-w -->
+
+</section>
+
+<div class="overflow-hidden leading-none">
+    <svg viewBox="0 0 1440 120" class="w-full h-20">
+        <path fill="#ffffff"
+        d="M0,96L60,90.7C120,85,240,75,360,69.3C480,64,600,64,720,74.7C840,85,960,107,1080,106.7C1200,107,1320,85,1380,74.7L1440,64V120H0Z"></path>
+    </svg>
 </div>
+
+<!-- ======================================
+RESEÑAS DE CLIENTES
+====================================== -->
+
+<section id="reviews-home" class="py-24 bg-white">
+
+    <div class="max-w-7xl mx-auto px-6">
+
+        <div class="text-center mb-10">
+
+            <p class="uppercase tracking-[.25em] text-[#CFA754] font-semibold">
+                TESTIMONIOS
+            </p>
+
+            <h2 class="text-3xl md:text-4xl font-bold text-[#0F162A] mt-2">
+                Lo que opinan nuestros clientes
+            </h2>
+
+            <p class="text-[#274F64] mt-3">
+                Más de 200 servicios realizados con clientes satisfechos.
+            </p>
+
+        </div>
+
+        <div class="swiper homeReviews">
+
+            <div id="homeReviewsWrapper" class="swiper-wrapper">
+
+            </div>
+
+            <div class="swiper-pagination mt-6"></div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
 </section>
         <section data-template-id="allies-section" class="canva-section py-20 lg:py-28 bg-white"
             style="background: rgb(255, 255, 255);">
@@ -1235,10 +1348,21 @@ class="hidden canva-sidebar mobile-menu fixed top-0 left-0 h-full w-[82%] max-w-
             <div data-template-id="ally-card-3" class="canva-card rounded-2xl bg-white border border-slate-100 h-40 flex items-center justify-center p-6 shadow-md">
                 <img data-template-id="ally-logo-3" loading="lazy" class="canva-image max-h-24 max-w-full object-contain" src="imagenes/drops.png" alt="DROPS">
             </div>
+    
+        </div>
+        <div class="ally-carousel-item">
+            <div data-template-id="ally-card-2" class="canva-card rounded-2xl bg-white border border-slate-100 h-40 flex items-center justify-center p-6 shadow-md">
+                <img data-template-id="ally-logo-2" loading="lazy" class="canva-image max-h-24 max-w-full object-contain" src="imagenes/Siigo-4x4-1-1024x717.jpg" alt="siigo">
+            </div>
         </div>
         <div class="ally-carousel-item">
             <div data-template-id="ally-card-bold" class="canva-card rounded-2xl bg-white border border-slate-100 h-40 flex items-center justify-center p-6 shadow-md">
                 <img data-template-id="ally-logo-bold" loading="lazy" class="canva-image max-h-24 max-w-full object-contain" src="imagenes/bold.jpeg" alt="Bold - cree en ti">
+            </div>
+        </div>
+        <div class="ally-carousel-item">
+            <div data-template-id="ally-card-7" class="canva-card rounded-2xl bg-white border border-slate-100 h-40 flex items-center justify-center p-6 shadow-md">
+                <img data-template-id="ally-logo-7" loading="lazy" class="canva-image max-h-24 max-w-full object-contain" src="imagenes/spikin.jpg" alt="Spikin">
             </div>
         </div>
         <div class="ally-carousel-item">
@@ -1256,11 +1380,7 @@ class="hidden canva-sidebar mobile-menu fixed top-0 left-0 h-full w-[82%] max-w-
                 <img data-template-id="ally-logo-6" loading="lazy" class="canva-image max-h-24 max-w-full object-contain" src="imagenes/censa-logo.png" alt="CENSA">
             </div>
         </div>
-        <div class="ally-carousel-item">
-            <div data-template-id="ally-card-7" class="canva-card rounded-2xl bg-white border border-slate-100 h-40 flex items-center justify-center p-6 shadow-md">
-                <img data-template-id="ally-logo-7" loading="lazy" class="canva-image max-h-24 max-w-full object-contain" src="imagenes/spikin.jpg" alt="Spikin">
-            </div>
-        </div>
+        
 
         <div class="ally-carousel-item"><div class="canva-card rounded-2xl bg-white border border-slate-100 h-40 flex items-center justify-center p-6 shadow-md"><img loading="lazy" class="canva-image max-h-24 max-w-full object-contain" src="imagenes/boladepelos.jpg" alt="Bola de Pelos"></div></div>
         <div class="ally-carousel-item"><div class="canva-card rounded-2xl bg-white border border-slate-100 h-40 flex items-center justify-center p-6 shadow-md"><img loading="lazy" class="canva-image max-h-24 max-w-full object-contain" src="imagenes/davivienda-logo.webp" alt="Davivienda"></div></div>
@@ -1318,44 +1438,25 @@ class="canva-footer bg-[#0F162A] text-white py-5 border-t border-[#CFA754]/20">
         <!-- ===================== -->
         <!-- CONTACTO -->
         <!-- ===================== -->
+<div class="flex flex-col w-[300px] gap-4">
+    
+    <div class="w-full">
+        <h4 class="font-semibold text-white mb-1">Dirección General</h4>
+        <a href="mailto:direccion@pro-clean-prime.com" class="text-white/70 hover:text-[#CFA754] transition block">direccion@pro-clean-prime.com</a>
+    </div>
 
-        <div class="space-y-3">
+    <div class="w-full">
+        <h4 class="font-semibold text-white mb-1">Comercial</h4>
+        <a href="mailto:procleanprime.comercial@gmail.com" class="text-white/70 hover:text-[#CFA754] transition block">procleanprime.comercial@gmail.com</a>
+    </div>
 
-            <div>
-
-                <h4 class="font-semibold text-white mb-1">
-
-                    Comercial
-
-                </h4>
-
-                <a href="mailto:procleanprime.comercial@gmail.com"
-                    class="text-white/70 hover:text-[#CFA754] transition">
-
-                    procleanprime.comercial@gmail.com
-
-                </a>
-
-            </div>
-
-            <div>
-
-                <h4 class="font-semibold text-white mb-1">
-
-                    Talento Humano
-
-                </h4>
-
-                <a href="mailto:procleanprimecolombia@gmail.com"
-                    class="text-white/70 hover:text-[#CFA754] transition">
-
-                    procleanprimecolombia@gmail.com
-
-                </a>
-
-            </div>
-
-        </div>
+    <div class="w-full">
+        <h4 class="font-semibold text-white mb-1">Talento Humano</h4>
+        <a href="mailto:procleanprimecolombia@gmail.com" class="text-white/70 hover:text-[#CFA754] transition block">procleanprimecolombia@gmail.com</a>
+    </div>
+    
+</div>
+        
 
         <!-- ===================== -->
         <!-- DIRECCIÓN -->
@@ -1948,6 +2049,112 @@ const observer = new IntersectionObserver(
 
 observer.observe(footer);
 
+// ==========================
+// RESEÑAS - PÁGINA PRINCIPAL
+// ==========================
+
+async function cargarResenasHome() {
+
+    try {
+
+        const response = await fetch("https://script.google.com/macros/s/AKfycbyW6DJiFny9iAEWrHL6ce4TOYISa5Q9ByRAFb-9NvXwSVafxxUA24LEGwn8NjHEVfq1/exec");
+
+        const resenas = await response.json();
+
+        const wrapper = document.getElementById("homeReviewsWrapper");
+
+        wrapper.innerHTML = "";
+
+        // Mostrar solo las 6 más recientes
+        const ultimas = resenas.slice(0, 6);
+
+        ultimas.forEach(resena => {
+
+            const estrellas = "⭐".repeat(parseInt(resena.calificacion));
+
+            wrapper.innerHTML += `
+                <div class="swiper-slide">
+
+                    <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-5 h-full">
+
+                        <div class="text-center text-lg mb-3">
+                            ${estrellas}
+                        </div>
+
+                        <p class="text-sm text-[#274F64] italic text-center leading-6 line-clamp-3">
+                            "${resena.comentario}"
+                        </p>
+
+                        <div class="mt-5 text-center">
+
+                            <h3 class="font-bold text-[#0F162A]">
+                                ${resena.nombre}
+                            </h3>
+
+                            <p class="text-[#CFA754] text-sm">
+                                ${resena.servicio}
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            `;
+
+        });
+
+        new Swiper(".homeReviews", {
+
+            loop: true,
+
+            spaceBetween: 20,
+
+            autoplay: {
+
+                delay: 4000,
+
+                disableOnInteraction: false
+
+            },
+
+            pagination: {
+
+                el: "#reviews-home .swiper-pagination",
+
+                clickable: true
+
+            },
+
+            breakpoints: {
+
+                0: {
+                    slidesPerView: 1
+                },
+
+                768: {
+                    slidesPerView: 2
+                },
+
+                1024: {
+                    slidesPerView: 3
+                }
+
+            }
+
+        });
+
+    } catch (error) {
+
+        console.error("Error cargando reseñas Home:", error);
+
+    }
+
+}
+
+cargarResenasHome();
+
+
 
 
 
@@ -1955,7 +2162,7 @@ observer.observe(footer);
     <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-3 pointer-events-none"></div>
 
     
-
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
 </body>
 
