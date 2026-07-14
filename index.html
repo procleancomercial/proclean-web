@@ -183,9 +183,13 @@
             border-color: var(--navy) !important
         }
 
-        .wa-float {
-            box-shadow: 0 14px 35px rgba(20, 110, 73, .28)
-        }
+        .whatsapp-float-fixed {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+    transition: opacity 0.3s ease; /* Esto hace que aparezca/desaparezca bonito */
+}
 
         .promo-orb {
             animation: floaty 4s ease-in-out infinite
@@ -586,8 +590,10 @@ class="hidden canva-sidebar mobile-menu fixed top-0 left-0 h-full w-[82%] max-w-
                     profesional, atención personalizada y resultados que se sienten.</p>
             </div>
         </section>
-        <section data-template-id="trust-strip" class="canva-section bg-[#f7f5ef] py-6"
-            style="background: rgb(247, 245, 239);">
+        <section id="trustStrip"
+    data-template-id="trust-strip"
+    class="canva-section bg-[#f7f5ef] py-6"
+    style="background: rgb(247, 245, 239);">
             <div class="max-w-7xl mx-auto px-5 lg:px-8 grid md:grid-cols-3 gap-4 md:gap-0 text-center md:text-left">
                 <div class="flex items-center justify-center md:justify-start gap-3 md:border-r border-[#ded8ca]">
                     <i data-lucide="shield-check" class="w-5 h-5 text-[#a28f5d]"></i><span data-template-id="trust-1"
@@ -1600,19 +1606,24 @@ class="canva-footer bg-[#0F162A] text-white py-5 border-t border-[#CFA754]/20">
 </div>
 
 </footer>
-    <a id="whatsappFloat"
-    data-template-id="whatsapp-float" href="https://wa.me/573046048958" target="_blank"
-        rel="noopener noreferrer"
-        class="canva-button wa-float fixed z-40 right-4 bottom-28 md:right-6 md:bottom-32 rounded-full bg-[#25D366] text-white pl-3 pr-4 py-3 flex items-center gap-3"
-        style="background: #25d366; color: rgb(255, 255, 255);"> <span
-            class="w-10 h-10 rounded-full bg-white/20 grid place-items-center"><i data-lucide="message-circle"
-                class="w-5 h-5"></i></span> <span class="hidden sm:block"> <span data-template-id="whatsapp-float-title"
-                class="canva-text block text-xs font-semibold leading-none"
-                style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 16px;">¿Necesitas
-                ayuda?</span> <span data-template-id="whatsapp-float-copy"
-                class="canva-text block text-[11px] leading-none mt-1 text-white/85"
-                style="color: rgb(255, 255, 255); font-weight: 400; font-style: normal; font-size: 16px;">+57 304 604
-                8958</span> </span> </a>
+    <section id="whatsappFloat" href="https://wa.me/573046048958" class="whatsapp-float-fixed">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8 grid md:grid-cols-3 gap-4 md:gap-0 text-center md:text-left">
+        </div>
+
+    <a href="https://wa.me/573046048958" 
+       target="_blank" 
+       class="absolute bottom-4 right-6 z-50 flex items-center gap-3 bg-[#25D366] text-white pl-3 pr-4 py-3 rounded-full shadow-lg hover:scale-105 transition-transform">
+        
+        <div class="w-10 h-10 rounded-full bg-white/20 grid place-items-center">
+            <i data-lucide="message-circle" class="w-5 h-5"></i>
+        </div>
+        
+        <div class="hidden sm:block">
+            <span class="block text-base font-bold leading-none">¿Necesitas ayuda?</span>
+            <!-- <span class="block text-sm font-normal mt-1 text-white/85">+57 304 604 8958</span> -->
+        </div>
+    </a>
+</section>
 
                 
     <script>
@@ -2031,13 +2042,17 @@ const observer = new IntersectionObserver(
 
             if (entry.isIntersecting) {
 
-                whatsapp.style.bottom = (footer.offsetHeight + 20) + "px";
+    whatsapp.style.top = "auto";
+    whatsapp.style.transform = "none";
+    whatsapp.style.bottom = (footer.offsetHeight + 20) + "px";
 
-            } else {
+} else {
 
-                whatsapp.style.bottom = "8rem"; // tu posición original
+    whatsapp.style.bottom = "auto";
+    whatsapp.style.top = "55%";
+    whatsapp.style.transform = "translateY(-50%)";
 
-            }
+}
 
         });
 
@@ -2046,7 +2061,7 @@ const observer = new IntersectionObserver(
         threshold: 0
     }
 );
-
+console.log("Observer WhatsApp ejecutándose");
 observer.observe(footer);
 
 // ==========================
@@ -2163,6 +2178,38 @@ cargarResenasHome();
 
     
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+window.onscroll = function() {
+    var button = document.getElementById("whatsappFloat");
+    var footer = document.getElementById("footer");
+    
+    // Obtenemos la posición del footer
+    var footerPosition = footer.offsetTop;
+    var scrollPosition = window.scrollY + window.innerHeight;
+
+    // Si llegamos al footer, lo ocultamos; si no, lo mostramos
+    if (scrollPosition > footerPosition) {
+        button.style.opacity = "0";
+        button.style.pointerEvents = "none"; // Evita que se pueda clickear si está oculto
+    } else {
+        button.style.opacity = "1";
+        button.style.pointerEvents = "auto";
+    }
+};
+</script>
+<script>
+window.addEventListener('scroll', function() {
+    var button = document.getElementById('whatsappFloat');
+    
+    // Si el usuario está a menos de 500px de la parte superior, ocultamos el botón
+    if (window.scrollY < 500) {
+        button.style.display = 'none'; 
+    } else {
+        // Si ya bajamos más de 500px, lo mostramos
+        button.style.display = 'flex'; 
+    }
+});
+</script>
 
 </body>
 
