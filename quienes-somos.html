@@ -375,32 +375,122 @@
 </script>
 </head>
 <body class="font-sans text-[var(--ink)] bg-white overflow-x-hidden">
-    <header class="fixed top-0 left-0 w-full z-50 bg-white/95 backdrop-blur
-    border-b border-white/60">
+    <header class="fixed top-0 left-0 w-full z-50 bg-white/95 backdrop-blur border-b border-white/60">
+
     <div class="max-w-7xl mx-auto px-5 lg:px-8 h-20 flex items-center justify-between">
-        <a href="index.html" class="flex items-center">
-            <img src="imagenes/logo.jpeg" alt="ProClean Prime"
-            class="h-16 w-auto object-contain max-w-[140px]">
+
+        <!-- Logo -->
+        <a href="index.html#inicio" class="flex items-center">
+            <img src="imagenes/logo.jpeg"
+                 alt="ProClean Prime"
+                 class="h-16 w-auto object-contain max-w-[140px]">
         </a>
 
+        <!-- Menú escritorio -->
         <nav class="hidden lg:flex items-center gap-8">
-            <a href="index.html#inicio" class="text-[var(--ink)] hover:text-[var(--gold)]
-            font-medium transition">Inicio</a>
-            <a href="index.html#servicios" class="text-[var(--ink)] hover:text-[var(--gold)]
-            font-medium transition">Servicios</a>
-            <a href="index.html#cotiza" class="text-[var(--ink)] hover:text-[var(--gold)]
-            font-medium transition">Promoción</a>
-            <a href="index.html#agenda" class="text-[var(--ink)] hover:text-[var(--gold)]
-            font-medium transition">Agenda</a>
-            <a href="quienes-somos.html" class="text-[var(--ink)] font-semibold border-b-2 border-[var(--gold)] pb-1">Quiénes somos</a>
+
+            <a href="index.html#inicio"
+               class="text-[#0F162A] hover:text-[#CFA754] font-medium transition">
+                Inicio
+            </a>
+
+            <a href="index.html#servicios"
+               class="text-[#0F162A] hover:text-[#CFA754] font-medium transition">
+                Servicios
+            </a>
+
+            <a href="index.html#cotiza"
+               class="text-[#0F162A] hover:text-[#CFA754] font-medium transition">
+                Promoción
+            </a>
+
+            <a href="index.html#agenda"
+               class="text-[#0F162A] hover:text-[#CFA754] font-medium transition">
+                Agenda
+            </a>
+
+            <a href="quienes-somos.html"
+               class="text-[#0F162A] font-semibold border-b-2 border-[#CFA754] pb-1">
+                Quiénes somos
+            </a>
+
         </nav>
-        <button id="menuBtn" class="lg:hidden focus-ring w-10 h-10 rounded-full
-        border border-[var(--ink)]/20 grid place-items-center"
-        aria-label="Abrir menú">
-        <i data-lucide="menu" class="w-6 h-6 text-[var(--ink)]"></i>
-    </button>
-</div>
-</header>
+
+        <!-- Botón hamburguesa -->
+        <button id="menuBtn"
+                class="lg:hidden w-11 h-11 rounded-full border border-slate-300 grid place-items-center"
+                aria-label="Abrir menú">
+
+            <i data-lucide="menu" class="w-6 h-6 text-[#0F162A]"></i>
+
+        </button>
+
+    </div>
+
+    <!-- Menú desplegable -->
+    <div id="mobile-menu"
+         class="hidden absolute top-20 right-0 w-72 bg-white rounded-b-2xl border-l border-r border-b border-[#CFA754] shadow-2xl p-6 z-50">
+
+        <nav class="flex flex-col gap-6">
+
+            <a href="index.html#inicio"
+               onclick="document.getElementById('mobile-menu').classList.add('hidden')"
+               class="flex items-center gap-2 text-[#0F162A] font-bold hover:text-[#CFA754] transition">
+
+                <i data-lucide="house" class="w-5 h-5"></i>
+                Inicio
+
+            </a>
+
+            <a href="index.html#servicios"
+               onclick="document.getElementById('mobile-menu').classList.add('hidden')"
+               class="flex items-center gap-2 text-[#0F162A] font-bold hover:text-[#CFA754] transition">
+
+                <i data-lucide="sparkles" class="w-5 h-5"></i>
+                Servicios
+
+            </a>
+
+            <a href="index.html#cotiza"
+               onclick="document.getElementById('mobile-menu').classList.add('hidden')"
+               class="flex items-center gap-2 text-[#0F162A] font-bold hover:text-[#CFA754] transition">
+
+                <i data-lucide="tag" class="w-5 h-5"></i>
+                Promoción
+
+            </a>
+
+            <a href="index.html#agenda"
+               onclick="document.getElementById('mobile-menu').classList.add('hidden')"
+               class="flex items-center gap-2 text-[#0F162A] font-bold hover:text-[#CFA754] transition">
+
+                <i data-lucide="calendar-days" class="w-5 h-5"></i>
+                Agenda
+
+            </a>
+
+            <a href="quienes-somos.html"
+               onclick="document.getElementById('mobile-menu').classList.add('hidden')"
+               class="flex items-center gap-2 text-[#CFA754] font-bold">
+
+                <i data-lucide="users" class="w-5 h-5"></i>
+                Quiénes somos
+
+            </a>
+
+            <a href="index.html#seccion-equipo"
+               onclick="document.getElementById('mobile-menu').classList.add('hidden')"
+               class="flex items-center gap-2 text-[#0F162A] font-bold hover:text-[#CFA754] transition">
+
+                <i data-lucide="briefcase-business" class="w-5 h-5"></i>
+                Únete a nuestro equipo
+
+            </a>
+
+        </nav>
+
+    </div>
+
 </header>
 
 <div id="menuOverlay" class="overlay fixed inset-0 bg-black/35 z-30 hidden"></div>
@@ -1653,6 +1743,38 @@ stars.forEach(star => {
 
 
 </script>
+
+<script>
+
+lucide.createIcons();
+
+const menuBtn = document.getElementById("menuBtn");
+const menu = document.getElementById("mobile-menu");
+
+if (menuBtn && menu) {
+
+    menuBtn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        menu.classList.toggle("hidden");
+    });
+
+    document.addEventListener("click", function (e) {
+
+        if (!menu.contains(e.target) &&
+            !menuBtn.contains(e.target)) {
+
+            menu.classList.add("hidden");
+
+        }
+
+    });
+
+}
+
+</script>
+
+
+
 
 </body>
 </html>
