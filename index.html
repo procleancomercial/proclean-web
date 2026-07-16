@@ -592,7 +592,7 @@ class="hidden canva-sidebar mobile-menu fixed top-0 left-0 h-full w-[82%] max-w-
                 <div class="flex items-center justify-center md:justify-start gap-3 md:border-r border-[#ded8ca]">
                     <i data-lucide="shield-check" class="w-5 h-5 text-[#a28f5d]"></i><span data-template-id="trust-1"
                         class="canva-text text-sm font-medium"
-                        style="color: #0F162A; font-weight: 500; font-style: normal; font-size: 16px;">Auxiliares
+                        style="color: #0F162A; font-weight: 500; font-style: normal; font-size: 16px;">Especialista
                         profesionales</span>
                 </div>
                 <div class="flex items-center justify-center gap-3 md:border-r border-[#ded8ca]">
@@ -801,7 +801,7 @@ class="hidden canva-sidebar mobile-menu fixed top-0 left-0 h-full w-[82%] max-w-
                                     servicios profesionales de limpieza y cuidado.
 
                                     Nos destacamos por:
-                                    ✅ Auxiliares altamente capacitadas
+                                    ✅ Especialistas altamente capacitadas
                                     ✅ Personal profesional and confiable
                                     ✅ Puntualidad
                                     ✅ Atención al detalle
@@ -1053,25 +1053,76 @@ class="hidden canva-sidebar mobile-menu fixed top-0 left-0 h-full w-[82%] max-w-
     <form id="procleanForm" class="space-y-4">
         <input type="hidden" id="paymentMethod" name="formadepago" value="No seleccionado">
 
-        <!-- Campos: Nombre completo y Teléfono -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-            <div>
-                <label class="block text-xs font-semibold text-slate-500 uppercase mb-1">Nombre completo</label>
-                <input id="fullName" type="text" class="w-full rounded-2xl border border-slate-200 px-3 py-3 bg-[#fbfbfa] focus:border-slate-200 outline-none" placeholder="" required>
-            </div>
-            <div>
-                <label class="block text-xs font-semibold text-slate-500 uppercase mb-1">Teléfono</label>
-                <input id="phone" type="tel" class="w-full rounded-2xl border border-slate-200 px-3 py-3 bg-[#fbfbfa] focus:border-slate-200 outline-none" placeholder="" required>
-            </div>
-        </div>
+        <!-- Primera fila -->
+<div class="grid md:grid-cols-2 gap-4">
+
+    <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">
+            NOMBRE COMPLETO <span class="text-red-500">*</span>
+        </label>
+        <input
+            type="text"
+            id="fullName"
+            class="w-full rounded-2xl border border-slate-200 px-4 py-3 bg-[#fbfbfa] focus:bg-blue-50 focus:border-blue-400 focus:outline-none transition-colors duration-300">
+    </div>
+
+    <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">
+            TELÉFONO <span class="text-red-500">*</span>
+        </label>
+        <input
+            type="text"
+            id="phone"
+            class="w-full rounded-2xl border border-slate-200 px-4 py-3 bg-[#fbfbfa] focus:bg-blue-50 focus:border-blue-400 focus:outline-none transition-colors duration-300">
+    </div>
+
+</div>
+
+<!-- Segunda fila -->
+<div class="grid md:grid-cols-2 gap-4 mt-4">
+
+    <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">
+            TIPO DE IDENTIFICACIÓN <span class="text-red-500">*</span>
+        </label>
+
+        <select
+            id="documentType"
+            class="w-full rounded-2xl border border-slate-200 px-4 py-3 bg-[#fbfbfa] focus:bg-blue-50 focus:border-blue-400 focus:outline-none transition-colors duration-300">
+
+            <option value="">Seleccione...</option>
+            <option>Cédula de ciudadanía</option>
+            <option>Cédula de extranjería</option>
+            <option>Tarjeta de identidad</option>
+            <option>Pasaporte</option>
+            <option>NIT</option>
+
+        </select>
+    </div>
+
+    <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">
+            NÚMERO DE IDENTIFICACIÓN <span class="text-red-500">*</span>
+        </label>
+
+        <input
+            type="text"
+            id="documentNumber"
+            class="w-full rounded-2xl border border-slate-200 px-4 py-3 bg-[#fbfbfa] focus:bg-blue-50 focus:border-blue-400 focus:outline-none transition-colors duration-300"
+    placeholder="Ej. 1032456789">
+            
+    </div>
+
+</div>
+
 
         <!-- Casilla: ¿Primer servicio? -->
         <div>
-            <div class="p-4 rounded-2xl border flex justify-between items-center transition-colors duration-300 mb-5" 
+            <div class="p-4 rounded-2xl border flex justify-between items-center transition-colors duration-300 mt-5" 
                 style="background-color: #f7f5ef; border-color: #e2e8f0;"
                 onclick="const cb=this.querySelector('#promoPrimerServicio'); this.style.backgroundColor=cb.checked ? '#E0F2FE' : '#f7f5ef'; this.style.borderColor=cb.checked ? '#60A5FA' : '#e2e8f0';">
             
-                <div>
+                <div class="mb-6">
                     <label for="promoPrimerServicio" class="block text-xs font-bold text-amber-800 uppercase tracking-wider cursor-pointer">¿Primer servicio?</label>
                     <span class="text-xs text-slate-600 mt-0.5 block">Activa tarifa especial de $149.900</span>
                 </div>
@@ -1079,7 +1130,7 @@ class="hidden canva-sidebar mobile-menu fixed top-0 left-0 h-full w-[82%] max-w-
             </div>
 
             <!-- Selección de servicios -->
-            <label class="block text-xs font-semibold text-slate-500 uppercase mb-2">Selecciona los servicios que necesitas</label>
+            <label class="block text-sm font-medium text-gray-700 mt-6 mb-4 uppercase">Selecciona los servicios que necesitas</label>
 
             <div class="flex flex-col space-y-2">
                 <label class="flex items-center p-3 rounded-xl border border-slate-200 bg-[#fbfbfa] cursor-pointer hover:border-slate-400">
@@ -1102,7 +1153,7 @@ class="hidden canva-sidebar mobile-menu fixed top-0 left-0 h-full w-[82%] max-w-
             <p class="text-xs font-bold text-[#0F162A] uppercase tracking-wider">⚡ Cotiza tu servicio en segundos</p>
             
             <div>
-                <label class="block text-sm font-medium text-[#0F162A] mb-1">¿Cuántos días necesitas al mes?</label>
+                <label class="block text-sm font-medium text-[#0F162A] mt-7">¿Cuántos días necesitas al mes?</label>
                 <div class="flex items-center gap-4">
                     <input type="range" id="cleaningDays" min="1" max="30" value="1" oninput="document.getElementById('daysDisplay').value = this.value; calcularPrecioDinamico();" class="w-full accent-[#0F162A]">
                     <input type="number" id="daysDisplay" min="1" max="30" value="1" oninput="document.getElementById('cleaningDays').value = this.value; calcularPrecioDinamico();" class="w-16 text-center font-bold border border-slate-300 rounded-xl py-1">
@@ -1112,21 +1163,52 @@ class="hidden canva-sidebar mobile-menu fixed top-0 left-0 h-full w-[82%] max-w-
 
         <!-- Dirección -->
         <div>
-            <label class="block text-xs font-semibold text-slate-500 uppercase mb-1">Dirección</label>
-            <input id="address" type="text" class="w-full rounded-2xl border border-slate-200 px-4 py-3 bg-[#fbfbfa] focus:bg-blue-50 focus:border-blue-400 focus:outline-none transition-colors duration-300" placeholder="" required>
-        </div>
+    <label for="address"
+        class="block text-sm font-medium text-gray-700 mb-2 uppercase">
+        Dirección <span class="text-red-500">*</span>
+    </label>
+
+    <input id="address"
+        type="text"
+        class="w-full rounded-2xl border border-slate-200 px-4 py-3 bg-[#fbfbfa] focus:bg-blue-50 focus:border-blue-400 focus:outline-none transition-colors duration-300"
+        required>
+</div>
 
         <!-- Notas / Observaciones -->
         <div>
-            <label class="block text-xs font-semibold text-slate-500 uppercase mb-1">Cuéntanos un poco más (Notas)</label>
-            <textarea id="observations" rows="2" class="w-full rounded-2xl border border-slate-200 px-4 py-3 bg-[#fbfbfa] focus:bg-blue-50 focus:border-blue-400 focus:outline-none transition-colors duration-300" placeholder=""></textarea>
-        </div>
+    <label for="observations"
+        class="block text-sm font-medium text-gray-700 mb-2 uppercase">
+        Cuéntanos un poco más (Notas) <span class="text-red-500">*</span>
+    </label>
+
+    <textarea id="observations"
+        rows="2"
+        class="w-full rounded-2xl border border-slate-200 px-4 py-3 bg-[#fbfbfa] focus:bg-blue-50 focus:border-blue-400 focus:outline-none transition-colors duration-300">
+    </textarea>
+</div>
+        <div class="mt-3">
+
+    <label for="referralSource"
+        class="block text-sm font-medium text-gray-700 mb-2 uppercase">
+        ¿Cómo conociste ProClean Prime? <span class="text-red-500">*</span>
+    </label>
+
+    <input
+        type="text"
+        id="referralSource"
+        name="referralSource"
+        required
+        maxlength="100"
+        placeholder="Ejemplo: Por Instagram, un amigo me recomendó, vi un volante..."
+        class="w-full rounded-xl border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#CFA754] focus:border-[#CFA754] bg-[#fbfbfa]">
+
+</div>
 
         <!-- Forma de Pago -->
         <div class="mt-4">
-        <label class="block text-xs font-semibold text-slate-500 uppercase mb-3">
-            Forma de Pago
-        </label>
+        <label class="block text-sm font-medium text-gray-700 mb-2 uppercase">
+    Forma de Pago
+</label>
 
         <!-- PSE -->
         <a href="https://checkout.bold.co/payment/LNK_QMFMMNY3DK"
@@ -1928,82 +2010,174 @@ function showNotification(message, type = 'success') {
 // 2. NUEVA FUNCIÓN SAVESERVICE CON VALIDACIONES
 // ==========================================
 function saveService() {
-    // 1. Capturamos los datos del formulario de forma segura
-    const fullName = document.getElementById('fullName') ? document.getElementById('fullName').value.trim() : "";
-    const phone = document.getElementById('phone') ? document.getElementById('phone').value.trim() : "";
-    const address = document.getElementById('address') ? document.getElementById('address').value.trim() : "";
-    const observations = document.getElementById('observations') ? document.getElementById('observations').value.trim() : "";
-    const cleaningDays = document.getElementById('cleaningDays') ? document.getElementById('cleaningDays').value : "1";
-    const frequencyPlan = document.getElementById('frequencyPlan') ? document.getElementById('frequencyPlan').value : "Único";
 
-    // 2. Capturamos los servicios seleccionados en un array
+    // ==========================
+    // CAPTURAR DATOS DEL FORMULARIO
+    // ==========================
+    const fullName = document.getElementById("fullName")?.value.trim() || "";
+    const phone = document.getElementById("phone")?.value.trim() || "";
+
+    const documentType = document.getElementById("documentType")?.value || "";
+    const documentNumber = document.getElementById("documentNumber")?.value.trim() || "";
+
+    const referralSource = document.getElementById("referralSource")?.value.trim() || "";
+
+    const address = document.getElementById("address")?.value.trim() || "";
+
+    const observations = document.getElementById("observations")?.value.trim() || "";
+
+    const frequencyPlan = document.getElementById("frequencyPlan")?.value || "Único";
+
+    // ==========================
+    // SERVICIOS SELECCIONADOS
+    // ==========================
     const checkboxes = document.querySelectorAll('input[name="services"]:checked');
-    let serviciosSeleccionados = [];
-    checkboxes.forEach(cb => serviciosSeleccionados.push(cb.value));
 
-    // VALIDACIÓN A: Nombre y Teléfono obligatorios
-    if (!fullName || !phone) {
-        showNotification("Por favor, completa los campos principales (Nombre y Teléfono) antes de enviar.", "error");
+    let serviciosSeleccionados = [];
+
+    checkboxes.forEach(cb => {
+        serviciosSeleccionados.push(cb.value);
+    });
+
+    // ==========================
+    // VALIDACIONES
+    // ==========================
+
+    if (!fullName) {
+        showNotification("Ingresa el nombre completo.", "error");
+        document.getElementById("fullName").focus();
         return;
     }
 
-    // // VALIDACIÓN B: Fecha y Hora obligatorios (Bloquea el envío si falta el calendario)
-    // if (!selectedDate || !selectedTime) {
-    //     showNotification("Por favor, selecciona una fecha y una hora en el calendario para tu servicio.", "error");
-    //     return;
-    // }
-    // VALIDACIÓN B: Solo la Fecha es obligatoria (Se eliminó la exigencia de la hora)
-if (!selectedDate) {
-    showNotification("Por favor, selecciona una fecha en el calendario para tu servicio.", "error");
-    return;
-}
+    if (!phone) {
+        showNotification("Ingresa el teléfono.", "error");
+        document.getElementById("phone").focus();
+        return;
+    }
 
-    // 3. Creamos el objeto con los nombres EXACTOS (Tildes y claves) que tu Apps Script espera
+    if (!documentType) {
+        showNotification("Selecciona el tipo de identificación.", "error");
+        document.getElementById("documentType").focus();
+        return;
+    }
+
+    if (!documentNumber) {
+        showNotification("Ingresa el número de identificación.", "error");
+        document.getElementById("documentNumber").focus();
+        return;
+    }
+
+    if (!address) {
+        showNotification("Ingresa la dirección.", "error");
+        document.getElementById("address").focus();
+        return;
+    }
+
+    if (!selectedDate) {
+        showNotification("Selecciona una fecha para el servicio.", "error");
+        return;
+    }
+
+    if (!referralSource) {
+        showNotification("Por favor indícanos cómo conociste ProClean Prime.", "error");
+        document.getElementById("referralSource").focus();
+        return;
+    }
+
+    if (!observations) {
+        showNotification("Cuéntanos un poco más sobre el servicio que necesitas.", "error");
+        document.getElementById("observations").focus();
+        return;
+    }
+
+    // ==========================
+    // OBJETO A ENVIAR
+    // ==========================
+
     const pedido = {
+
         nombreCliente: fullName,
-        teléfono: phone, // Con tilde como tu Google Sheets
-        servicio: serviciosSeleccionados.length > 0 ? serviciosSeleccionados.join(' + ') : "Ninguno", 
-        categoria: frequencyPlan, // Con tilde como tu Google Sheets
-        direccion: address, // Con tilde como tu Google Sheets
-        fechaSolicitada: selectedDate ? formatDate(selectedDate) : "No seleccionada", 
-        hora: "No aplica", // Dejamos la clave activa con un texto fijo para que tu Google Sheets no falle
-        
-        // ⬇️ AQUÍ ASEGURAMOS EL PRECIO: Lo lee directo de la pantalla y quita el signo $ y los puntos
-        precio: document.getElementById('totalPriceDisplay') ? document.getElementById('totalPriceDisplay').innerText.replace(/[^0-9]/g, '') : "0", 
-        
-        formaPago: document.getElementById('paymentMethod') ? document.getElementById('paymentMethod').value : "No seleccionado",
+        telefono: phone,
+
+        tipoIdentificacion: documentType,
+        numeroIdentificacion: documentNumber,
+        comoConociste: referralSource,
+
+        servicio: serviciosSeleccionados.length > 0
+            ? serviciosSeleccionados.join(" + ")
+            : "Ninguno",
+
+        categoria: frequencyPlan,
+
+        direccion: address,
+
+        fechaSolicitada: selectedDate
+            ? formatDate(selectedDate)
+            : "No seleccionada",
+
+        hora: "No aplica",
+
+        precio: document.getElementById("totalPriceDisplay")
+            ? document.getElementById("totalPriceDisplay").innerText.replace(/[^0-9]/g, "")
+            : "0",
+
+        formaPago: document.getElementById("paymentMethod")
+            ? document.getElementById("paymentMethod").value
+            : "No seleccionado",
+
         notas: observations
+
     };
 
-    console.log("Datos listos para enviar de forma elegante:", pedido);
-    // 4. Enviamos los datos a tu API de Google Sheets
-    fetch("https://script.google.com/macros/s/AKfycbzlZN_wugWpvEN5KpS9xi1M5rvy4Aok6UxaTIBjNrcUpXbkzGZqxWrkgl0xlNrAsGPvrQ/exec", {
+    console.log("OBJETO ENVIADO:");
+    console.log(pedido);
+
+    // ==========================
+    // ENVIAR A APPS SCRIPT
+    // ==========================
+
+    fetch("https://script.google.com/macros/s/AKfycbzLv4VRFQap0DUswhURjgFHVE05fJg1xVgZstT9UdK2QemPnsV9Z3Wgo9qFkCdji3ULHA/exec", {
+
         method: "POST",
+
         headers: {
             "Content-Type": "text/plain"
         },
+
         body: JSON.stringify(pedido)
+
     })
-    .then(response => {
-        console.log("Pedido enviado con éxito");
-        // 5. Limpiamos el formulario una vez enviado
-        document.getElementById('bookingForm').reset();
-        
-        // Limpiamos los estados del calendario y precios
+
+    .then(response => response.json())
+
+    .then(data => {
+
+        console.log(data);
+
+        document.getElementById("bookingForm").reset();
+
         selectedDate = null;
-        //selectedTime = null;
+
         if (typeof renderCalendar === "function") renderCalendar();
-        //if (typeof renderTimes === "function") renderTimes();
+
         if (typeof updateSummary === "function") updateSummary();
+
         if (typeof calcularPrecioDinamico === "function") calcularPrecioDinamico();
-        
+
         alert("¡Servicio solicitado correctamente!");
+
     })
+
     .catch(error => {
-        console.error("Error al enviar el servicio:", error);
-        alert("Hubo un problema al enviar los datos, pero intentemos restablecer el formulario.");
+
+        console.error(error);
+
+        alert("Ocurrió un error al enviar la solicitud.");
+
     });
+
 }
+
 
 // ==========================
 // RESEÑAS - PÁGINA PRINCIPAL
@@ -2119,38 +2293,7 @@ cargarResenasHome();
 
     
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-<script>
-window.onscroll = function() {
-    var button = document.getElementById("whatsappFloat");
-    var footer = document.getElementById("footer");
-    
-    // Obtenemos la posición del footer
-    var footerPosition = footer.offsetTop;
-    var scrollPosition = window.scrollY + window.innerHeight;
 
-    // Si llegamos al footer, lo ocultamos; si no, lo mostramos
-    if (scrollPosition > footerPosition) {
-        button.style.opacity = "0";
-        button.style.pointerEvents = "none"; // Evita que se pueda clickear si está oculto
-    } else {
-        button.style.opacity = "1";
-        button.style.pointerEvents = "auto";
-    }
-};
-</script>
-<script>
-window.addEventListener('scroll', function() {
-    var button = document.getElementById('whatsappFloat');
-    
-    // Si el usuario está a menos de 500px de la parte superior, ocultamos el botón
-    if (window.scrollY < 500) {
-        button.style.display = 'none'; 
-    } else {
-        // Si ya bajamos más de 500px, lo mostramos
-        button.style.display = 'flex'; 
-    }
-});
-</script>
 
 </body>
 
