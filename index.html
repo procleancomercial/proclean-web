@@ -183,13 +183,7 @@
             border-color: var(--navy) !important
         }
 
-        .whatsapp-float-fixed {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 9999;
-    transition: opacity 0.3s ease; /* Esto hace que aparezca/desaparezca bonito */
-}
+    
 
         .promo-orb {
             animation: floaty 4s ease-in-out infinite
@@ -1606,24 +1600,7 @@ class="canva-footer bg-[#0F162A] text-white py-5 border-t border-[#CFA754]/20">
 </div>
 
 </footer>
-    <section id="whatsappFloat" href="https://wa.me/573046048958" class="whatsapp-float-fixed">
-    <div class="max-w-7xl mx-auto px-5 lg:px-8 grid md:grid-cols-3 gap-4 md:gap-0 text-center md:text-left">
-        </div>
-
-    <a href="https://wa.me/573046048958" 
-       target="_blank" 
-       class="absolute bottom-4 right-6 z-50 flex items-center gap-3 bg-[#25D366] text-white pl-3 pr-4 py-3 rounded-full shadow-lg hover:scale-105 transition-transform">
-        
-        <div class="w-10 h-10 rounded-full bg-white/20 grid place-items-center">
-            <i data-lucide="message-circle" class="w-5 h-5"></i>
-        </div>
-        
-        <div class="hidden sm:block">
-            <span class="block text-base font-bold leading-none">¿Necesitas ayuda?</span>
-            <!-- <span class="block text-sm font-normal mt-1 text-white/85">+57 304 604 8958</span> -->
-        </div>
-    </a>
-</section>
+    
 
                 
     <script>
@@ -2027,42 +2004,6 @@ if (!selectedDate) {
         alert("Hubo un problema al enviar los datos, pero intentemos restablecer el formulario.");
     });
 }
-
-// ==========================
-// DETENER WHATSAPP ANTES DEL FOOTER
-// ==========================
-
-const footer = document.getElementById("footer");
-const whatsapp = document.getElementById("whatsappFloat");
-
-const observer = new IntersectionObserver(
-    (entries) => {
-
-        entries.forEach(entry => {
-
-            if (entry.isIntersecting) {
-
-    whatsapp.style.top = "auto";
-    whatsapp.style.transform = "none";
-    whatsapp.style.bottom = (footer.offsetHeight + 20) + "px";
-
-} else {
-
-    whatsapp.style.bottom = "auto";
-    whatsapp.style.top = "55%";
-    whatsapp.style.transform = "translateY(-50%)";
-
-}
-
-        });
-
-    },
-    {
-        threshold: 0
-    }
-);
-console.log("Observer WhatsApp ejecutándose");
-observer.observe(footer);
 
 // ==========================
 // RESEÑAS - PÁGINA PRINCIPAL
