@@ -424,20 +424,43 @@ href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
                     style="color: #25d366; font-weight: 500; font-style: normal; font-size: 16px;"><i
                         data-lucide="message-circle" class="w-4 h-4"></i> WhatsApp</a>
             </nav>
-            <div class="flex items-center gap-3">
-    <!-- Botón Solicitar servicio -->
-    <a data-template-id="header-cta" href="#cotiza"
-        class="canva-button hidden sm:inline-flex px-5 py-3 rounded-full text-sm font-semibold transition hover:-translate-y-0.5"
-        style="background: #0F162A; color: rgb(255, 255, 255); font-weight: 600; font-style: normal; font-size: 16px;">
-        Solicitar servicio
-    </a> 
+            <div class="flex items-center gap-2">
 
-    <!-- Botón Hamburguesa ajustado -->
+    <!-- WhatsApp (solo móvil) -->
+    <a href="https://wa.me/573046048958"
+   target="_blank"
+   class="lg:hidden flex items-center justify-center w-11 h-11 rounded-full bg-[#25D366] text-white shadow-md hover:scale-105 transition">
+
+    <img src="imagenes/WhatsApp_icon.png"
+         alt="WhatsApp"
+         class="w-6 h-6">
+
+</a>
+
+    <!-- Solicitar (solo móvil) -->
+    <a href="#agenda"
+       class="lg:hidden flex items-center justify-center w-11 h-11 rounded-full bg-[#0F162A] text-white shadow-md hover:scale-105 transition">
+
+        <i data-lucide="calendar-days" class="w-5 h-5"></i>
+    </a>
+
+    <!-- Botón escritorio -->
+    <a data-template-id="header-cta"
+        href="#cotiza"
+        class="canva-button hidden lg:inline-flex px-5 py-3 rounded-full text-sm font-semibold transition hover:-translate-y-0.5"
+        style="background:#0F162A;color:#fff;">
+        Solicitar servicio
+    </a>
+
+    <!-- Menú -->
     <button id="menuBtn"
         class="focus-ring w-11 h-11 rounded-full border border-slate-200 grid place-items-center"
         aria-label="Abrir menú">
-        <i data-lucide="menu" class="w-5 h-5"></i> 
+
+        <i data-lucide="menu" class="w-5 h-5"></i>
+
     </button>
+
 </div>
     </header>
     <!-- <div id="menuOverlay" class="overlay fixed inset-0 bg-black/35 z-30"></div> -->
@@ -960,7 +983,7 @@ class="hidden canva-sidebar mobile-menu fixed top-0 left-0 h-full w-[82%] max-w-
                 </div>
             </div>
         </section>
-        <section id="agenda" class="py-20 lg:py-28 bg-[#eef3f3]">
+        <section id="agenda" class="py-20 lg:py-28 bg-[#F5F7FA]">
             <div class="max-w-7xl mx-auto px-5 lg:px-8">
                 <div class="max-w-2xl mb-10 mx-auto text-center flex flex-col items-center">
                     <p data-template-id="booking-eyebrow"
@@ -1389,6 +1412,146 @@ RESEÑAS DE CLIENTES
             <div class="swiper-pagination mt-6"></div>
 
         </div>
+
+    </div>
+
+<!-- =========================
+     ESPECIALISTAS PROCLEAN PRIME
+========================== -->
+<section id="especialistas" class="py-10 bg-[#F5F7FA]">
+
+    <div class="bg-white rounded-3xl shadow-lg p-5 lg:p-8">
+
+<div class="grid lg:grid-cols-[1.2fr_0.8fr] gap-8 items-center">
+
+    <!-- ================= TEXTO ================= -->
+    <div>
+
+        <!-- Logo -->
+        <div class="flex justify-center">
+
+            <div class="w-16 h-16 lg:w-20 lg:h-20 rounded-full border-4 border-[#CFA754] bg-white shadow-lg flex items-center justify-center">
+
+                <img src="imagenes/logo.jpeg"
+                     class="w-10 h-10 lg:w-14 lg:h-14 object-contain rounded-full">
+
+            </div>
+
+        </div>
+
+        <!-- Portal -->
+        <p class="mt-5 text-center uppercase tracking-[5px] text-[#CFA754] font-bold text-sm">
+
+            Portal Interno
+
+        </p>
+
+        <!-- Título -->
+        <h2 class="mt-2 text-center text-3xl lg:text-5xl font-extrabold text-[#0F162A] leading-tight">
+
+            Especialistas ProClean Prime
+
+        </h2>
+
+        <!-- Frase -->
+        <p class="mt-4 text-center text-slate-500 text-base leading-7 max-w-xl mx-auto">
+
+            Tu trabajo es el corazón de nuestra empresa.
+            Comparte cómo fue tu jornada y ayúdanos a construir un mejor lugar para trabajar cada día.
+
+        </p>
+
+        <!-- Características -->
+
+        <div class="grid grid-cols-2 gap-6 mt-8">
+
+            <div class="text-center">
+
+                <div class="text-4xl">🧹</div>
+
+                <h4 class="mt-2 font-bold text-[#0F162A]">
+                    Tu Jornada
+                </h4>
+
+                <p class="text-sm text-slate-500">
+                    Cuéntanos cómo fue tu día.
+                </p>
+
+            </div>
+
+            <div class="text-center">
+
+                <div class="text-4xl">💙</div>
+
+                <h4 class="mt-2 font-bold text-[#0F162A]">
+                    Bienestar
+                </h4>
+
+                <p class="text-sm text-slate-500">
+                    Queremos escucharte.
+                </p>
+
+            </div>
+
+            <div class="text-center">
+
+                <div class="text-4xl">🚍</div>
+
+                <h4 class="mt-2 font-bold text-[#0F162A]">
+                    Transporte
+                </h4>
+
+                <p class="text-sm text-slate-500">
+                    Reporta novedades.
+                </p>
+
+            </div>
+
+            <div class="text-center">
+
+                <div class="text-4xl">🤝</div>
+
+                <h4 class="mt-2 font-bold text-[#0F162A]">
+                    Tus Ideas
+                </h4>
+
+                <p class="text-sm text-slate-500">
+                    Ayúdanos a mejorar.
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- Botón -->
+
+        <div class="flex justify-center">
+
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfH9ru_SMMyadPYYrT6vQ08LiLhfztzQK1p0ALsMduSCRvMmQ/viewform"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="mt-8 w-full lg:w-auto lg:px-10 py-4 rounded-full bg-[#CFA754] text-[#0F162A] font-bold text-lg text-center hover:bg-[#b88d2d] transition shadow-lg">
+
+                📝 Compartir mi jornada
+
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- ================= IMAGEN ================= -->
+
+    <div class="flex justify-center">
+
+        <img src="imagenes/portal.png"
+             class="w-full max-w-sm lg:max-w-md rounded-3xl shadow-xl">
+
+    </div>
+
+</div>
+
+</div>
 
     </div>
 
