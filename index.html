@@ -1157,7 +1157,7 @@ Nuestros valores nos distinguen:
                         Tarifa de bienvenida</h2>
                     <p data-template-id="promo-main" class="canva-text mb-3"
                         style="color: #CFA754; font-weight: 700; font-style: normal; font-size: 26px;">Tu
-                        primer servicio por solo $149.900</p>
+                        primer servicio por solo $178.000</p>
                     <p data-template-id="promo-copy" class="canva-text text-white/72 leading-7 mb-2 max-w-lg"
    style="color: rgb(219, 228, 235); font-weight: 400; font-style: normal; font-size: 16px;">
     Promoción válida para todo Medellín y Área Metropolitana.
@@ -1359,7 +1359,7 @@ Nuestros valores nos distinguen:
             
                 <div class="mb-6">
                     <label for="promoPrimerServicio" class="block text-xs font-bold text-amber-800 uppercase tracking-wider cursor-pointer">¿Primer servicio?</label>
-                    <span class="text-xs text-slate-600 mt-0.5 block">Activa tarifa especial de $149.900</span>
+                    <span class="text-xs text-slate-600 mt-0.5 block">Activa tarifa especial de $178.000</span>
                 </div>
                 <input type="checkbox" id="promoPrimerServicio" onchange="calcularPrecioDinamico()" class="w-5 h-5 accent-[#0F162A] cursor-pointer" onclick="event.stopPropagation();">
             </div>
@@ -2158,7 +2158,7 @@ function calcularPrecioDinamico() {
             sumaTarifasBase += 85000; 
         } else {
             // Si es cualquier otro servicio de limpieza, usa la tarifa normal o promo
-            sumaTarifasBase += esPromoPrimerServicio ? 149900 : 178000;
+            sumaTarifasBase += esPromoPrimerServicio ? 178000 : 178000;
         }
     });
     
