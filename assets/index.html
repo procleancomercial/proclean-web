@@ -340,7 +340,7 @@ href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
     <!-- Logo a la izquierda (línea 331) -->
 <div class="flex items-center">
     <a href="#inicio">
-        <img src="imagenes/logo.jpeg" class="h-16 w-auto object-contain max-w-[140px]">
+        <img src="imagenes/logo-sinfondo.png" class="h-16 w-auto object-contain max-w-[140px]">
     </a>
 </div>
     <!-- Contenedor Derecho: Tus enlaces de servicios y botones (se mantendrán a la derecha) -->
@@ -1439,81 +1439,86 @@ Nuestros valores nos distinguen:
 
 </div>
 
-        <!-- Forma de Pago -->
-        <div class="mt-4">
-        <label class="block text-sm font-medium text-gray-700 mb-2 uppercase">
-    Forma de Pago
-</label>
+     <!-- Forma de Pago -->
+<div class="mt-4">
 
-        <!-- PSE -->
-        <a href="https://checkout.bold.co/payment/LNK_QMFMMNY3DK"
-           target="_blank"
-           onclick="document.getElementById('paymentMethod').value='PSE / Tarjeta';"
-           class="flex items-center justify-between p-4 bg-white border-2 border-[#cbbf94] rounded-2xl shadow-sm hover:shadow-md hover:border-[#0F162A] transition-all group">
+    <label class="block text-sm font-medium text-gray-700 mb-2 uppercase">
+        Forma de Pago
+    </label>
 
-            <div class="flex items-center gap-3">
-                <img src="imagenes/pse-logo2.png"
-                     class="w-10 h-10 rounded-full object-cover bg-gray-50">
+    <!-- Bre-B -->
+    <a href="https://checkout.bold.co/payment/LNK_QMFMMNY3DK"
+       target="_blank"
+       onclick="document.getElementById('paymentMethod').value='Bre-B';"
+       class="flex items-center justify-between p-4 bg-white border border-slate-200 rounded-2xl shadow-sm hover:border-[#cbbf94] transition-all group">
 
-                <div>
-                    <p class="font-bold text-[#0F162A] text-sm">
-                        Pagar con PSE / Tarjetas
-                    </p>
+        <div class="flex items-center gap-3">
+            <img src="imagenes/bre-b.avif"
+                 class="w-10 h-10 rounded-full object-cover">
 
-                    <p class="text-xs text-slate-500">
-                        segura Bold - Todos los bancos
-                    </p>
-                </div>
+            <div>
+                <p class="font-bold text-[#0F162A] text-sm">
+                    Paga con tu llave Bre-B
+                </p>
+
+                <p class="text-xs text-slate-500 font-mono font-semibold text-emerald-700">
+                    @bold3103764723
+                </p>
             </div>
+        </div>
 
-            <span class="text-slate-400 text-lg font-bold">→</span>
-        </a>
+        <span class="text-xs font-semibold bg-green-100 text-green-700 px-2 py-1 rounded-md">
+            Nuevo
+        </span>
 
-        <!-- Bre-B -->
-        <button type="button"
-                onclick="document.getElementById('paymentMethod').value='Bre-B';"
-                class="flex items-center justify-between p-4 bg-white border border-slate-200 rounded-2xl shadow-sm hover:border-[#cbbf94] transition-all group text-left w-full mt-3">
+    </a>
 
-            <div class="flex items-center gap-3">
-                <img src="imagenes/bre-b.avif"
-                     class="w-10 h-10 rounded-full object-cover">
+    <!-- Transferencia -->
+    <button type="button"
+            onclick="document.getElementById('paymentMethod').value='Transferencia Bancaria';"
+            class="flex items-center justify-between p-4 bg-white border border-slate-200 rounded-2xl shadow-sm hover:border-[#cbbf94] transition-all group text-left w-full mt-3">
 
-                <div>
-                    <p class="font-bold text-[#0F162A] text-sm">
-                        Paga con tu llave Bre-B
-                    </p>
+        <div class="flex items-center gap-3">
+            <img src="imagenes/davivienda (1).png"
+                 class="w-10 h-10 rounded-full object-cover">
 
-                    <p class="text-xs text-slate-500">
-                        Transferencia inmediata
-                    </p>
-                </div>
+            <div>
+                <p class="font-bold text-[#0F162A] text-sm">
+                    Transferencia Bancaria
+                </p>
+
+                <p class="text-xs text-slate-500">
+                    Davivienda
+                </p>
             </div>
+        </div>
 
-            <span class="text-xs font-semibold bg-green-100 text-green-700 px-2 py-1 rounded-md">
-                Nuevo
-            </span>
+    </button>
 
-        </button>
+    <!-- PSE -->
+    <a href="https://checkout.bold.co/payment/LNK_QMFMMNY3DK"
+       target="_blank"
+       onclick="document.getElementById('paymentMethod').value='PSE / Tarjeta';"
+       class="flex items-center justify-between p-4 bg-white border-2 border-[#cbbf94] rounded-2xl shadow-sm hover:shadow-md hover:border-[#0F162A] transition-all group mt-3">
 
-        <!-- Transferencia -->
-        <button type="button"
-                onclick="document.getElementById('paymentMethod').value='Transferencia Bancaria';"
-                class="flex items-center justify-between p-4 bg-white border border-slate-200 rounded-2xl shadow-sm hover:border-[#cbbf94] transition-all group text-left w-full mt-3">
+        <div class="flex items-center gap-3">
+            <img src="imagenes/pse-logo2.png"
+                 class="w-10 h-10 rounded-full object-cover bg-gray-50">
 
-            <div class="flex items-center gap-3">
-                <img src="imagenes/transfe.jpg"
-                     class="w-10 h-10 rounded-full object-cover">
+            <div>
+                <p class="font-bold text-[#0F162A] text-sm">
+                    Pagar con PSE / Tarjetas
+                </p>
 
-                <div>
-                    <p class="font-bold text-[#0F162A] text-sm">
-                        Transferencia Bancaria Directa
-                    </p>
-
-                    <p class="text-xs text-slate-500">
-                        Bancolombia, Davivienda
-                    </p>
-                </div>
+                <p class="text-xs text-slate-500">
+                    Plataforma segura Bold - Todos los bancos
+                </p>
             </div>
+        </div>
+
+    </a>
+
+</div>
 
             <span class="text-slate-400 text-lg font-bold">
                 →
@@ -1678,7 +1683,7 @@ RESEÑAS DE CLIENTES
         </div>
         <div class="ally-carousel-item">
             <div data-template-id="ally-card-7" class="canva-card rounded-2xl bg-white border border-slate-100 h-40 flex items-center justify-center p-6 shadow-md">
-                <img data-template-id="ally-logo-7" loading="lazy" class="canva-image max-h-24 max-w-full object-contain" src="imagenes/spikin.jpg" alt="Spikin">
+                <img data-template-id="ally-logo-7" loading="lazy" class="canva-image max-h-24 max-w-full object-contain" src="imagenes/logoskipiscan.png" alt="Spikin">
             </div>
         </div>
         <div class="ally-carousel-item">

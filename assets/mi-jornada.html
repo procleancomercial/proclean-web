@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mi Jornada | ProClean Prime</title>
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/mi-jornada.css">
+
+</head>
+
+<body>
+
+ <div class="dashboard-container">
+
+    <!-- Sidebar -->
+    <!-- ==========================================
+     SIDEBAR
+========================================== -->
+
+<aside class="sidebar">
+
+    <!-- Logo -->
+
+    <div class="sidebar-logo">
+
+        <img src="./imagenes/logo-sinfondo.png">
+        
+
+        <h2>ProClean Prime</h2>
+
+        <span>Portal Especialistas</span>
+
+    </div>
+
+    <!-- Tarjeta del especialista -->
+
+<div class="sidebar-user">
+
+    <div class="user-avatar">
+        <i data-lucide="user"></i>
+    </div>
+
+    <h3 id="nombreEspecialista">
+        Especialista
+    </h3>
+
+    <p>
+        Especialista de Limpieza
+    </p>
+
+    <span class="status">
+        <span class="status-dot"></span>
+        En línea
+    </span>
+
+</div>
+
+    <!-- Menú -->
+
+<nav class="sidebar-menu">
+
+    <span class="menu-title">
+        Principal
+    </span>
+
+    <a href="dashboard.html" class="active">
+        <i data-lucide="layout-dashboard"></i>
+        <span>Inicio</span>
+    </a>
+
+    <a href="mi-jornada.html">
+        <i data-lucide="calendar-days"></i>
+        <span>Mi Jornada</span>
+    </a>
+
+
+    <span class="menu-title">
+        Mi Espacio
+    </span>
+
+    <a href="perfil.html">
+        <i data-lucide="user"></i>
+        <span>Mi Perfil</span>
+    </a>
+
+    <a href="bienestar.html">
+        <i data-lucide="heart-handshake"></i>
+        <span>Mi Bienestar</span>
+    </a>
+
+
+    <span class="menu-title">
+        Empresa
+    </span>
+
+    <a href="comunicados.html">
+        <i data-lucide="megaphone"></i>
+        <span>Comunicados</span>
+    </a>
+
+    <a href="ideas.html">
+        <i data-lucide="lightbulb"></i>
+        <span>Mis Ideas</span>
+    </a>
+
+</nav>
+
+<!-- Footer -->
+
+<div class="sidebar-footer">
+
+    <a href="portal_especialistas.html">
+
+        <i data-lucide="log-out"></i>
+
+        <span>Cerrar sesión</span>
+
+    </a>
+
+</div>
+
+
+</aside>
+
+
+<main class="main-content">
+
+    <!-- =========================================
+    ENCABEZADO
+    ========================================= -->
+
+    <section class="page-header">
+
+        <div>
+
+            <h1>📅 Mi Jornada</h1>
+
+            <p>
+                Consulta la orden de servicio asignada para el día de hoy.
+            </p>
+
+        </div>
+
+        <div class="page-date">
+
+            <span>Hoy es</span>
+
+            <h3 id="fechaActual"></h3>
+
+        </div>
+
+    </section>
+    <!-- =========================================
+ORDEN DE SERVICIO
+========================================= -->
+
+<section class="work-order">
+
+    <div class="work-order-header">
+
+        <div>
+
+            <span class="order-number">
+
+                Orden #000154
+
+            </span>
+
+            <h2>
+
+                Limpieza General del Hogar
+
+            </h2>
+
+        </div>
+
+<span
+    id="estadoServicio"
+    class="service-status">
+
+    🟢 Confirmado
+
+</span>
+
+    </div>
+
+    <div class="order-details">
+
+        <div class="detail-item">
+
+            <span>Cliente</span>
+
+            <strong id="clienteServicio">
+    Cargando...
+</strong>
+
+        </div>
+
+        <div class="detail-item">
+
+            <span>Horario</span>
+
+            <strong id="horarioServicio">
+    Cargando...
+</strong>
+
+        </div>
+
+        <div class="detail-item">
+
+            <span>Duración</span>
+
+            <strong id="duracionServicio">
+    Cargando...
+</strong>
+
+        </div>
+
+        <div class="detail-item">
+
+            <span>Servicio</span>
+
+            <strong id="tipoServicio">
+    Cargando...
+</strong>
+
+        </div>
+
+    </div>
+    <hr class="order-divider">
+
+<div class="order-section">
+
+    <h3>
+        📍 Ubicación del servicio
+    </h3>
+
+<p id="direccionServicio">
+
+    Cargando dirección...
+
+</p>
+
+    <button class="btn-secondary">
+
+        Abrir Google Maps
+
+    </button>
+
+</div>
+<hr class="order-divider">
+
+<div class="order-section">
+
+    <h3>
+        📞 Información del cliente
+    </h3>
+
+   <p id="telefonoCliente">
+
+    Cargando teléfono...
+
+</p>
+
+</div>
+<hr class="order-divider">
+
+<div class="order-section">
+
+    <h3>
+        📝 Observaciones
+    </h3>
+
+<ul
+    id="listaObservaciones"
+    class="observations-list">
+
+</ul>
+
+</div>
+<div class="order-actions">
+
+<button
+    id="btnJornada"
+    class="btn-primary">
+
+    Iniciar Jornada
+
+</button>
+
+</div>
+
+</section>
+
+</main>
+
+
+
+
+    <script src="../js/dashboard.js"></script>
+    <script src="../js/mi-jornada.js"></script>
+
+</body>
+
+</html>
