@@ -53,8 +53,10 @@
 
 <div class="sidebar-user">
 
-    <div class="user-avatar">
-        <i data-lucide="user-round"></i>
+    <!-- Contenedor de la foto de perfil (cambiamos el icono por una etiqueta img) -->
+    <div class="user-avatar" id="avatarContainer">
+        <img id="fotoEspecialista" src="" alt="Foto de perfil" style="display: none; width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+        <i data-lucide="user-round" id="iconoDefecto"></i>
     </div>
 
     <h3 id="nombreEspecialista">
@@ -65,9 +67,9 @@
         Especialista de Limpieza
     </p>
 
-    <span class="status">
-        <span class="status-dot"></span>
-        En línea
+    <span class="status" id="statusBadge">
+        <span class="status-dot" id="statusDot"></span>
+        <span id="statusText">En línea</span>
     </span>
 
 </div>
@@ -80,10 +82,7 @@
         <span>Inicio</span>
     </a>
 
-    <a href="#" class="menu-item">
-        <i data-lucide="wallet"></i>
-        <span>Mis Pagos</span>
-    </a>
+
 
     <a href="#" class="menu-item">
         <i data-lucide="user"></i>
@@ -136,8 +135,8 @@ BIENVENIDA
             </p>
 
             <p class="mt-5 text-gray-500 max-w-2xl">
-                Gracias por formar parte de nuestro equipo.
-                Cada servicio que realizas refleja nuestro compromiso con la excelencia y hace la diferencia para nuestros clientes.
+            Gracias por ser parte de ProClean Prime. Tu dedicación y compromiso hacen posible 
+            brindar una experiencia de calidad a cada cliente.
             </p>
 
         </div>
@@ -253,7 +252,7 @@ SERVICIO DE HOY
                 </span>
 
                 <strong id="horarioServicio">
-                    8:00 AM - 4:00 PM
+                    8:00 AM - 4:30 PM
                 </strong>
 
             </div>
@@ -312,31 +311,7 @@ SERVICIO DE HOY
 
 
 
-    <!-- ACCIONES -->
 
-    <div class="service-actions">
-
-
-        <button class="secondary-action">
-
-            <i data-lucide="map"></i>
-
-            Ruta
-
-        </button>
-
-
-
-        <button class="secondary-action">
-
-            <i data-lucide="phone"></i>
-
-            Contactar
-
-        </button>
-
-
-    </div>
 
 
 
@@ -363,14 +338,17 @@ SERVICIO DE HOY
     <div class="voice-header">
 
         <div class="voice-icon">
-            <i data-lucide="lightbulb"></i>
+            <i data-lucide="messages-square"></i>
         </div>
 
         <div>
+
             <h2>Tu Voz Cuenta</h2>
+
             <p class="voice-subtitle">
-                Tu opinión es importante para nosotros.
+                Tus ideas y comentarios nos ayudan a seguir mejorando.
             </p>
+
         </div>
 
     </div>
@@ -380,16 +358,21 @@ SERVICIO DE HOY
     <div class="voice-body">
 
         <p class="voice-text">
-            Comparte tus ideas, solicitudes o sugerencias.
-            Queremos construir contigo un mejor lugar para trabajar.
+
+        Cada sugerencia cuenta. Gracias por ayudarnos a construir un mejor ProClean Prime.
+
         </p>
 
-<button class="btn-primary" onclick="openVoiceModal()">
-    Compartir opinión
-</button>
+        <button class="btn-primary" onclick="openVoiceModal()">
+
+            💬 Escribir mensaje
+
+        </button>
 
         <p class="voice-footer">
+
             “En ProClean Prime creemos que las mejores ideas nacen de nuestro equipo.”
+
         </p>
 
     </div>
@@ -397,224 +380,7 @@ SERVICIO DE HOY
 </section>
 
 
-<!-- =========================================
-ACCESOS RÁPIDOS
-========================================= -->
-<!-- <div class="mb-4">
 
-    <h2 class="text-3xl font-bold text-[#0d152b]">
-
-        Accesos rápidos
-
-    </h2>
-
-    <p class="text-gray-500 mt-2">
-
-        Accede rápidamente a las herramientas que utilizas durante tu jornada.
-
-    </p>
-
-</div>
-
-<section class="dashboard-grid">
-
-    <div class="dashboard-card">
-
-        <div class="card-icon">
-            <i data-lucide="calendar-days"></i>
-        </div>
-
-        <h3>Mi Jornada</h3>
-
-        <p>
-            Consulta tus servicios programados para hoy.
-        </p>
-
-<button class="card-link" onclick="openServiceModal()">
-    Ver información →
-</button>
-        
-
-    </div>
-
-    <div class="dashboard-card">
-
-        <div class="card-icon">
-            <i data-lucide="heart-handshake"></i>
-        </div>
-
-        <h3>Mi Bienestar</h3>
-
-        <p>
-            Conoce tus beneficios y reconocimientos.
-        </p>
-
-        <span class="card-link">
-            Ver beneficios →
-        </span>
-
-    </div>
-
-    <div class="dashboard-card">
-
-        <div class="card-icon">
-            <i data-lucide="megaphone"></i>
-        </div>
-
-        <h3>Comunicados</h3>
-
-        <p>
-            Mantente informada con las novedades.
-        </p>
-
-        <span class="card-link">
-            Ver comunicados →
-        </span>
-
-    </div>
-
-    <div class="dashboard-card">
-
-        <div class="card-icon">
-            <i data-lucide="lightbulb"></i>
-        </div>
-
-        <h3>Comparte una Idea</h3>
-
-        <p>
-            Ayúdanos a mejorar nuestros servicios.
-        </p>
-
-        <span class="card-link">
-            Compartir →
-        </span>
-
-    </div>
-
-</section> -->
-
-<!-- =========================================
-MI JORNADA
-========================================= -->
-
-<!-- <section class="service-card">
-
-    <div class="service-header">
-
-        <div>
-
-            <span class="service-badge">
-
-                📅 Mi Jornada de Hoy
-
-            </span>
-
-            <h2>
-
-                Próximo servicio programado
-
-            </h2>
-
-        </div>
-
-        <span class="status active">
-
-            Confirmado
-
-        </span>
-
-    </div>
-
-    <div class="service-grid">
-
-        <div>
-
-            <small>Cliente</small>
-
-            <p>María Gómez</p>
-
-        </div>
-
-        <div>
-
-            <small>Servicio</small>
-
-            <p>Limpieza General</p>
-
-        </div>
-
-        <div>
-
-            <small>Dirección</small>
-
-            <p>Envigado</p>
-
-        </div>
-
-        <div>
-
-            <small>Hora</small>
-
-            <p>9:00 AM</p>
-
-        </div>
-
-    </div>
-
-    <button class="btn-service">
-
-        Ver detalles
-
-    </button>
-
-</section> -->
-<!-- =========================================
-HOY EN PROCLEAN PRIME
-========================================= -->
-
-<!-- <section class="info-grid">
-
-    
-
-    <div class="info-card">
-
-        <div class="info-icon">
-            📢
-        </div>
-
-        <h3>Comunicado destacado</h3>
-
-        <p>
-            Recuerda confirmar tu llegada antes de iniciar cada servicio desde la aplicación.
-        </p>
-
-        <button class="info-button">
-            Ver comunicado
-        </button>
-
-    </div>
-
-    
-
-    <div class="info-card">
-
-        <div class="info-icon">
-            ❤️
-        </div>
-
-        <h3>Bienestar del día</h3>
-
-        <p>
-            Tu bienestar es importante. Programa pequeños descansos e hidrátate durante la jornada.
-        </p>
-
-        <button class="info-button">
-            Ver más
-        </button>
-
-    </div>
-
-</section> -->
 
 </main>
 
@@ -675,13 +441,7 @@ MODAL VER SERVICIO
 
                 </div>
 
-                <div class="info-item">
 
-                    <span>Teléfono</span>
-
-                    <strong>300 123 4567</strong>
-
-                </div>
 
                 <div class="info-item">
 
@@ -771,29 +531,20 @@ MODAL VER SERVICIO
 
         <div class="service-actions">
 
-            <button class="secondary-action">
+<button class="secondary-action">
+    <i data-lucide="map-pin"></i>
+    Ruta
+</button>
 
-                <i data-lucide="map-pin"></i>
+<button
+    class="secondary-action"
+    onclick="window.open('https://wa.me/573046048963?text=Hola!%20necesito%20ayuda%20con%20ruta%20del%20servicio','_blank')">
 
-                Ruta
+    <i data-lucide="message-circle"></i>
 
-            </button>
+    <span>Contactar soporte</span>
 
-            <button class="secondary-action">
-
-                <i data-lucide="phone"></i>
-
-                Llamar
-
-            </button>
-
-            <button class="secondary-action">
-
-                <i data-lucide="message-circle-more"></i>
-
-                WhatsApp
-
-            </button>
+</button>
 
         </div>
 
@@ -806,27 +557,730 @@ MODAL VER SERVICIO
     <span>Iniciar servicio</span>
 
     <i data-lucide="play"></i>
+    </button>
 
-</button>
-<div id="serviceInProgress" style="display:none;">
+<button
+    class="service-button secondary-action-full"
+    onclick="openEvidenceModal()">
 
-    <button class="service-button secondary-action-full">
+    <i data-lucide="camera"></i>
 
-        <i data-lucide="camera"></i>
+    Evidencias
+    </button>
 
-        Evidencias
+</div>
+
+</div>
+
+<!-- =========================================
+MODAL EVIDENCIAS
+========================================= -->
+
+<div id="evidenceModal" class="modal">
+
+    <div class="modal-content service-modal">
+
+        <!-- Encabezado -->
+
+        <div class="modal-header">
+
+            <div>
+
+                <h2>
+
+                    <i data-lucide="camera"></i>
+
+                    Evidencias del Servicio
+
+                </h2>
+
+                <p class="modal-subtitle">
+
+                    Documenta el antes y después del servicio realizado.
+
+                </p>
+
+            </div>
+
+            <button class="close-modal" onclick="closeEvidenceModal()">
+
+                <i data-lucide="x"></i>
+
+            </button>
+
+        </div>
+
+        <!-- Antes -->
+
+        <div class="modal-card">
+
+            <h3>
+
+                <i data-lucide="image-plus"></i>
+
+                Antes del servicio
+
+            </h3>
+
+<label class="upload-card">
+
+    <input
+        id="beforeImage"
+        type="file"
+        accept="image/*"
+        hidden
+        onchange="previewImage(this,'beforePreview','beforeContent')"
+    >
+
+    <div id="beforeContent">
+
+        <div class="upload-icon">
+
+            <i data-lucide="camera"></i>
+
+        </div>
+
+        <h4>Fotografía inicial</h4>
+
+        <p>
+            Captura el área antes de comenzar el servicio.
+        </p>
+
+        <small>
+            JPG • PNG • HEIC
+        </small>
+
+    </div>
+
+    <img
+        id="beforePreview"
+        class="preview-image"
+        style="display:none;"
+    >
+    <div id="beforeActions" class="image-actions" style="display:none;">
+
+    <button
+        type="button"
+        class="image-btn"
+        onclick="document.getElementById('beforeImage').click()">
+
+        <i data-lucide="refresh-cw"></i>
+
+        Cambiar
 
     </button>
 
-    <button class="service-button close-service-btn">
+    <button
+        type="button"
+        class="image-btn delete-btn"
+        onclick="removeImage('beforeImage','beforePreview','beforeContent','beforeActions')">
 
-        <i data-lucide="clipboard-check"></i>
+        <i data-lucide="trash-2"></i>
 
-        Cerrar servicio
+        Eliminar
 
     </button>
 
 </div>
+
+</label>
+
+        </div>
+
+<!-- Después -->
+
+<div class="modal-card">
+
+    <h3>
+
+        <i data-lucide="image-plus"></i>
+
+        Después del servicio
+
+    </h3>
+
+ <label class="upload-card">
+
+    <input
+        id="afterImage"
+        type="file"
+        accept="image/*"
+        hidden
+        onchange="previewImage(this,'afterPreview','afterContent')"
+    >
+
+    <div id="afterContent">
+
+        <div class="upload-icon">
+
+            <i data-lucide="camera"></i>
+
+        </div>
+
+        <h4>Fotografía final</h4>
+
+        <p>
+            Captura el resultado al finalizar el servicio.
+        </p>
+
+        <small>
+            JPG • PNG • HEIC
+        </small>
+
+    </div>
+
+    <img
+        id="afterPreview"
+        class="preview-image"
+        style="display:none;"
+    >
+    <div id="afterActions" class="image-actions" style="display:none;">
+
+    <button
+        type="button"
+        class="image-btn"
+        onclick="document.getElementById('afterImage').click()">
+
+        <i data-lucide="refresh-cw"></i>
+
+        Cambiar
+
+    </button>
+
+    <button
+        type="button"
+        class="image-btn delete-btn"
+        onclick="removeImage('afterImage','afterPreview','afterContent','afterActions')">
+
+        <i data-lucide="trash-2"></i>
+
+        Eliminar
+
+    </button>
+
+</div>
+    
+
+</label>
+
+        </div>
+
+<button class="service-button" onclick="saveEvidence()">
+
+    <span>Guardar evidencias</span>
+
+    <i data-lucide="arrow-right"></i>
+
+</button>
+
+    </div>
+
+</div>
+
+<!-- =========================================
+MODAL CIERRE DEL SERVICIO
+========================================= -->
+
+<div id="closeServiceModal" class="modal">
+
+    <div class="modal-content service-modal">
+
+        <!-- Encabezado -->
+
+        <div class="modal-header">
+
+            <div>
+
+                <h2>
+
+                    <i data-lucide="clipboard-check"></i>
+
+                    Cierre del Servicio
+
+                </h2>
+
+                <p class="modal-subtitle">
+
+                    Completa la información para finalizar el servicio.
+
+                </p>
+
+            </div>
+
+            <button class="close-modal" onclick="closeCloseServiceModal()">
+
+                <i data-lucide="x"></i>
+
+            </button>
+
+        </div>
+
+        <!-- Estado del servicio -->
+
+        <div class="modal-card">
+
+            <h3>
+
+                <i data-lucide="flag"></i>
+
+                ¿Cómo terminó este servicio?
+
+            </h3>
+
+            <div class="service-result">
+
+                <label class="result-option">
+
+                    <input type="radio" name="serviceResult" value="completed">
+
+                    <div>
+
+                        <strong>🟢 Completado</strong>
+
+                        <small>El servicio se realizó correctamente.</small>
+
+                    </div>
+
+                </label>
+
+                <label class="result-option">
+
+                    <input type="radio" name="serviceResult" value="novelty">
+
+                    <div>
+
+                        <strong>🟡 Con novedades</strong>
+
+                        <small>Hubo alguna situación durante el servicio.</small>
+
+                    </div>
+
+                </label>
+
+                <label class="result-option">
+
+                    <input type="radio" name="serviceResult" value="cancelled">
+
+                    <div>
+
+                        <strong>🔴 No fue posible realizarlo</strong>
+
+                        <small>El servicio no pudo completarse.</small>
+
+                    </div>
+
+                </label>
+
+            </div>
+
+        </div>
+
+ 
+
+ <!-- Experiencia -->
+
+<div class="modal-card">
+
+    <h3>
+
+        <i data-lucide="smile"></i>
+
+        ¿Cómo fue tu experiencia con el usuario?
+
+    </h3>
+
+    <div class="experience-options">
+
+        <div class="experience-card excellent" onclick="selectExperience(this)">
+
+            <div class="experience-icon">😁</div>
+
+            <div>
+
+                <strong>Excelente</strong>
+
+                <small>Usuario muy amable y colaborador.</small>
+
+            </div>
+
+        </div>
+
+        <div class="experience-card good" onclick="selectExperience(this)">
+
+            <div class="experience-icon">🙂</div>
+
+            <div>
+
+                <strong>Buena</strong>
+
+                <small>La atención fue cordial y sin inconvenientes.</small>
+
+            </div>
+
+        </div>
+
+        <div class="experience-card regular" onclick="selectExperience(this)">
+
+            <div class="experience-icon">😐</div>
+
+            <div>
+
+                <strong>Regular</strong>
+
+                <small>Hubo algunas dificultades durante el servicio.</small>
+
+            </div>
+
+        </div>
+
+        <div class="experience-card difficult" onclick="selectExperience(this)">
+
+            <div class="experience-icon">🙁</div>
+
+            <div>
+
+                <strong>Difícil</strong>
+
+                <small>La interacción con el usuario fue complicada.</small>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Observaciones -->
+
+<div class="modal-card">
+
+    <h3>
+
+        <i data-lucide="file-text"></i>
+
+        Observaciones adicionales (opcional)
+
+    </h3>
+
+    <textarea
+        class="service-notes"
+        placeholder="Si deseas agregar información adicional sobre el servicio o el usuario, escríbela aquí..."
+    ></textarea>
+
+</div>
+
+<!-- Botón -->
+
+<button class="service-button" onclick="saveCloseService()">
+
+    <span>Guardar y continuar</span>
+
+    <i data-lucide="arrow-right"></i>
+
+</button>
+
+    </div>
+
+</div>
+
+<!-- =========================================
+MODAL LLEGADA AL SERVICIO
+========================================= -->
+
+<div id="arrivalModal" class="modal">
+
+    <div class="modal-content service-modal">
+
+        <!-- Encabezado -->
+
+        <div class="modal-header">
+
+            <div>
+
+                <h2>
+
+                    <i data-lucide="bus"></i>
+
+                    Llegada al Servicio
+
+                </h2>
+
+                <p class="modal-subtitle">
+
+                    Registra cómo fue tu llegada al lugar del servicio.
+
+                </p>
+
+            </div>
+
+            <button class="close-modal" onclick="closeArrivalModal()">
+
+                <i data-lucide="x"></i>
+
+            </button>
+
+        </div>
+
+<!-- Estado de la llegada -->
+
+<div class="modal-card">
+
+    <h3>
+
+        <i data-lucide="bus"></i>
+
+        ¿Cómo fue tu llegada al servicio?
+
+    </h3>
+
+    <div class="arrival-options">
+
+        <div class="arrival-card arrival-good"
+             onclick="selectArrival(this)">
+
+            <div class="arrival-icon">🟢</div>
+
+            <div>
+
+                <strong>Sin inconvenientes</strong>
+
+                <small>
+                    Llegué al sitio según lo programado.
+                </small>
+
+            </div>
+
+        </div>
+
+        <div class="arrival-card arrival-delay"
+             onclick="selectArrival(this)">
+
+            <div class="arrival-icon">🟡</div>
+
+            <div>
+
+                <strong>Con retrasos</strong>
+
+                <small>
+                    Llegué con demora por factores externos.
+                </small>
+
+            </div>
+
+        </div>
+
+        <div class="arrival-card arrival-problem"
+             onclick="selectArrival(this)">
+
+            <div class="arrival-icon">🔴</div>
+
+            <div>
+
+                <strong>Con dificultades</strong>
+
+                <small>
+                    Se presentaron inconvenientes importantes para llegar.
+                </small>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Observaciones -->
+
+<div class="modal-card">
+
+    <h3>
+
+        <i data-lucide="file-text"></i>
+
+        Observaciones (opcional)
+
+    </h3>
+
+    <textarea
+        class="service-notes"
+        placeholder="Describe brevemente qué ocurrió..."
+    ></textarea>
+
+</div>
+
+<!-- Botón -->
+
+<button class="service-button" onclick="saveArrival()">
+
+    <span>Guardar y Finalizar</span>
+
+    <i data-lucide="check-circle"></i>
+
+</button>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================
+     MODAL SERVICIO FINALIZADO
+========================================= -->
+
+<div id="successModal" class="modal">
+
+    <div class="modal-content success-modal">
+
+        <div class="success-icon">
+            <i data-lucide="badge-check"></i>
+        </div>
+
+        <h2>🎉 ¡Excelente trabajo!</h2>
+
+        <p class="success-message">
+            Has completado correctamente tu servicio.
+            <br><br>
+            Gracias por representar a
+            <strong>ProClean Prime</strong>
+            con profesionalismo.
+        </p>
+
+        <button
+            class="service-button"
+            onclick="goDashboard()">
+
+            <span>Volver al inicio</span>
+
+            <i data-lucide="home"></i>
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================
+     MODAL TU VOZ CUENTA
+========================================= -->
+
+<div id="voiceModal" class="modal-overlay hidden">
+
+    <div class="modal-container">
+
+        <!-- Botón cerrar -->
+        <button
+            class="modal-close"
+            onclick="closeVoiceModal()">
+
+            <i data-lucide="x"></i>
+
+        </button>
+
+        <!-- Encabezado -->
+<div class="voice-header">
+
+    <div class="voice-circle">
+        <i data-lucide="message-circle-heart"></i>
+    </div>
+
+    <h2>Tu Voz Cuenta</h2>
+
+    <p>
+        Tu opinión es importante para nosotros.
+    </p>
+
+</div>
+
+<hr class="voice-divider">
+        <!-- Tipo de comentario -->
+        <div class="form-group">
+
+            <label for="voiceType">
+                Tipo de comentario
+            </label>
+
+            <select id="voiceType">
+
+                <option value="">
+                    Selecciona una opción
+                </option>
+
+                <option value="idea">
+                    💡 Idea de mejora
+                </option>
+
+                <option value="sugerencia">
+                    📝 Sugerencia
+                </option>
+
+                <option value="reconocimiento">
+                    👏 Reconocimiento
+                </option>
+
+                <option value="reporte">
+                    ⚠️ Reporte
+                </option>
+
+            </select>
+
+        </div>
+
+        <!-- Comentario -->
+        <div class="form-group">
+
+            <label for="voiceMessage">
+                Comentario
+            </label>
+
+            <textarea
+                id="voiceMessage"
+                maxlength="1000"
+                placeholder="Comparte una idea, sugerencia, reconocimiento o cualquier comentario que nos ayude a seguir mejorando."></textarea>
+
+<div class="voice-counter">
+    <span id="voiceCount">0</span> / 1000 caracteres
+</div>
+
+        </div>
+
+        <!-- Botón -->
+<button class="btn-primary" onclick="sendVoice()">
+
+    <i data-lucide="send"></i>
+
+    <span>Enviar comentario</span>
+
+</button>
+
+    </div>
+
+</div>
+
+<!-- MODAL ÉXITO TU VOZ CUENTA -->
+
+<div id="voiceSuccessModal" class="success-overlay">
+
+    <div class="success-container">
+
+        <div class="success-icon">
+            ✓
+        </div>
+
+        <h2>
+            🎉 ¡Gracias por ser parte de ProClean Prime!
+        </h2>
+
+        <p>
+        Tu opinión es muy valiosa para nosotros. Cada comentario nos ayuda a seguir creciendo
+        y construir un mejor lugar para todo el equipo
+        </p>
+
+        <button onclick="closeVoiceSuccess()">
+            Volver
+        </button>
 
     </div>
 
@@ -835,6 +1289,20 @@ MODAL VER SERVICIO
 <script src="https://unpkg.com/lucide@latest"></script>
 
     <script src="../js/dashboard.js"></script>
+
+
+    <script>
+    // Al cargar el dashboard, buscamos el nombre guardado en el navegador
+    document.addEventListener("DOMContentLoaded", () => {
+        const nombreGuardado = localStorage.getItem("nombreEspecialista");
+        if (nombreGuardado) {
+            const elementoNombre = document.getElementById("nombreEspecialista");
+            if (elementoNombre) {
+                elementoNombre.textContent = nombreGuardado;
+            }
+        }
+    });
+</script>
 
 
 </body>

@@ -423,13 +423,11 @@ HEADER PORTAL ESPECIALISTAS
 
                 <nav class="hidden lg:flex items-center gap-8">
 
-                    <a
-                        href="#soporte"
-                        class="text-[#233047] font-medium hover:text-[#cbbf94] transition">
-
-                        Soporte
-
-                    </a>
+<a href="https://wa.me/573046048963?text=Hola,%20necesito%20soporte%20con%20el%20Portal%20de%20Especialistas" 
+   target="_blank" 
+   class="text-[#233047] font-medium hover:text-[#cbbf94] transition">
+    Soporte
+</a>
 
                     <a
                         href="#login"
@@ -472,12 +470,11 @@ MENÚ MÓVIL
     <div class="flex flex-col p-6 gap-5">
 
         <a
-            href="#soporte"
-            class="text-[#233047] font-medium hover:text-[#cbbf94]">
-
-            Soporte
-
-        </a>
+ href="https://wa.me/573046048963?text=Hola,%20necesito%20soporte%20con%20el%20Portal%20de%20Especialistas" 
+   target="_blank" 
+   class="text-[#233047] font-medium hover:text-[#cbbf94] transition">
+    Soporte
+</a>
 
         <a
             href="#login"
@@ -566,7 +563,7 @@ COLUMNA DERECHA
     <div class="bg-white/10 backdrop-blur-xl border border-white/10 rounded-[40px] p-6 shadow-2xl max-w-[330px] mx-auto">
 
         <img
-            src="imagenes/portal.png"
+            src="imagenes/fotoportal.png"
             alt="Portal Especialistas"
             class="rounded-[30px] w-full max-w-[280px] mx-auto hover:scale-105 transition duration-700">
 
@@ -1005,14 +1002,14 @@ Iniciar sesión
 
 
 
-<a href="#"
-
-class="
-block
-text-center
-text-[#0F162A]
-mt-5
-text-sm">
+<a href="#" 
+   onclick="recuperarPassword(event)"
+   class="
+   block
+   text-center
+   text-[#0F162A]
+   mt-5
+   text-sm">
 
 ¿Olvidaste tu contraseña?
 
@@ -1034,30 +1031,8 @@ text-sm">
 <!-- ==========================
      LOGIN
 ========================== -->
-<script src="js/login.js"></script>
+<script src="../js/login.js"></script>
 
-<!-- ==========================
-     JAVASCRIPT GENERAL
-========================== -->
-<script>
-
-const menuButton = document.getElementById("menuButton");
-const mobileMenu = document.getElementById("mobileMenu");
-
-if (menuButton && mobileMenu) {
-
-    menuButton.addEventListener("click", () => {
-
-        mobileMenu.classList.toggle("hidden");
-
-    });
-
-}
-
-// Inicializar iconos de Lucide
-lucide.createIcons();
-
-</script>
 
 </body>
 </html>

@@ -440,6 +440,412 @@ TARJETAS DEL DASHBOARD
 }
 
 /*======================================
+UPLOAD CARD
+======================================*/
+
+.upload-card{
+
+    width:100%;
+
+    margin-top:18px;
+
+    padding:35px 25px;
+
+    border:2px dashed #cbbf94;
+
+    border-radius:18px;
+
+    background:#fafafa;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+
+    cursor:pointer;
+
+    transition:.30s;
+
+}
+
+.upload-card:hover{
+
+    background:#f8f6ef;
+
+    border-color:#b89d57;
+
+    transform:translateY(-3px);
+
+}
+
+.upload-icon{
+
+    width:72px;
+
+    height:72px;
+
+    border-radius:50%;
+
+    background:#0d152b;
+
+    color:white;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    margin-bottom:18px;
+
+}
+
+.upload-icon svg{
+
+    width:34px;
+
+    height:34px;
+
+}
+
+.upload-card h4{
+
+    margin:0;
+
+    color:#0d152b;
+
+    font-size:18px;
+
+    font-weight:700;
+
+}
+
+.upload-card p{
+
+    margin:10px 0 8px;
+
+    color:#6b7280;
+
+    font-size:14px;
+
+}
+
+.upload-card small{
+
+    color:#9ca3af;
+
+    font-size:12px;
+
+}
+
+/*======================================
+VISTA PREVIA DE IMÁGENES
+======================================*/
+
+.preview-image{
+
+    width:100%;
+
+    height:230px;
+
+    object-fit:cover;
+
+    border-radius:16px;
+
+    display:block;
+
+}
+/*======================================
+ACCIONES DE LA IMAGEN
+======================================*/
+
+.image-actions{
+
+    display:flex;
+
+    gap:12px;
+
+    margin-top:15px;
+
+}
+
+.image-btn{
+
+    flex:1;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:8px;
+
+    padding:12px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#0d152b;
+
+    color:white;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.30s;
+
+}
+
+.image-btn:hover{
+
+    background:#cbbf94;
+
+    color:#0d152b;
+
+}
+
+.delete-btn{
+
+    background:#ef4444;
+
+}
+
+.delete-btn:hover{
+
+    background:#dc2626;
+
+    color:white;
+
+}
+
+/*======================================
+CIERRE DEL SERVICIO
+======================================*/
+
+.service-result{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:15px;
+
+    margin-top:18px;
+
+}
+
+.result-option{
+
+    display:flex;
+
+    gap:15px;
+
+    align-items:flex-start;
+
+    padding:16px;
+
+    border:2px solid #ececec;
+
+    border-radius:14px;
+
+    cursor:pointer;
+
+    transition:.30s;
+
+}
+
+.result-option:hover{
+
+    border-color:#cbbf94;
+
+    background:#faf8f2;
+
+}
+
+.result-option input{
+
+    margin-top:5px;
+
+}
+
+.result-option strong{
+
+    display:block;
+
+    color:#0d152b;
+
+    margin-bottom:4px;
+
+}
+
+.result-option small{
+
+    color:#6b7280;
+
+}
+
+.service-notes{
+
+    width:100%;
+
+    min-height:120px;
+
+    margin-top:18px;
+
+    padding:15px;
+
+    border:2px solid #ececec;
+
+    border-radius:14px;
+
+    resize:none;
+
+    font-family:inherit;
+
+    font-size:14px;
+
+}
+
+.service-notes:focus{
+
+    outline:none;
+
+    border-color:#cbbf94;
+
+}
+
+/*======================================
+EXPERIENCIA DEL SERVICIO
+======================================*/
+
+.experience-options{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:15px;
+
+    margin-top:18px;
+
+}
+
+.experience-card{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+    padding:18px;
+
+    border:2px solid transparent;
+
+    border-radius:16px;
+
+    cursor:pointer;
+
+    transition:.30s;
+
+}
+
+.experience-card:hover{
+
+    border-color:#cbbf94;
+
+    background:#faf8f2;
+
+}
+
+.experience-icon{
+
+    font-size:34px;
+
+}
+
+.experience-card strong{
+
+    display:block;
+
+    color:#0d152b;
+
+    margin-bottom:4px;
+
+}
+
+.experience-card small{
+
+    color:#6b7280;
+
+    font-size:13px;
+
+}
+
+.experience-card.active{
+
+    border:2px solid #cbbf94;
+
+    background:#0d152b;
+
+}
+
+.experience-card.active strong,
+
+.experience-card.active small{
+
+    color:white;
+
+}
+
+/* Excelente */
+
+.excellent{
+
+    background:#ECFDF5;
+
+    border-color:#BBF7D0;
+
+}
+
+/* Buena */
+
+.good{
+
+    background:#EFF6FF;
+
+    border-color:#BFDBFE;
+
+}
+
+/* Regular */
+
+.regular{
+
+    background:#FEFCE8;
+
+    border-color:#FDE68A;
+
+}
+
+/* Difícil */
+
+.difficult{
+
+    background:#FEF2F2;
+
+    border-color:#FECACA;
+
+}
+/*======================================
 MI JORNADA
 ======================================*/
 
@@ -1383,4 +1789,784 @@ ESTADO DEL SERVICIO
 
     color:#15803D;
 
+}
+
+/*======================================
+LLEGADA AL SERVICIO
+======================================*/
+
+.arrival-options{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:15px;
+
+    margin-top:18px;
+
+}
+
+.arrival-card{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+    padding:18px;
+
+    border:2px solid transparent;
+
+    border-radius:16px;
+
+    cursor:pointer;
+
+    transition:.30s;
+
+}
+
+.arrival-card:hover{
+
+    transform:translateY(-2px);
+
+}
+
+/* Sin inconvenientes */
+
+.arrival-good{
+
+    background:#ECFDF5;
+
+    border-color:#BBF7D0;
+
+}
+
+/* Con retrasos */
+
+.arrival-delay{
+
+    background:#FEFCE8;
+
+    border-color:#FDE68A;
+
+}
+
+/* Con dificultades */
+
+.arrival-problem{
+
+    background:#FEF2F2;
+
+    border-color:#FECACA;
+
+}
+
+.arrival-icon{
+
+    font-size:32px;
+
+}
+
+.arrival-card strong{
+
+    display:block;
+
+    color:#0d152b;
+
+    margin-bottom:4px;
+
+}
+
+.arrival-card small{
+
+    color:#6b7280;
+
+    font-size:13px;
+
+}
+
+.arrival-card.active{
+
+    background:#0d152b;
+
+    border-color:#cbbf94;
+
+}
+
+.arrival-card.active strong,
+
+.arrival-card.active small{
+
+    color:white;
+
+}
+
+
+/*======================================
+MODAL ÉXITO
+======================================*/
+
+.success-modal{
+
+    max-width:480px;
+
+    text-align:center;
+
+}
+
+.success-icon{
+
+    width:90px;
+
+    height:90px;
+
+    margin:auto;
+
+    border-radius:50%;
+
+    background:#DCFCE7;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    margin-bottom:25px;
+
+}
+
+.success-icon svg{
+
+    width:46px;
+
+    height:46px;
+
+    color:#15803D;
+
+}
+
+.success-modal h2{
+
+    color:#0d152b;
+
+    margin-bottom:15px;
+
+}
+
+.success-modal p{
+
+    color:#64748b;
+
+    line-height:1.7;
+
+    margin-bottom:30px;
+
+}
+/*======================================
+MODAL SERVICIO FINALIZADO
+======================================*/
+
+.success-modal{
+
+    max-width:500px;
+
+    text-align:center;
+
+}
+
+.success-icon{
+
+    width:95px;
+
+    height:95px;
+
+    margin:auto;
+
+    border-radius:50%;
+
+    background:#DCFCE7;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    margin-bottom:25px;
+
+}
+
+.success-icon svg{
+
+    width:48px;
+
+    height:48px;
+
+    color:#16A34A;
+
+}
+
+.success-modal h2{
+
+    color:#0d152b;
+
+    font-size:30px;
+
+    margin-bottom:18px;
+
+}
+
+.success-message{
+
+    color:#64748b;
+
+    line-height:1.8;
+
+    font-size:16px;
+
+    margin-bottom:35px;
+
+}
+
+.success-message strong{
+
+    color:#0d152b;
+
+}
+
+/*======================================
+    MODAL TU VOZ CUENTA
+======================================*/
+
+#voiceModal{
+    position: fixed;
+    inset: 0;
+    background: rgba(15,23,42,.65);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    z-index: 9999;
+
+    opacity: 0;
+    visibility: hidden;
+    transition: .30s ease;
+}
+
+#voiceModal.show{
+    opacity: 1;
+    visibility: visible;
+}
+
+#voiceModal .modal-container{
+    width: 100%;
+    max-width: 560px;
+    background: #ffffff;
+    border-radius: 24px;
+    padding: 35px;
+    position: relative;
+
+    box-shadow:
+        0 20px 45px rgba(0,0,0,.15);
+
+    animation: voicePopup .35s ease;
+
+    width:100%;
+    max-width:420px;
+
+    background:#ffffff;
+
+    border-radius:24px;
+
+    padding:35px;
+
+    position:relative;
+
+    text-align:center;
+}
+
+@keyframes voicePopup{
+
+    from{
+        transform: translateY(20px) scale(.95);
+        opacity:0;
+    }
+
+    to{
+        transform: translateY(0) scale(1);
+        opacity:1;
+    }
+
+}
+
+/* Botón cerrar */
+
+#voiceModal .modal-close{
+
+    position:absolute;
+    top:18px;
+    right:18px;
+
+    width:40px;
+    height:40px;
+
+    border:none;
+    border-radius:50%;
+
+    background:#f5f5f5;
+    cursor:pointer;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    transition:.25s;
+}
+
+#voiceModal .modal-close:hover{
+
+    background:#e9eef6;
+    transform:rotate(90deg);
+
+}
+
+/* Icono */
+
+.voice-icon{
+
+    width:85px;
+    height:85px;
+
+    margin:auto;
+
+    border-radius:50%;
+
+    background:linear-gradient(135deg,#6280a2,#7aa4c4);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    color:#fff;
+
+    margin-bottom:18px;
+}
+
+.voice-icon svg{
+
+    width:38px;
+    height:38px;
+
+}
+
+/* Título */
+
+#voiceModal .modal-title{
+
+    text-align:center;
+    color:#0d152b;
+
+    font-size:1.7rem;
+    font-weight:700;
+
+    margin-bottom:10px;
+
+}
+
+/* Descripción */
+
+#voiceModal .modal-description{
+
+    text-align:center;
+
+    color:#6b7280;
+
+    line-height:1.6;
+
+    margin-bottom:28px;
+
+}
+
+/* Labels */
+
+#voiceModal label{
+
+    display:block;
+
+    margin-bottom:8px;
+
+    font-weight:600;
+
+    color:#374151;
+
+}
+
+/* Select */
+
+#voiceModal select{
+
+    width:100%;
+
+    height:52px;
+
+    border:1px solid #d1d5db;
+
+    border-radius:14px;
+
+    padding:0 15px;
+
+    outline:none;
+
+    transition:.25s;
+
+    margin-bottom:22px;
+
+    font-size:.95rem;
+
+}
+
+#voiceModal select:focus{
+
+    border-color:#6280a2;
+
+    box-shadow:0 0 0 3px rgba(98,128,162,.18);
+
+}
+
+/* Textarea */
+
+#voiceModal textarea{
+
+    width:100%;
+
+    min-height:150px;
+
+    border:1px solid #d1d5db;
+
+    border-radius:14px;
+
+    padding:15px;
+
+    resize:vertical;
+
+    outline:none;
+
+    transition:.25s;
+
+    font-size:.95rem;
+
+    margin-bottom:28px;
+
+}
+
+#voiceModal textarea:focus{
+
+    border-color:#6280a2;
+
+    box-shadow:0 0 0 3px rgba(98,128,162,.18);
+
+}
+
+/* Botón */
+
+#voiceModal .btn-primary{
+
+    width:100%;
+
+    height:54px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:#0d152b;
+
+    color:#fff;
+
+    font-size:1rem;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:10px;
+
+    transition:.30s;
+
+}
+
+#voiceModal .btn-primary:hover{
+
+    background:#6280a2;
+
+    transform:translateY(-2px);
+
+}
+
+#voiceModal .btn-primary:active{
+
+    transform:scale(.98);
+
+}
+
+/*======================================
+    HEADER TU VOZ CUENTA
+======================================*/
+
+.voice-header{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+
+    background:transparent;
+
+    margin:0 0 25px;
+
+    padding:0;
+
+}   
+
+
+/* ICONO */
+
+.voice-circle{
+
+    width:75px;
+
+    height:75px;
+
+    margin:0 auto 20px;
+
+    border-radius:50%;
+
+    background:#93B6CE;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+
+.voice-circle svg{
+
+    width:38px;
+    height:38px;
+
+    color:#6280a2;
+
+}
+
+
+
+/* TITULO */
+
+.voice-header h2{
+
+    color:#0d152b;
+
+    font-size:28px;
+
+    font-weight:700;
+
+    margin:0 0 10px;
+
+}
+
+
+
+/* DESCRIPCIÓN */
+
+.voice-header p{
+
+    color:#64748b;
+
+    font-size:15px;
+
+    max-width:260px;
+
+    margin:0 auto;
+
+    line-height:1.5;
+
+}
+
+
+
+/* LINEA DIVISORIA */
+
+.voice-divider{
+
+    border:none;
+
+    border-top:1px solid #e5e7eb;
+
+    margin:25px 0;
+
+}
+
+
+.success-overlay{
+
+    position:fixed;
+    inset:0;
+
+    background:rgba(15,23,42,.65);
+    backdrop-filter:blur(5px);
+
+    display:none;
+    justify-content:center;
+    align-items:center;
+
+    z-index:10000;
+
+}
+
+
+.success-container{
+
+    width:90%;
+    max-width:520px;
+
+    background:white;
+
+    border-radius:28px;
+
+    padding:40px;
+
+    text-align:center;
+
+}
+
+
+.success-icon{
+
+    width:90px;
+    height:90px;
+
+    margin:0 auto 25px;
+
+    border-radius:50%;
+
+    background:#dcfce7;
+
+    color:#16a34a;
+
+    font-size:55px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+}
+
+
+.success-container h2{
+
+    font-size:30px;
+
+    color:#0d152b;
+
+    margin-bottom:15px;
+
+}
+
+
+.success-container p{
+
+    color:#64748b;
+
+    font-size:17px;
+
+}
+
+
+.success-container button{
+
+    margin-top:30px;
+
+    width:100%;
+
+    padding:16px;
+
+    border-radius:15px;
+
+    border:none;
+
+    background:#0d152b;
+
+    color:white;
+
+    font-size:17px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+}
+/* ===================================================== */
+/* ESTILOS RESPONSIVOS PARA EL SIDEBAR EN CELULARES      */
+/* ===================================================== */
+
+/* Por defecto en celulares: ocultamos el texto y achicamos el menú para que no estorbe */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 75px !important; /* Ancho minimalista solo para los iconos */
+        padding: 15px 5px !important;
+    }
+
+    /* Ocultamos textos que no caben en pantallas pequeñas */
+    .sidebar-logo h2,
+    .sidebar-logo span,
+    .sidebar-user p,
+    .sidebar-user .status,
+    .sidebar-menu span,
+    .sidebar-footer span {
+        display: none !important;
+    }
+
+    /* Centramos el avatar y los iconos para que se vean ordenados */
+    .sidebar-user {
+        padding: 10px 0 !important;
+    }
+
+    .user-avatar {
+        width: 45px !important;
+        height: 45px !important;
+        margin: 0 auto !important;
+    }
+
+    #nombreEspecialista {
+        font-size: 10px !important;
+        text-align: center;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    /* Centramos los enlaces del menú */
+    .sidebar-menu a, .sidebar-footer a {
+        justify-content: center !important;
+        padding: 12px 0 !important;
+    }
+
+    .sidebar-menu a svg, .sidebar-footer a svg {
+        margin-right: 0 !important;
+    }
 }
