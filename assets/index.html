@@ -27,12 +27,6 @@
             box-sizing: border-box
         }
 
-        html {
-            scroll-behavior: smooth;
-            overflow-x: hidden
-        }
-        
-
         body {
             margin: 0;
             font-family: 'DM Sans', sans-serif;
@@ -470,9 +464,10 @@ href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 </div>
     </header>
     <!-- <div id="menuOverlay" class="overlay fixed inset-0 bg-black/35 z-30"></div> -->
-        <aside id="mobileMenu"
-class="hidden canva-sidebar mobile-menu fixed top-0 left-0 h-full w-[82%] max-w-sm z-40 bg-[#0d152b] text-white p-7 lg:hidden">
-        style="background: #0F162A;">
+<aside
+    id="mobileMenu"
+    class="hidden canva-sidebar mobile-menu fixed top-0 left-0 h-full w-[82%] max-w-sm z-40 bg-[#0d152b] text-white p-7 lg:hidden"
+    style="background:#0F162A;">
         <div class="flex items-center justify-between mb-10"><img data-template-id="mobile-logo" loading="lazy"
                 class="canva-image h-12 w-auto object-contain max-w-[120px]" src="imagenes/logo.jpeg"
                 alt="Logo de ProClean Prime - mano dorada sobre onda azul marino"> <button id="closeMenuBtn"
@@ -1241,12 +1236,7 @@ Nuestros valores nos distinguen:
     
     <div id="calendarGrid" class="grid grid-cols-7 gap-1 text-center bg-white text-[#0d152b] p-4 rounded-xl shadow-inner"></div>
 </div>
-                        <!-- <div class="mt-6">
-                            <p data-template-id="time-section-label" class="canva-text text-sm font-medium mb-3"
-                                style="color: #0F162A; font-weight: 600; font-style: normal; font-size: 16px;">
-                                Horarios disponibles</p>
-                            <div id="timeSlots" class="grid grid-cols-2 sm:grid-cols-3 gap-2"></div>
-                        </div> -->
+
                     </div>
                     <form id="bookingForm" data-template-id="booking-form-card"
                         class="canva-card bg-white rounded-[1.75rem] p-5 md:p-8"
@@ -1274,11 +1264,16 @@ Nuestros valores nos distinguen:
 
 <!-- COLUMNA: Datos de contacto (Ahora es el bloque principal) -->
 <div class="canva-card p-5 bg-white rounded-3xl border border-slate-100 shadow-sm">
-    <h3 class="text-lg font-bold text-[#0F162A] mb-4 flex items-center gap-2">
-        Datos de contacto
-    </h3>
-    <form id="procleanForm" class="space-y-4">
+
+    <h3>Datos de contacto</h3>
+
+    <div class="space-y-4">
         <input type="hidden" id="paymentMethod" name="formadepago" value="No seleccionado">
+
+        </div>
+
+    </form>
+    
 
         <!-- Primera fila -->
 <div class="grid md:grid-cols-2 gap-4">
@@ -1365,7 +1360,7 @@ Nuestros valores nos distinguen:
                     <span class="text-sm font-medium text-[#0F162A]">Limpieza residencial ($178.000 / día)</span>
                 </label>
                 <label class="flex items-center p-3 rounded-xl border border-slate-200 bg-[#fbfbfa] cursor-pointer hover:border-slate-400">
-                    <input type="checkbox" name="services" value="Limpieza de oficinas" onchange="cleaningDayscalcularPrecioDinamico()" class="w-5 h-5 accent-[#0F162A] mr-3">
+                    <input type="checkbox" name="services" value="Limpieza de oficinas" onchange="calcularPrecioDinamico()" class="w-5 h-5 accent-[#0F162A] mr-3">
                     <span class="text-sm font-medium text-[#0F162A]">Limpieza de oficinas ($178.000 / día)</span>
                 </label>
                 <label class="flex items-center p-3 rounded-xl border border-slate-200 bg-[#fbfbfa] cursor-pointer hover:border-slate-400">
@@ -1919,26 +1914,6 @@ class="canva-footer bg-[#0F162A] text-white py-5 border-t border-[#CFA754]/20">
     <script>
         lucide.createIcons();
 
-        // const menuBtn = document.getElementById('menuBtn');
-        // const closeMenuBtn = document.getElementById('closeMenuBtn');
-        // const mobileMenu = document.getElementById('mobileMenu');
-        // const menuOverlay = document.getElementById('menuOverlay');
-
-        // function openMenu() {
-        //     mobileMenu.classList.add('open');
-        //     menuOverlay.classList.add('open');
-        //     document.body.classList.add('overflow-hidden');
-        // }
-        // function closeMenu() {
-        //     mobileMenu.classList.remove('open');
-        //     menuOverlay.classList.remove('open');
-        //     document.body.classList.remove('overflow-hidden');
-        // }
-        // // menuBtn.addEventListener('click', openMenu);
-        // // closeMenuBtn.addEventListener('click', closeMenu);
-        // // menuOverlay.addEventListener('click', closeMenu);
-        // // mobileMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
-        // // window.addEventListener('resize', () => { if (window.innerWidth >= 1024) closeMenu(); });
         const menu = document.getElementById("mobile-menu");
 
 menuBtn.addEventListener("click", () => {
@@ -2086,47 +2061,7 @@ document.addEventListener("click", function (e) {
             bookingMessage.classList.remove('hidden');
         }
 
-        /*
-        bookingForm.addEventListener('submit', (event) => {
-            event.preventDefault();
 
-            const fullName = document.getElementById('fullName').value.trim();
-            const phone = document.getElementById('phone').value.trim();
-            
-            const serviceType = document.getElementById('serviceType').value;
-            const address = document.getElementById('address').value.trim();
-            const observations = document.getElementById('observations').value.trim();
-
-            if (!selectedDate || !selectedTime) { showBookingMessage('Selecciona primero un día y una hora disponible.', 'error'); return; }
-            if (!fullName || !phone ||  || !serviceType || !address) { showBookingMessage('Completa los campos principales para continuar.', 'error'); return; }
-            { showBookingMessage('Ingresa un correo electrónico válido.', 'error'); return; }
-
-            showBookingMessage('¡Listo! Redirigiendo a WhatsApp...', 'success');
-            
-
-            const mensaje = encodeURIComponent(
-                `Hola ProClean Prime, quiero solicitar un servicio:\n\n` +
-                `Nombre: ${fullName}\n` +
-                `Teléfono: ${phone}\n` +
-                
-                `Servicio: ${serviceType}\n` +
-                `Dirección: ${address}\n` +
-                `Fecha: ${formatDate(selectedDate)}\n` +
-                `Hora: ${selectedTime}\n` +
-                (observations ? `Observaciones: ${observations}` : '')
-            );
-
-            window.open(`https://wa.me/573046048958?text=${mensaje}`, '_blank');
-
-            bookingForm.reset();
-            selectedDate = null;
-            selectedTime = null;
-            renderCalendar();
-            renderTimes();
-            updateSummary();
-        });
-
-        */
 // ==========================================
 // 1. FUNCIÓN PARA CALCULAR EL PRECIO EN TIEMPO REAL
 // ==========================================
