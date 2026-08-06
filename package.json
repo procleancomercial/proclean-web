@@ -1,0 +1,12 @@
+{
+  "name": "proclean-web",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "build": "tailwindcss -i src/input.css -o assets/css/output.css --minify",
+    "watch": "tailwindcss -i src/input.css -o assets/css/output.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "3.4.17"
+  }
+}
