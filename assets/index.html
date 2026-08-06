@@ -1,0 +1,2466 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProClean Prime</title>
+    <link rel="stylesheet" href="css/output.css">
+    <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;display=swap"
+        rel="stylesheet">
+    <style>
+
+        html {
+    scroll-behavior: smooth;
+}
+        
+        :root {
+            --navy: #0d152b;
+            --gold: #cbbf94;
+            --cream: #f7f5ef;
+            --ink: #233047;
+            --muted: #5e6b78;
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        body {
+            margin: 0;
+            font-family: 'DM Sans', sans-serif;
+            color: var(--ink);
+            overflow-x: hidden
+        }
+
+        img {
+            object-fit: contain;
+            object-position: center center
+        }
+
+        a,
+        button,
+        input,
+        select,
+        textarea {
+            pointer-events: auto
+        }
+
+        a,
+        button {
+            cursor: pointer
+        }
+        
+
+        .focus-ring:focus-visible,
+        a:focus-visible,
+        button:focus-visible,
+        input:focus-visible,
+        select:focus-visible,
+        textarea:focus-visible {
+            outline: 3px solid rgba(203, 191, 148, .55);
+            outline-offset: 3px;
+        }
+
+        .decorative {
+            pointer-events: none
+        }
+
+        .hero-slide {
+            opacity: 0;
+            transform: scale(1.04);
+            transition: opacity .8s ease, transform 5.5s ease;
+            pointer-events: none
+        }
+
+        .hero-slide.active {
+            opacity: 1;
+            transform: scale(1);
+            pointer-events: none
+        }
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(18px);
+            animation: fadeUp .8s ease forwards
+        }
+
+        .fade-up.delay-1 {
+            animation-delay: .15s
+        }
+
+        .fade-up.delay-2 {
+            animation-delay: .3s
+        }
+
+        .fade-up.delay-3 {
+            animation-delay: .45s
+        }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        .mobile-menu {
+            transform: translateX(-100%);
+            transition: transform .35s ease
+        }
+
+        .mobile-menu.open {
+            transform: translateX(0)
+        }
+
+        .overlay {
+            opacity: 0;
+            pointer-events: none;
+            transition: .3s ease
+        }
+
+        .overlay.open {
+            opacity: 1;
+            pointer-events: auto
+        }
+
+        .accordion-panel {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height .4s ease
+        }
+
+        .service-accordion.open .accordion-panel {
+            max-height: 900px
+        }
+
+        .service-accordion .accordion-icon {
+            transition: transform .3s ease
+        }
+
+        .service-accordion.open .accordion-icon {
+            transform: rotate(45deg)
+        }
+
+        .calendar-day {
+            transition: .2s ease
+        }
+
+        .calendar-day:hover:not(.is-disabled) {
+            background: #edf3f4
+        }
+
+        .calendar-day.is-selected {
+            background: var(--navy) !important;
+            color: #fff !important;
+            font-weight: 700
+        }
+
+        .calendar-day.is-disabled {
+            opacity: .28;
+            pointer-events: none;
+            cursor: not-allowed
+        }
+
+        .time-slot {
+            transition: .2s ease
+        }
+
+        .time-slot:hover {
+            transform: translateY(-2px)
+        }
+
+        .time-slot.is-selected {
+            background: var(--navy) !important;
+            color: #fff !important;
+            border-color: var(--navy) !important
+        }
+
+    
+
+        .promo-orb {
+            animation: floaty 4s ease-in-out infinite
+        }
+
+        @keyframes floaty {
+
+            0%,
+            100% {
+                transform: translateY(0)
+            }
+
+            50% {
+                transform: translateY(-10px)
+            }
+        }
+
+        .hero-title-responsive {
+            font-size: clamp(2.45rem, 6vw, 4.5rem)
+        }
+
+        .section-title-responsive {
+            font-size: clamp(2rem, 4.2vw, 3.1rem)
+        }
+
+        .promo-title-responsive {
+            font-size: clamp(2rem, 4.4vw, 3.35rem)
+        }
+
+        .booking-title-responsive {
+            font-size: clamp(2rem, 4vw, 3.2rem)
+        }
+
+        @keyframes carousel-scroll {
+            0% {
+                transform: translateX(0)
+            }
+
+            100% {
+                transform: translateX(-50%)
+            }
+        }
+
+        .ally-carousel {
+            display: flex;
+            gap: 1.25rem;
+            width: max-content;
+            animation: carousel-scroll 26s linear infinite
+        }
+
+        .ally-carousel:hover {
+            animation-play-state: paused
+        }
+
+        .ally-carousel-item {
+            width: 220px;
+            flex: 0 0 220px
+        }
+
+        @media(max-width:768px) {
+            .ally-carousel-item {
+                width: 160px;
+                flex: 0 0 160px
+            }
+
+            .ally-carousel {
+                animation-duration: 22s
+            }
+        }
+        button:active {
+    transform: scale(0.97);
+    transition: transform 0.1s ease;
+}
+/* --- COLORES CORPORATIVOS PARA EL FORMULARIO --- */
+        
+        /* Cuando el usuario hace clic o escribe en cualquier campo */
+        input:focus, 
+        select:focus, 
+        textarea:focus {
+            outline: none !important;
+            border-color: #cbbf94 !important; /* Tu dorado corporativo */
+            box-shadow: 0 0 0 3px rgba(203, 191, 148, 0.3) !important; /* Destello suave dorado */
+            background-color: #ffffff !important; /* Fondo blanco limpio para escribir */
+            transition: all 0.2s ease-in-out;
+        }
+
+        /* Si quieres que los textos de los títulos de los campos cambien a dorado al activarse */
+        .form-group:focus-within label {
+            color: #cbbf94 !important;
+        }
+        /* Animación de movimiento para el degradado del calendario */
+@keyframes gradientMovement {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.animate-gradient-slow {
+    background-size: 200% 200%;
+    animation: gradientMovement 6s ease infinite;
+}
+/* PINTAR LA TARJETA DEL CALENDARIO REAL (LA DE LA IZQUIERDA) */
+#agenda > div > div:first-child,
+.canva-card:has(#calendarGrid) {
+    background: linear-gradient(-45deg, #070b18, #0d152b, #1e3a8a, #0d152b) !important;
+    background-size: 400% 400% !important;
+    animation: gradientMovement 10s ease infinite !important;
+    padding: 24px !important;
+    border-radius: 24px !important;
+    color: white !important;
+}
+
+/* Forzar que los textos de arriba de esa tarjeta se vuelvan blancos */
+#agenda > div > div:first-child h1,
+#agenda > div > div:first-child h2,
+#agenda > div > div:first-child h3,
+#agenda > div > div:first-child p {
+    color: white !important;
+}
+
+/* Mantener la cajita blanca interna del calendario limpia y legible en el centro */
+#calendarGrid, 
+#agenda div[class*="bg-white"] {
+    background-color: white !important;
+    color: #0d152b !important;
+    border-radius: 16px !important;
+}
+
+    </style>
+    <link rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GJ0GMTX6PZ"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-GJ0GMTX6PZ');
+
+    
+    
+</script>
+</head>
+
+<body data-template-id="__page-root" class="w-full overflow-x-hidden" style="background: rgb(255, 255, 255);">
+    <header data-template-id="site-header"
+        class="canva-header fixed top-0 left-0 w-full z-50 bg-white/95 backdrop-blur border-b border-white/60"
+        style="background: rgb(255, 255, 255);">
+        <div class="max-w-7xl mx-auto px-5 lg:px-8 h-20 flex items-center justify-between">
+    
+    <!-- Contenedor Izquierdo: Logo + Barras -->
+    <!-- Logo a la izquierda (línea 331) -->
+<div class="flex items-center">
+    <a href="#inicio">
+        <img src="imagenes/logo-sinfondo.png" class="h-16 w-auto object-contain max-w-[140px]">
+    </a>
+</div>
+    <!-- Contenedor Derecho: Tus enlaces de servicios y botones (se mantendrán a la derecha) -->
+    <div class="flex items-center gap-6">
+
+    
+        
+
+<!-- El Panel Desplegable (alineado a la derecha) -->
+<div id="mobile-menu" class="hidden absolute top-20 right-0 w-64 bg-white/95 backdrop-blur border-b border-l border-r border-[#CFA754] rounded-b-2xl p-6 shadow-2xl z-50">
+    <nav class="flex flex-col gap-6">
+    <a href="#inicio" onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="flex items-center gap-2 text-[#0f172a] hover:text-[#CFA754] font-bold transition">
+    <!-- Icono de Casa -->
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+    </svg>
+    Inicio
+</a>
+    <a href="#servicios" onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="flex items-center gap-2 text-[#0f172a] hover:text-[#CFA754] font-bold transition">
+    <!-- Icono de Destellos (Sparkles) -->
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+    </svg>
+    Servicios
+</a>
+    <a href="#cotiza" onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="flex items-center gap-2 text-[#0f172a] hover:text-[#CFA754] font-bold transition">
+    <!-- Icono de Etiqueta (Tag) -->
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5a2 2 0 011.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A2 2 0 013 12V7a4 4 0 014-4z" />
+    </svg>
+    Ofertas
+</a>
+    <a href="#agenda" onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="flex items-center gap-2 text-[#0f172a] hover:text-[#CFA754] font-bold transition">
+    <!-- Icono de Calendario -->
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+    </svg>
+    Reserva tu servicio 
+</a>
+    <a href="quienes-somos.html"
+    onclick="document.getElementById('mobile-menu').classList.add('hidden')"
+    class="flex items-center gap-2 text-[#0f172a] hover:text-[#CFA754] font-bold transition">
+
+    <!-- Icono -->
+    <svg xmlns="http://www.w3.org/2000/svg"
+            class="w-5 h-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor">
+        <path stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
+    </svg>
+
+    Quiénes somos
+
+</a>
+    
+    <a href="#seccion-equipo" onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="flex items-center gap-2 text-[#0f172a] hover:text-[#CFA754] font-bold transition">
+    <!-- Icono de Grupo/Colaboración -->
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+    </svg>
+    Únete a nuestro equipo
+</a>
+<a href="portal_especialistas.html" onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="flex items-center gap-2 text-[#0f172a] hover:text-[#CFA754] font-bold transition">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+        </svg>
+        Portal Especialistas
+    </a>
+</nav>
+</div>
+            <nav class="hidden lg:flex items-center gap-9"><a data-template-id="nav-services" href="#servicios"
+                    class="canva-link text-sm font-medium hover:text-[#9f8c58] transition"
+                    style="color: #0F162A; font-weight: 500; font-style: normal; font-size: 16px;">Servicios</a>
+                <a data-template-id="nav-promo" href="#cotiza"
+                    class="canva-link text-sm font-medium hover:text-[#9f8c58] transition"
+                    style="color: #0F162A; font-weight: 500; font-style: normal; font-size: 16px;">Promoción</a>
+                <a data-template-id="nav-book" href="#agenda"
+                    class="canva-link text-sm font-medium hover:text-[#9f8c58] transition"
+                    style="color: #0F162A; font-weight: 500; font-style: normal; font-size: 16px;">Agenda</a>
+                <a data-template-id="nav-whatsapp" href="https://wa.me/573046048958" target="_blank"
+                    rel="noopener noreferrer"
+                    class="canva-link text-sm font-medium hover:text-[#9f8c58] transition flex items-center gap-2"
+                    style="color: #25d366; font-weight: 500; font-style: normal; font-size: 16px;"><i
+                        data-lucide="message-circle" class="w-4 h-4"></i> WhatsApp</a>
+            </nav>
+            <div class="flex items-center gap-2">
+
+    <!-- WhatsApp (solo móvil) -->
+    <a href="https://wa.me/573046048958"
+   target="_blank"
+   class="lg:hidden flex items-center justify-center w-11 h-11 rounded-full bg-[#25D366] text-white shadow-md hover:scale-105 transition">
+
+    <img src="imagenes/WhatsApp_icon.png"
+         alt="WhatsApp"
+         class="w-6 h-6">
+
+</a>
+
+    <!-- Solicitar (solo móvil) -->
+    <a href="#agenda"
+       class="lg:hidden flex items-center justify-center w-11 h-11 rounded-full bg-[#0F162A] text-white shadow-md hover:scale-105 transition">
+
+        <i data-lucide="calendar-days" class="w-5 h-5"></i>
+    </a>
+
+    <!-- Botón escritorio -->
+    <a data-template-id="header-cta"
+        href="#cotiza"
+        class="canva-button hidden lg:inline-flex px-5 py-3 rounded-full text-sm font-semibold transition hover:-translate-y-0.5"
+        style="background:#0F162A;color:#fff;">
+        Solicitar servicio
+    </a>
+
+    <!-- Menú -->
+    <button id="menuBtn"
+        class="focus-ring w-11 h-11 rounded-full border border-slate-200 grid place-items-center lg:hidden"
+        aria-label="Abrir menú">
+
+        <i data-lucide="menu" class="w-5 h-5"></i>
+
+    </button>
+
+</div>
+    </header>
+    <!-- <div id="menuOverlay" class="overlay fixed inset-0 bg-black/35 z-30"></div> -->
+<aside
+    id="mobileMenu"
+    class="hidden canva-sidebar mobile-menu fixed top-0 left-0 h-full w-[82%] max-w-sm z-40 bg-[#0d152b] text-white p-7 lg:hidden"
+    style="background:#0F162A;">
+        <div class="flex items-center justify-between mb-10"><img data-template-id="mobile-logo" loading="lazy"
+                class="canva-image h-12 w-auto object-contain max-w-[120px]" src="imagenes/logo.jpeg"
+                alt="Logo de ProClean Prime - mano dorada sobre onda azul marino"> <button id="closeMenuBtn"
+                class="focus-ring w-10 h-10 rounded-full border border-white/20 grid place-items-center"
+                aria-label="Cerrar menú"> <i data-lucide="x" class="w-5 h-5"></i> </button>
+        </div>
+        <nav class="space-y-4 text-lg"><a data-template-id="menu-home" href="#inicio"
+                class="canva-link block border-b border-white/10 pb-3 hover:text-[#cbbf94] transition"
+                style="color: rgb(255, 255, 255); font-weight: 400; font-style: normal; font-size: 16px;">Inicio</a> <a
+                data-template-id="menu-services" href="#servicios"
+                class="canva-link block border-b border-white/10 pb-3 hover:text-[#cbbf94] transition"
+                style="color: rgb(255, 255, 255); font-weight: 400; font-style: normal; font-size: 16px;">Servicios</a>
+            <a data-template-id="menu-promo" href="#cotiza"
+                class="canva-link block border-b border-white/10 pb-3 hover:text-[#cbbf94] transition"
+                style="color: rgb(255, 255, 255); font-weight: 400; font-style: normal; font-size: 16px;">Promoción</a>
+            <a data-template-id="menu-book" href="#agenda" class="canva-link block hover:text-[#cbbf94] transition"
+                style="color: rgb(255, 255, 255); font-weight: 400; font-style: normal; font-size: 16px;">Agenda</a>
+                <a data-template-id="menu-quienes" href="quienes-somos.html" 
+    class="canva-link block border-b border-white/10 pb-3 hover:text-[#cbbf94] transition" 
+    style="color: rgb(255, 255, 255); font-weight: 400; font-size: 16px;">Quiénes somos</a>
+        </nav>
+        <div class="flex items-center gap-3">
+
+            <!-- 1. INSTAGRAM (A Color) -->
+            <a data-template-id="footer-instagram" href="https://www.instagram.com/procleanprime" target="_blank" rel="noopener noreferrer" 
+                class="canva-button w-10 h-10 grid place-items-center cursor-pointer transition-transform duration-200 hover:scale-110" 
+                title="Visitar nuestro Instagram">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram ProClean" class="w-full h-full object-contain pointer-events-none">
+            </a>
+            
+            <!-- 2. FACEBOOK (A Color) -->
+            <a data-template-id="footer-facebook" href="https://www.facebook.com/share/1B85Xq61bz/" target="_blank" rel="noopener noreferrer" 
+                class="canva-button w-10 h-10 grid place-items-center cursor-pointer transition-transform duration-200 hover:scale-110" 
+                title="Visitar nuestro Facebook">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/b/b9/2023_Facebook_icon.svg" alt="Facebook ProClean" class="w-full h-full object-contain pointer-events-none">
+            </a>
+            
+            <!-- 3. TIKTOK -->
+            <a data-template-id="footer-tiktok" href="https://www.tiktok.com/@proclean_prime?_r=1&_t=ZS-97GP9oD4r8S" target="_blank" rel="noopener noreferrer" 
+                class="canva-button w-10 h-10 grid place-items-center cursor-pointer transition-transform duration-200 hover:scale-110 bg-black rounded-full p-2" 
+                title="Visitar nuestro TikTok">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/3/34/Ionicons_logo-tiktok.svg" alt="TikTok ProClean" class="w-full h-full object-contain invert pointer-events-none">
+            </a>
+            
+            <!-- 4. WHATSAPP (A Color) -->
+            <a data-template-id="footer-whatsapp" href="https://wa.me/573046048958" target="_blank" rel="noopener noreferrer" 
+                class="canva-button w-10 h-10 grid place-items-center cursor-pointer transition-transform duration-200 hover:scale-110" 
+                title="Escríbenos por WhatsApp">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp ProClean" class="w-full h-full object-contain pointer-events-none">
+            </a>
+
+        </div>
+        </div>
+    </aside>
+    <main>
+        <section id="inicio" class="relative pt-20 min-h-[700px] md:min-h-[760px]">
+            <div class="absolute inset-0 bg-[#0d152b] decorative"></div>
+            <div class="hero-slide active absolute inset-0 decorative" data-slide="0">
+                <img data-template-id="hero-image-1" loading="lazy"
+                    class="canva-image absolute inset-0 w-full h-full opacity-75" src="imagenes/Proclean.jpeg"
+                    alt="Profesional de ProClean Prime organizando botellas de productos de limpieza con acuario de fondo">
+            </div>
+            <div class="hero-slide absolute inset-0 decorative" data-slide="1">
+                <img data-template-id="hero-image-2" loading="lazy"
+                    class="canva-image absolute inset-0 w-full h-full opacity-75" src="imagenes/carrusel2.jpeg"
+                    alt="Profesional de ProClean Prime limpiando un sofá azul moderno en el interior de una casa">
+            </div>
+            <div class="hero-slide absolute inset-0 decorative" data-slide="2">
+                <img data-template-id="hero-image-3" loading="lazy"
+                    class="canva-image absolute inset-0 w-full h-full opacity-75" src="imagenes/ValentinaTrabajaConNosotros3.jpeg"
+                    alt="Profesional de ProClean Prime posando con perro en un edificio residencial moderno de Medellín">
+            </div>
+            <div
+                class="absolute inset-0 bg-gradient-to-r from-[#0d152b]/95 via-[#0d152b]/62 to-[#0d152b]/10 decorative">
+            </div>
+            <div class="relative z-10 max-w-7xl mx-auto px-5 lg:px-8 min-h-[620px] md:min-h-[680px] flex items-center">
+                <div class="max-w-3xl text-white pt-8">
+                    <p data-template-id="hero-eyebrow"
+                        class="canva-text fade-up text-xs tracking-[.28em] uppercase mb-5"
+                        style="color: #CFA754; font-weight: 600; font-style: normal; font-size: 16px;">
+                        LIMPIEZA, CUIDADO Y TRANQUILIDAD</p>
+                    <h1 data-template-id="hero-title"
+                        class="canva-text fade-up delay-1 hero-title-responsive leading-[1.02] mb-6 max-w-3xl"
+                        style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 32px; line-height: 1.04;">
+                        Servicios profesionales para tu hogar, oficina y mascotas</h1>
+                    <p data-template-id="hero-copy"
+                        class="canva-text fade-up delay-2 text-base md:text-lg leading-7 md:leading-8 max-w-xl mb-8 text-white/88"
+                        style="color: rgb(255, 255, 255); font-weight: 400; font-style: normal; font-size: 16px;">
+                        Soluciones confiables de limpieza y cuidado especializado a domicilio en Medellín.</p>
+                    <div class="fade-up delay-3 flex flex-wrap gap-4"><a data-template-id="hero-primary-cta"
+                            href="#agenda"
+                            class="canva-button px-6 py-3 rounded-full font-semibold inline-flex items-center gap-2"
+                            style="background: #CFA754; color: #0F162A; font-weight: 700; font-style: normal; font-size: 16px;">Solicitar
+                            servicio</a> <a data-template-id="hero-secondary-cta" href="#servicios"
+                            class="canva-button px-6 py-3 rounded-full font-semibold inline-flex items-center gap-2 border border-white/25"
+                            style="background: rgba(255, 255, 255, 0.12); color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 16px;">Conocer
+                            servicios</a>
+                    </div>
+                </div>
+            </div>
+            <div class="absolute z-20 right-5 lg:right-10 bottom-8 flex items-center gap-3"><button id="prevSlide"
+                    type="button"
+                    class="focus-ring w-11 h-11 rounded-full bg-white/15 text-white backdrop-blur grid place-items-center border border-white/20 hover:bg-white/25 transition"
+                    aria-label="Anterior"><i data-lucide="chevron-left" class="w-5 h-5"></i></button> <button
+                    id="nextSlide" type="button"
+                    class="focus-ring w-11 h-11 rounded-full bg-white text-[#0d152b] grid place-items-center hover:bg-slate-100 transition"
+                    aria-label="Siguiente"><i data-lucide="chevron-right" class="w-5 h-5"></i></button>
+            </div>
+            <div class="absolute z-20 left-5 lg:left-8 bottom-10 flex gap-2"><button type="button"
+                    class="slide-dot w-8 h-1 bg-white rounded-full opacity-100 transition" data-dot="0"
+                    aria-label="Imagen 1"></button> <button type="button"
+                    class="slide-dot w-8 h-1 bg-white rounded-full opacity-40 transition" data-dot="1"
+                    aria-label="Imagen 2"></button> <button type="button"
+                    class="slide-dot w-8 h-1 bg-white rounded-full opacity-40 transition" data-dot="2"
+                    aria-label="Imagen 3"></button>
+            </div>
+            <div data-template-id="hero-floating-card"
+                class="hidden"
+                style="background: rgba(255, 255, 255, 0.91);">
+                <div class="flex items-center gap-3 mb-3">
+                    <div class="w-11 h-11 rounded-full bg-[#cbbf94] grid place-items-center text-[#0d152b]">
+                        <i data-lucide="sparkles" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <p data-template-id="hero-card-title" class="canva-text font-semibold text-sm"
+                            style="color: #0F162A; font-weight: 700; font-style: normal; font-size: 16px;">
+                            Atención que inspira confianza</p>
+                        <p data-template-id="hero-card-subtitle" class="canva-text text-xs"
+                            style="color: rgb(109, 120, 134); font-weight: 400; font-style: normal; font-size: 16px;">
+                            Medellín y alrededores</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-1 text-[#b99c52] text-sm mb-2">
+                    ★★★★★
+                </div>
+                <p data-template-id="hero-card-copy" class="canva-text text-sm leading-6"
+                    style="color: rgb(77, 93, 109); font-weight: 400; font-style: normal; font-size: 16px;">Equipo
+                    especializado, atención personalizada y resultados que se sienten.</p>
+            </div>
+        </section>
+        <section id="trustStrip"
+    data-template-id="trust-strip"
+    class="canva-section bg-[#f7f5ef] py-6"
+    style="background: rgb(247, 245, 239);">
+            <div class="max-w-7xl mx-auto px-5 lg:px-8 grid md:grid-cols-3 gap-4 md:gap-0 text-center md:text-left">
+                <div class="flex items-center justify-center md:justify-start gap-3 md:border-r border-[#ded8ca]">
+                    <i data-lucide="shield-check" class="w-5 h-5 text-[#a28f5d]"></i><span data-template-id="trust-1"
+                        class="canva-text text-sm font-medium"
+                        style="color: #0F162A; font-weight: 500; font-style: normal; font-size: 16px;">Especialista
+                        profesionales</span>
+                </div>
+                <div class="flex items-center justify-center gap-3 md:border-r border-[#ded8ca]">
+                    <i data-lucide="sparkles" class="w-5 h-5 text-[#a28f5d]"></i><span data-template-id="trust-2"
+                        class="canva-text text-sm font-medium"
+                        style="color: #0F162A; font-weight: 500; font-style: normal; font-size: 16px;">Servicio
+                        personalizado</span>
+                </div>
+                <div class="flex items-center justify-center md:justify-end gap-3">
+                    <i data-lucide="clock-3" class="w-5 h-5 text-[#a28f5d]"></i><span data-template-id="trust-3"
+                        class="canva-text text-sm font-medium"
+                        style="color: #0F162A; font-weight: 500; font-style: normal; font-size: 16px;">Atención
+                        a domicilio</span>
+                </div>
+            </div>
+        </section>
+        <section id="servicios" class="py-20 lg:py-28 bg-white">
+            <div class="max-w-7xl mx-auto px-5 lg:px-8">
+                <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-5 mb-12">
+                    <div class="max-w-2xl">
+                        <p data-template-id="services-eyebrow"
+                            class="canva-text text-xs tracking-[.28em] uppercase font-semibold mb-4"
+                            style="color: #CFA754; font-weight: 700; font-style: normal; font-size: 16px;">
+                            NUESTROS SERVICIOS</p>
+                        <h2 data-template-id="services-title" class="canva-text section-title-responsive leading-tight"
+                            style="color: #0F162A; font-weight: 700; font-style: normal; font-size: 24px;">
+                            Cuidado experto para cada espacio y cada momento.</h2>
+                    </div>
+                    <p data-template-id="services-copy"
+class="canva-text mt-3 max-w-xl leading-8"
+style="color:#5E6B78;font-weight:500;font-size:18px;">
+
+
+<strong class="text-[#0F162A]">Limpieza que inspira confianza.</strong>
+
+</p>
+                </div>
+                <div class="grid lg:grid-cols-2 gap-5 items-start">
+                    <article data-template-id="service-1-card"
+                        class="group canva-card service-accordion overflow-hidden rounded-[2rem] bg-[#f8f7f2] border border-[#eee9df] shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
+                        style="background: rgb(248, 247, 242);"><button type="button"
+                            class="accordion-trigger w-full text-left">
+                            <div class="grid md:grid-cols-[230px_1fr] gap-5 p-5 items-center">
+
+    <!-- Contenedor elegante de la imagen -->
+    <div class="bg-white rounded-[28px] p-3 shadow-lg">
+
+        <div class="overflow-hidden rounded-[22px]">
+
+            <img
+                data-template-id="service-1-image"
+                loading="lazy"
+                src="imagenes/sala1.jpg"
+                alt="Elegant modern living room"
+                class="canva-image w-full h-60 object-cover transition duration-700 hover:scale-110">
+
+        </div>
+
+    </div>
+
+    <!-- Información -->
+    <div class="pr-4 flex items-center justify-between gap-6">
+                                    <div>
+                                        <p data-template-id="service-1-kicker"
+                                            class="canva-text text-xs uppercase tracking-[.22em] mb-2"
+                                            style="color: #CFA754; font-weight: 700; font-style: normal; font-size: 16px;">
+                                            01</p>
+                                        <h3 data-template-id="service-1-title" class="canva-text font-semibold mb-1"
+                                            style="color: #0F162A; font-weight: 700; font-style: normal; font-size: 19px;">
+                                            Hogar</h3>
+                                        <p data-template-id="service-1-subtitle" class="canva-text text-sm"
+                                            style="color: rgb(106, 117, 131); font-weight: 400; font-style: normal; font-size: 16px;">
+                                            Limpieza diaria y profunda</p>
+                                    </div>
+                                    <div class="w-14 h-14 shrink-0 rounded-full bg-[#0F162A] text-white grid place-items-center shadow-lg transition-all duration-300 hover:bg-[#CFA754] hover:text-[#0F162A] hover:scale-110">
+
+                                    <i data-lucide="plus"
+                                    class="accordion-icon w-4 h-4 transition-transform duration-300 hover:rotate-90"></i>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </button>
+                       <div class="accordion-panel">
+    <div class="px-5 pb-6 md:px-8">
+        <p data-template-id="service-2-description"
+            class="canva-text leading-relaxed whitespace-pre-line text-[#0f172a]"
+            style="font-weight:400; font-size:16px;">
+🏘️Servicio de limpieza profesional para casas y apartamentos, enfocado en mantener los espacios limpios, organizados y agradables. Las actividades se realizan de acuerdo con las características del inmueble, las prioridades del cliente y el tiempo contratado.
+
+✨Nuestro servicio incluye:
+✔ Barrer o aspirar pisos según los implementos disponibles.
+✔ Trapear pisos y realizar limpieza de juntas.
+✔ Limpieza y desinfección de baños.
+✔ Limpieza de cocina, estufa y superficies.
+✔ Lavado de loza cuando sea requerido.
+✔ Limpieza exterior de muebles y superficies.
+✔ Sacudir y organizar espacios.
+✔ Limpieza de ventanales internos.
+✔ Limpieza y organización exterior de la nevera.
+✔ Recolección de residuos.
+✔ Limpieza general de habitaciones, sala, comedor y zonas comunes.
+
+💙 Porque tu tranquilidad también hace parte de nuestro trabajo.
+</p>
+                            </div>
+                        </div>
+                    </article>
+                    <article data-template-id="service-2-card"
+    class="group canva-card service-accordion overflow-hidden rounded-[2rem] bg-[#f8f7f2] border border-[#eee9df] shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
+    style="background: rgb(248, 247, 242);">
+
+    <button type="button" class="accordion-trigger w-full text-left">
+
+        <div class="grid md:grid-cols-[230px_1fr] gap-5 p-5 items-center">
+
+            <!-- Imagen -->
+            <div class="bg-white rounded-[28px] p-3 shadow-lg">
+
+                <div class="overflow-hidden rounded-[22px]">
+
+                    <img
+                        data-template-id="service-2-image"
+                        loading="lazy"
+                        src="imagenes/Oficina1.jpg"
+                        alt="Oficina moderna"
+                        class="canva-image w-full h-60 object-cover transition duration-700 hover:scale-110">
+
+                </div>
+
+            </div>
+
+            <!-- Información -->
+            <div class="pr-4 flex items-center justify-between gap-6">
+
+                <div>
+
+                    <p
+                        data-template-id="service-2-kicker"
+                        class="canva-text text-xs uppercase tracking-[.22em] mb-2"
+                        style="color:#CFA754;font-weight:700;font-size:16px;">
+
+                        02
+
+                    </p>
+
+                    <h3
+                        data-template-id="service-2-title"
+                        class="canva-text font-semibold mb-1"
+                        style="color:#0F162A;font-weight:700;font-size:19px;">
+
+                        Oficinas
+
+                    </h3>
+
+                    <p
+                        data-template-id="service-2-subtitle"
+                        class="canva-text text-sm"
+                        style="color:rgb(106,117,131);font-weight:400;font-size:16px;">
+
+                        Espacios impecables
+
+                    </p>
+
+                </div>
+
+                <div class="w-14 h-14 shrink-0 rounded-full bg-[#0F162A] text-white grid place-items-center shadow-lg transition-all duration-300 hover:bg-[#CFA754] hover:text-[#0F162A] hover:scale-110">
+
+                    <i
+                        data-lucide="plus"
+                        class="accordion-icon w-4 h-4 transition-transform duration-300 hover:rotate-90"></i>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </button>
+
+<div class="accordion-panel">
+    <div class="px-5 pb-6 md:px-8">
+        <p data-template-id="service-2-description"
+            class="canva-text leading-relaxed whitespace-pre-line text-[#0f172a]"
+            style="font-weight:400; font-size:16px;">
+
+🏢 Servicio profesional de limpieza para oficinas y espacios corporativos, orientado a mantener ambientes de trabajo limpios,
+ organizados y adecuados para colaboradores, clientes y visitantes.
+
+✨ Nuestro servicio incluye:
+✔ Barrer o aspirar pisos
+✔ Trapear y limpiar juntas.
+✔ Limpieza de escritorios y superficies externas.
+✔ Limpieza de sillas.
+✔ Limpieza y desinfección de baños.
+✔ Organización de implementos de aseo en baños.
+✔ Limpieza de recepción y mostradores.
+✔ Limpieza de salas y zonas comunes.
+✔ Mantener limpia y organizada la cocineta.
+✔ Limpieza exterior y organización de la nevera.
+✔ Limpieza y brillado de ventanales internos.
+✔ Recolección de residuos
+✔ Atención con café a clientes, usuarios o colaboradores cuando el servicio contratado lo contemple.
+
+💙 Porque un espacio limpio también refleja la calidad de tu empresa.
+</p>
+
+        </div>
+
+    </div>
+
+</article>
+                    </article>
+                    <article data-template-id="service-3-card"
+    class="group canva-card service-accordion overflow-hidden rounded-[2rem] bg-[#f8f7f2] border border-[#eee9df] shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
+    style="background: rgb(248, 247, 242);">
+
+    <button type="button" class="accordion-trigger w-full text-left">
+
+        <div class="grid md:grid-cols-[230px_1fr] gap-5 p-5 items-center">
+
+            <!-- Imagen -->
+            <div class="bg-white rounded-[28px] p-3 shadow-lg">
+
+                <div class="overflow-hidden rounded-[22px]">
+
+                    <img
+                        data-template-id="service-3-image"
+                        loading="lazy"
+                        src="imagenes/image_pet.png"
+                        alt="Profesional de ProClean Prime con perro, brindando servicio de Pet Grooming a domicilio"
+                        class="canva-image w-full h-60 object-cover transition duration-700 hover:scale-110">
+
+                </div>
+
+            </div>
+
+            <!-- Información -->
+            <div class="pr-4 flex items-center justify-between gap-6">
+
+                <div>
+
+                    <p
+                        data-template-id="service-3-kicker"
+                        class="canva-text text-xs uppercase tracking-[.22em] mb-2"
+                        style="color:#CFA754;font-weight:700;font-size:16px;">
+
+                        03
+
+                    </p>
+
+                    <h3
+                        data-template-id="service-3-title"
+                        class="canva-text font-semibold mb-1"
+                        style="color:#0F162A;font-weight:700;font-size:19px;">
+
+                        Home Pet Grooming
+
+                    </h3>
+
+                    <p
+                        data-template-id="service-3-subtitle"
+                        class="canva-text text-sm"
+                        style="color:rgb(106,117,131);font-weight:400;font-size:16px;">
+
+                        Estética y cuidado a domicilio
+
+                    </p>
+
+                </div>
+
+                <div class="w-14 h-14 shrink-0 rounded-full bg-[#0F162A] text-white grid place-items-center shadow-lg transition-all duration-300 hover:bg-[#CFA754] hover:text-[#0F162A] hover:scale-110">
+
+                    <i
+                        data-lucide="plus"
+                        class="accordion-icon w-4 h-4 transition-transform duration-300 hover:rotate-90"></i>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </button>
+
+<div class="accordion-panel">
+    <div class="px-5 pb-6 md:px-8">
+        <p
+            data-template-id="service-3-description"
+            class="canva-text leading-relaxed whitespace-pre-line text-[#0f172a]"
+            style="font-weight:400; font-size:16px;">
+
+🐶 Brindamos un servicio especializado en Pet Grooming, adaptado a las necesidades de cada mascota
+ para que viva una experiencia cómoda, segura y agradable.
+
+✨ Nuestro servicio incluye:
+✔ Baño con shampoo especializado
+✔ Estimulación de folículos para reducir malos olores
+✔ Cepillado de pelaje
+✔ Deslanado y eliminación de pelo muerto
+✔ Corte profesional de uñas
+✔ Limpieza medicada de oídos
+✔ Limpieza dental con eliminación de sarro
+✔ Desodorizado, perfumado y aplicación de talco aromático
+✔ Decoración a elección: moños, corbatín, pañoleta, uñas pintadas o moño coctelero
+
+👨‍🎓 Todos los procedimientos son realizados por un profesional graduado y especializado en Pet Grooming.
+
+🚗 Realizamos el servicio en la comodidad de tu hogar.
+
+💙 Porque ellos también merecen el mejor cuidado.
+</p>
+
+        </div>
+
+    </div>
+
+                    </article>
+                    <article data-template-id="service-4-card"
+    class="group canva-card service-accordion overflow-hidden rounded-[2rem] bg-[#f8f7f2] border border-[#eee9df] shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
+    style="background: rgb(248, 247, 242);">
+
+    <button type="button" class="accordion-trigger w-full text-left">
+
+        <div class="grid md:grid-cols-[230px_1fr] gap-5 p-5 items-center">
+
+            <!-- Imagen -->
+            <div class="bg-white rounded-[28px] p-3 shadow-lg">
+
+                <div class="overflow-hidden rounded-[22px]">
+
+                    <img
+                        data-template-id="service-4-image"
+                        loading="lazy"
+                        src="imagenes/ValentinaTrabajaConNosotros3.jpeg"
+                        alt="Equipo profesional de ProClean Prime"
+                        class="canva-image w-full h-60 object-cover transition duration-700 hover:scale-110">
+
+                </div>
+
+            </div>
+
+            <!-- Información -->
+            <div class="pr-4 flex items-center justify-between gap-6">
+
+                <div>
+
+                    <p
+                        data-template-id="service-4-kicker"
+                        class="canva-text text-xs uppercase tracking-[.22em] mb-2"
+                        style="color:#CFA754;font-weight:700;font-size:16px;">
+
+                        04
+
+                    </p>
+
+                    <h3
+                        data-template-id="service-4-title"
+                        class="canva-text font-semibold mb-1"
+                        style="color:#0F162A;font-weight:700;font-size:19px;">
+
+                        Nosotros
+
+                    </h3>
+
+                    <p
+                        data-template-id="service-4-subtitle"
+                        class="canva-text text-sm"
+                        style="color:rgb(106,117,131);font-weight:400;font-size:16px;">
+
+                        Tu tranquilidad en manos expertas
+
+                    </p>
+
+                </div>
+
+                <div class="w-14 h-14 shrink-0 rounded-full bg-[#0F162A] text-white grid place-items-center shadow-lg transition-all duration-300 hover:bg-[#CFA754] hover:text-[#0F162A] hover:scale-110">
+
+                    <i
+                        data-lucide="plus"
+                        class="accordion-icon w-4 h-4 transition-transform duration-300 hover:rotate-90"></i>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </button>
+
+ <div class="accordion-panel">
+    <div class="px-5 pb-6 md:px-8">
+        <p
+            data-template-id="service-4-description"
+            class="canva-text leading-relaxed whitespace-pre-line text-[#0f172a]"
+            style="font-weight:400; font-size:16px;">
+
+💙 En ProClean Prime mejoramos la calidad de vida de nuestros clientes mediante servicios profesionales de limpieza y cuidado.
+
+✨ Cada servicio es realizado con compromiso, responsabilidad y altos estándares de calidad para brindarte tranquilidad y confianza.
+
+Nuestros valores nos distinguen:
+✔ Especialistas altamente capacitadas.
+✔ Personal profesional y confiable.
+✔ Puntualidad y responsabilidad.
+✔ Atención al detalle.
+✔ Servicio personalizado.
+✔ Compromiso con la excelencia.
+
+🏡 Más que limpiar espacios, construimos relaciones basadas en la confianza, el respeto y la calidad.
+</p>
+
+        </div>
+ 
+                            <!-- <div class="mt-4 pt-6 w-full px-6 bg-[#E0F2FE] border-t border-blue-100 min-w-full clear-both block" style="overflow: visible; box-sizing: border-box;">
+                                <p class="text-xs tracking-wider uppercase font-bold mb-6" style="color: #CFA754; font-family: inherit;">
+                                    Conoce a nuestro equipo
+                                </p>
+                                
+                                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 text-center pb-6">
+                                    
+                                    <div class="flex flex-col items-center">
+                                        <div class="w-24 h-24 aspect-square mb-2 rounded-full overflow-hidden border-2 border-white bg-white shrink-0 shadow-sm">
+                                            <img class="w-full h-full object-cover rounded-full" src="imagenes/foto1.jpg" alt="Integrante ProClean Prime">
+                                        </div>
+                                        <h4 class="font-bold text-[#0F162A] text-xs leading-tight mb-0.5">María García</h4>
+                                        <p class="text-[10px] text-slate-600">Especialista Hogar</p>
+                                    </div>
+
+                                    <div class="flex flex-col items-center">
+                                        <div class="w-24 h-24 aspect-square mb-2 rounded-full overflow-hidden border-2 border-white bg-white shrink-0 shadow-sm">
+                                            <img class="w-full h-full object-cover rounded-full" src="imagenes/foto2.jpg" alt="Integrante ProClean Prime">
+                                        </div>
+                                        <h4 class="font-bold text-[#0F162A] text-xs leading-tight mb-0.5">Sofía Hernández</h4>
+                                        <p class="text-[10px] text-slate-600">Experta Oficinas</p>
+                                    </div>
+
+                                    <div class="flex flex-col items-center">
+                                        <div class="w-24 h-24 aspect-square mb-2 rounded-full overflow-hidden border-2 border-white bg-white shrink-0 shadow-sm">
+                                            <img class="w-full h-full object-cover rounded-full" src="imagenes/foto3.jpg" alt="Integrante ProClean Prime">
+                                        </div>
+                                        <h4 class="font-bold text-[#0F162A] text-xs leading-tight mb-0.5">Catalina López</h4>
+                                        <p class="text-[10px] text-slate-600">Estilista Canina</p>
+                                    </div>
+
+                                    <div class="flex flex-col items-center">
+                                        <div class="w-24 h-24 aspect-square mb-2 rounded-full overflow-hidden border-2 border-white bg-white shrink-0 shadow-sm">
+                                            <img class="w-full h-full object-cover rounded-full" src="imagenes/foto4.jpg" alt="Integrante ProClean Prime">
+                                        </div>
+                                        <h4 class="font-bold text-[#0F162A] text-xs leading-tight mb-0.5">Nombre 4</h4>
+                                        <p class="text-[10px] text-slate-600">Especialidad</p>
+                                    </div>
+
+                                    <div class="flex flex-col items-center">
+                                        <div class="w-24 h-24 aspect-square mb-2 rounded-full overflow-hidden border-2 border-white bg-white shrink-0 shadow-sm">
+                                            <img class="w-full h-full object-cover rounded-full" src="imagenes/foto5.jpg" alt="Integrante ProClean Prime">
+                                        </div>
+                                        <h4 class="font-bold text-[#0F162A] text-xs leading-tight mb-0.5">Nombre 5</h4>
+                                        <p class="text-[10px] text-slate-600">Especialidad</p>
+                                    </div>
+
+                                    <div class="flex flex-col items-center">
+                                        <div class="w-24 h-24 aspect-square mb-2 rounded-full overflow-hidden border-2 border-white bg-white shrink-0 shadow-sm">
+                                            <img class="w-full h-full object-cover rounded-full" src="imagenes/foto6.jpg" alt="Integrante ProClean Prime">
+                                        </div>
+                                        <h4 class="font-bold text-[#0F162A] text-xs leading-tight mb-0.5">Nombre 6</h4>
+                                        <p class="text-[10px] text-slate-600">Especialidad</p>
+                                    </div>
+
+                                    <div class="flex flex-col items-center">
+                                        <div class="w-24 h-24 aspect-square mb-2 rounded-full overflow-hidden border-2 border-white bg-white shrink-0 shadow-sm">
+                                            <img class="w-full h-full object-cover rounded-full" src="imagenes/foto7.jpg" alt="Integrante ProClean Prime">
+                                        </div>
+                                        <h4 class="font-bold text-[#0F162A] text-xs leading-tight mb-0.5">Nombre 7</h4>
+                                        <p class="text-[10px] text-slate-600">Especialidad</p>
+                                    </div>
+
+                                    <div class="flex flex-col items-center">
+                                        <div class="w-24 h-24 aspect-square mb-2 rounded-full overflow-hidden border-2 border-white bg-white shrink-0 shadow-sm">
+                                            <img class="w-full h-full object-cover rounded-full" src="imagenes/foto8.jpg" alt="Integrante ProClean Prime">
+                                        </div>
+                                        <h4 class="font-bold text-[#0F162A] text-xs leading-tight mb-0.5">Nombre 8</h4>
+                                        <p class="text-[10px] text-slate-600">Especialidad</p>
+                                    </div>
+
+                                    <div class="flex flex-col items-center">
+                                        <div class="w-24 h-24 aspect-square mb-2 rounded-full overflow-hidden border-2 border-white bg-white shrink-0 shadow-sm">
+                                            <img class="w-full h-full object-cover rounded-full" src="imagenes/foto9.jpg" alt="Integrante ProClean Prime">
+                                        </div>
+                                        <h4 class="font-bold text-[#0F162A] text-xs leading-tight mb-0.5">Nombre 9</h4>
+                                        <p class="text-[10px] text-slate-600">Especialidad</p>
+                                    </div>
+
+                                    <div class="flex flex-col items-center">
+                                        <div class="w-24 h-24 aspect-square mb-2 rounded-full overflow-hidden border-2 border-white bg-white shrink-0 shadow-sm">
+                                            <img class="w-full h-full object-cover rounded-full" src="imagenes/foto10.jpg" alt="Integrante ProClean Prime">
+                                        </div>
+                                        <h4 class="font-bold text-[#0F162A] text-xs leading-tight mb-0.5">Nombre 10</h4>
+                                        <p class="text-[10px] text-slate-600">Especialidad</p>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </article> -->
+        
+        <!-- FIN DE SECCIÓN: CONOCE A NUESTRO EQUIPO -->
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+        <section id="cotiza" data-template-id="promo-section" class="canva-section relative overflow-hidden py-20 lg:py-24 animate-gradient-slow bg-gradient-to-br from-[#070b18] via-[#0d152b] to-[#1e3a8a] text-white">
+            <div class="absolute -top-20 -right-20 w-72 h-72 rounded-full bg-[#7aa4c4]/20 blur-3xl decorative"></div>
+            <div class="absolute bottom-0 left-0 w-80 h-80 rounded-full bg-[#cbbf94]/10 blur-3xl decorative"></div>
+            <div class="relative z-10 max-w-7xl mx-auto px-5 lg:px-8 grid lg:grid-cols-[1fr_.8fr] gap-10 items-center">
+                <div class="max-w-2xl">
+                    <p data-template-id="promo-eyebrow"
+                        class="canva-text text-xs tracking-[.28em] uppercase font-semibold mb-4"
+                        style="color: #CFA754; font-weight: 700; font-style: normal; font-size: 16px;">
+                        PROMOCIÓN ESPECIAL</p>
+                    <h2 data-template-id="promo-title" class="canva-text promo-title-responsive leading-tight mb-4"
+                        style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 24px;">🎉
+                        Tarifa de bienvenida</h2>
+                    <p data-template-id="promo-main" class="canva-text mb-3"
+                        style="color: #CFA754; font-weight: 700; font-style: normal; font-size: 26px;">Tu
+                        primer servicio por solo $178.000</p>
+                    <p data-template-id="promo-copy" class="canva-text text-white/72 leading-7 mb-2 max-w-lg"
+   style="color: rgb(219, 228, 235); font-weight: 400; font-style: normal; font-size: 16px;">
+    Promoción válida para todo Medellín y Área Metropolitana.
+</p>
+
+<!-- Segundo párrafo: La propuesta de valor -->
+<p data-template-id="promo-copy" class="canva-text text-white/72 leading-7 mb-2 max-w-lg"
+   style="color: rgb(219, 228, 235); font-weight: 400; font-style: normal; font-size: 16px;">
+    Descubre la tranquilidad de dejar tus espacios en manos expertas.
+</p>
+
+<!-- Tercer párrafo: La urgencia (fecha) resaltada -->
+<p data-template-id="promo-copy" class="canva-text text-[#CFA754] leading-7 mb-6 max-w-lg"
+   style="font-weight: 600; font-style: italic; font-size: 15px;">
+    * Vigente hasta el 31 de agosto.
+</p>
+
+<!-- Botón -->
+<a data-template-id="promo-cta" href="#agenda"
+    class="canva-button inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold"
+    style="background: #CFA754; color: #0F162A; font-weight: 700; font-style: normal; font-size: 16px;">
+    Solicitar promoción
+</a>
+</div>
+                <div class="relative">
+                    <div
+                        class="promo-orb absolute z-10 -top-6 -left-4 w-20 h-20 rounded-full bg-[#cbbf94] text-[#0d152b] grid place-items-center shadow-xl">
+                        <i data-lucide="badge-percent" class="w-8 h-8"></i>
+                    </div>
+                    <div class="rounded-[2rem] overflow-hidden border border-white/10 shadow-2xl"><img
+                            data-template-id="promo-image" loading="lazy"
+                            class="canva-image w-full h-[300px] md:h-[420px]" src="imagenes/Burbina_feria1.png"
+                            alt="ProClean Prime mascot - personaje de limpiador alegre con burbujas de jabón">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="agenda" class="py-20 lg:py-28 bg-[#F5F7FA]">
+            <div class="max-w-7xl mx-auto px-5 lg:px-8">
+                <div class="max-w-2xl mb-10 mx-auto text-center flex flex-col items-center">
+                    <p data-template-id="booking-eyebrow"
+                        class="canva-text text-xs tracking-[.28em] uppercase font-semibold mb-4"
+                        style="color: #CFA754; font-weight: 700; font-style: normal; font-size: 16px;">AGENDA
+                        TU SERVICIO</p>
+                    <h2 data-template-id="booking-title" class="canva-text booking-title-responsive leading-tight mb-4"
+                        style="color: #0F162A; font-weight: 700; font-style: normal; font-size: 24px;">Tu
+                        próxima tranquilidad empieza aquí.</h2>
+                    <p data-template-id="booking-copy" class="canva-text leading-7"
+                        style="color: rgb(94, 107, 120); font-weight: 400; font-style: normal; font-size: 16px;">
+                        Selecciona tu momento ideal y déjanos cuidar cada detalle.</p>
+                </div>
+                <div class="grid lg:grid-cols-[.9fr_1.1fr] gap-8 items-start">
+                    <div data-template-id="booking-step-card" class="canva-card bg-white rounded-[1.75rem] p-5 md:p-6"
+                        style="background: rgb(255, 255, 255);">
+                        <div class="flex items-center gap-4 mb-5">
+                            <div class="w-11 h-11 rounded-full bg-[#CFA754] text-[#0F162A] grid place-items-center">
+                                1
+                            </div>
+                            <div>
+                                <h3 data-template-id="booking-step-title" class="canva-text font-semibold"
+                                    style="color: #fbfbfc; font-weight: 700; font-style: normal; font-size: 19px;">
+                                    Selecciona tu visita</h3>
+                                <p data-template-id="booking-step-copy" class="canva-text text-sm"
+                                    style="color: #93B6CE; font-weight: 400; font-style: normal; font-size: 16px;">
+                                    Elige el día que mejor se adapte a ti</p>
+                            </div>
+                        </div>
+                        <div class="canva-card p-5 animate-gradient-slow bg-gradient-to-br from-[#070b18] via-[#0d152b] to-[#1e3a8a] text-white rounded-[1.25rem] border border-white/10 shadow-sm">
+    
+    <div class="flex items-center justify-between mb-5">
+        <button id="prevMonth" type="button"
+            class="focus-ring w-9 h-9 rounded-full border border-white/20 grid place-items-center hover:bg-white/10 text-white transition"
+            aria-label="Mes anterior">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i>
+        </button>
+        
+        <h3 id="calendarTitle" class="font-semibold text-white text-sm sm:text-base"></h3>
+        
+        <button id="nextMonth" type="button"
+            class="focus-ring w-9 h-9 rounded-full border border-white/20 grid place-items-center hover:bg-white/10 text-white transition"
+            aria-label="Mes siguiente">
+            <i data-lucide="chevron-right" class="w-4 h-4"></i>
+        </button>
+    </div>
+    
+    <div class="grid grid-cols-7 text-center text-[10px] sm:text-xs uppercase tracking-wide text-blue-200/70 mb-2">
+        <span>Lu</span><span>Ma</span><span>Mi</span><span>Ju</span><span>Vi</span><span>Sá</span><span>Do</span>
+    </div>
+    
+    <div id="calendarGrid" class="grid grid-cols-7 gap-1 text-center bg-white text-[#0d152b] p-4 rounded-xl shadow-inner"></div>
+</div>
+
+                    </div>
+                    <form id="bookingForm" data-template-id="booking-form-card"
+                        class="canva-card bg-white rounded-[1.75rem] p-5 md:p-8"
+                        style="background: rgb(255, 255, 255);">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div
+                                class="w-11 h-11 rounded-full bg-[#CFA754] text-[#0d152b] grid place-items-center font-semibold">
+                                2
+                            </div>
+                            <div>
+                                <h3 data-template-id="booking-form-title" class="canva-text font-semibold"
+                                    style="color: #0F162A; font-weight: 700; font-style: normal; font-size: 19px;">
+                                    Agenda tu Servicio </h3>
+                                <p data-template-id="booking-form-copy" class="canva-text text-sm"
+                                    style="color: #93B6CE; font-weight: 400; font-style: normal; font-size: 16px;">
+                                    Déjanos tus datos y los servicios que deseas para agendar tu visita.</p>
+                            </div>
+                        </div>
+                <div class="w-full px-4 py-6" style="max-width: 1200px; margin: 0 auto;">
+    
+    
+    <!-- INPUTS OCULTOS (Por si tus funciones JS los necesitan para procesar el formulario) -->
+<input type="hidden" id="bookingDate" value="2026-06-30">
+<input type="hidden" id="bookingTime" value="15:30">
+
+<!-- COLUMNA: Datos de contacto (Ahora es el bloque principal) -->
+<div class="canva-card p-5 bg-white rounded-3xl border border-slate-100 shadow-sm">
+
+    <h3>Datos de contacto</h3>
+
+    <div class="space-y-4">
+        <input type="hidden" id="paymentMethod" name="formadepago" value="No seleccionado">
+
+        </div>
+
+    </form>
+    
+
+        <!-- Primera fila -->
+<div class="grid md:grid-cols-2 gap-4">
+
+    <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">
+            NOMBRE COMPLETO <span class="text-red-500">*</span>
+        </label>
+        <input
+            type="text"
+            id="fullName"
+            class="w-full rounded-2xl border border-slate-200 px-4 py-3 bg-[#fbfbfa] focus:bg-blue-50 focus:border-blue-400 focus:outline-none transition-colors duration-300">
+    </div>
+
+    <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">
+            TELÉFONO <span class="text-red-500">*</span>
+        </label>
+        <input
+            type="text"
+            id="phone"
+            class="w-full rounded-2xl border border-slate-200 px-4 py-3 bg-[#fbfbfa] focus:bg-blue-50 focus:border-blue-400 focus:outline-none transition-colors duration-300">
+    </div>
+
+</div>
+
+<!-- Segunda fila -->
+<div class="grid md:grid-cols-2 gap-4 mt-4">
+
+    <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">
+            TIPO DE IDENTIFICACIÓN <span class="text-red-500">*</span>
+        </label>
+
+        <select
+            id="documentType"
+            class="w-full rounded-2xl border border-slate-200 px-4 py-3 bg-[#fbfbfa] focus:bg-blue-50 focus:border-blue-400 focus:outline-none transition-colors duration-300">
+
+            <option value="">Seleccione...</option>
+            <option>Cédula de ciudadanía</option>
+            <option>Cédula de extranjería</option>
+            <option>Tarjeta de identidad</option>
+            <option>Pasaporte</option>
+            <option>NIT</option>
+
+        </select>
+    </div>
+
+    <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">
+            NÚMERO DE IDENTIFICACIÓN <span class="text-red-500">*</span>
+        </label>
+
+        <input
+            type="text"
+            id="documentNumber"
+            class="w-full rounded-2xl border border-slate-200 px-4 py-3 bg-[#fbfbfa] focus:bg-blue-50 focus:border-blue-400 focus:outline-none transition-colors duration-300"
+    placeholder="Ej. 1032456789">
+            
+    </div>
+
+</div>
+
+
+        <!-- Casilla: ¿Primer servicio? -->
+        <div>
+            <div class="p-4 rounded-2xl border flex justify-between items-center transition-colors duration-300 mt-5" 
+                style="background-color: #f7f5ef; border-color: #e2e8f0;"
+                onclick="const cb=this.querySelector('#promoPrimerServicio'); this.style.backgroundColor=cb.checked ? '#E0F2FE' : '#f7f5ef'; this.style.borderColor=cb.checked ? '#60A5FA' : '#e2e8f0';">
+            
+                <div class="mb-6">
+                    <label for="promoPrimerServicio" class="block text-xs font-bold text-amber-800 uppercase tracking-wider cursor-pointer">¿Primer servicio?</label>
+                    <span class="text-xs text-slate-600 mt-0.5 block">Activa tarifa especial de $178.000</span>
+                </div>
+                <input type="checkbox" id="promoPrimerServicio" onchange="calcularPrecioDinamico()" class="w-5 h-5 accent-[#0F162A] cursor-pointer" onclick="event.stopPropagation();">
+            </div>
+
+            <!-- Selección de servicios -->
+            <label class="block text-sm font-medium text-gray-700 mt-6 mb-4 uppercase">Selecciona los servicios que necesitas</label>
+
+            <div class="flex flex-col space-y-2">
+                <label class="flex items-center p-3 rounded-xl border border-slate-200 bg-[#fbfbfa] cursor-pointer hover:border-slate-400">
+                    <input type="checkbox" name="services" value="Limpieza residencial" onchange="calcularPrecioDinamico()" class="w-5 h-5 accent-[#0F162A] mr-3">
+                    <span class="text-sm font-medium text-[#0F162A]">Limpieza residencial ($178.000 / día)</span>
+                </label>
+                <label class="flex items-center p-3 rounded-xl border border-slate-200 bg-[#fbfbfa] cursor-pointer hover:border-slate-400">
+                    <input type="checkbox" name="services" value="Limpieza de oficinas" onchange="calcularPrecioDinamico()" class="w-5 h-5 accent-[#0F162A] mr-3">
+                    <span class="text-sm font-medium text-[#0F162A]">Limpieza de oficinas ($178.000 / día)</span>
+                </label>
+                <label class="flex items-center p-3 rounded-xl border border-slate-200 bg-[#fbfbfa] cursor-pointer hover:border-slate-400">
+                    <input type="checkbox" name="services" value="Home Pet Grooming" onchange="calcularPrecioDinamico()" class="w-5 h-5 accent-[#0F162A] mr-3">
+                    <span class="text-sm font-medium text-[#0F162A]">Home Pet Grooming ($85.000 / día)</span>
+                </label>
+            </div>
+        </div>
+
+        <!-- Bloque de cotización dinámica -->
+        <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200/60 space-y-3">
+            <p class="text-xs font-bold text-[#0F162A] uppercase tracking-wider">⚡ Cotiza tu servicio en segundos</p>
+            
+            <div>
+                <label class="block text-sm font-medium text-[#0F162A] mt-7">¿Cuántos días necesitas al mes?</label>
+                <div class="flex items-center gap-4">
+                    <input type="range" id="cleaningDays" min="1" max="30" value="1" oninput="document.getElementById('daysDisplay').value = this.value; calcularPrecioDinamico();" class="w-full accent-[#0F162A]">
+                    <input type="number" id="daysDisplay" min="1" max="30" value="1" oninput="document.getElementById('cleaningDays').value = this.value; calcularPrecioDinamico();" class="w-16 text-center font-bold border border-slate-300 rounded-xl py-1">
+                </div>
+            </div>
+        </div>
+
+        <!-- Dirección -->
+        <div>
+    <label for="address"
+        class="block text-sm font-medium text-gray-700 mb-2 uppercase">
+        Dirección <span class="text-red-500">*</span>
+    </label>
+
+    <input id="address"
+        type="text"
+        class="w-full rounded-2xl border border-slate-200 px-4 py-3 bg-[#fbfbfa] focus:bg-blue-50 focus:border-blue-400 focus:outline-none transition-colors duration-300"
+        required>
+</div>
+
+        <!-- Notas / Observaciones -->
+        <div>
+    <label for="observations"
+        class="block text-sm font-medium text-gray-700 mb-2 uppercase">
+        Cuéntanos un poco más (Notas) <span class="text-red-500">*</span>
+    </label>
+
+    <textarea id="observations"
+        rows="2"
+        class="w-full rounded-2xl border border-slate-200 px-4 py-3 bg-[#fbfbfa] focus:bg-blue-50 focus:border-blue-400 focus:outline-none transition-colors duration-300">
+    </textarea>
+</div>
+        <div class="mt-3">
+
+    <label for="referralSource"
+        class="block text-sm font-medium text-gray-700 mb-2 uppercase">
+        ¿Cómo conociste ProClean Prime? <span class="text-red-500">*</span>
+    </label>
+
+    <input
+        type="text"
+        id="referralSource"
+        name="referralSource"
+        required
+        maxlength="100"
+        placeholder="Ejemplo: Por Instagram, un amigo me recomendó, vi un volante..."
+        class="w-full rounded-xl border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#CFA754] focus:border-[#CFA754] bg-[#fbfbfa]">
+
+</div>
+
+     <!-- Forma de Pago -->
+<div class="mt-4">
+
+    <label class="block text-sm font-medium text-gray-700 mb-2 uppercase">
+        Forma de Pago
+    </label>
+
+    <!-- Bre-B -->
+    <a href="https://checkout.bold.co/payment/LNK_QMFMMNY3DK"
+       target="_blank"
+       onclick="document.getElementById('paymentMethod').value='Bre-B';"
+       class="flex items-center justify-between p-4 bg-white border border-slate-200 rounded-2xl shadow-sm hover:border-[#cbbf94] transition-all group">
+
+        <div class="flex items-center gap-3">
+            <img src="imagenes/bre-b.avif"
+                 class="w-10 h-10 rounded-full object-cover">
+
+            <div>
+                <p class="font-bold text-[#0F162A] text-sm">
+                    Paga con tu llave Bre-B
+                </p>
+
+                <p class="text-xs text-slate-500 font-mono font-semibold text-emerald-700">
+                    @bold3103764723
+                </p>
+            </div>
+        </div>
+
+        <span class="text-xs font-semibold bg-green-100 text-green-700 px-2 py-1 rounded-md">
+            Nuevo
+        </span>
+
+    </a>
+
+    <!-- Transferencia -->
+    <button type="button"
+            onclick="document.getElementById('paymentMethod').value='Transferencia Bancaria';"
+            class="flex items-center justify-between p-4 bg-white border border-slate-200 rounded-2xl shadow-sm hover:border-[#cbbf94] transition-all group text-left w-full mt-3">
+
+        <div class="flex items-center gap-3">
+            <img src="imagenes/davivienda (1).png"
+                 class="w-10 h-10 rounded-full object-cover">
+
+            <div>
+                <p class="font-bold text-[#0F162A] text-sm">
+                    Transferencia Bancaria
+                </p>
+
+                <p class="text-xs text-slate-500">
+                    Davivienda
+                </p>
+            </div>
+        </div>
+
+    </button>
+
+    <!-- PSE -->
+    <a href="https://checkout.bold.co/payment/LNK_QMFMMNY3DK"
+       target="_blank"
+       onclick="document.getElementById('paymentMethod').value='PSE / Tarjeta';"
+       class="flex items-center justify-between p-4 bg-white border-2 border-[#cbbf94] rounded-2xl shadow-sm hover:shadow-md hover:border-[#0F162A] transition-all group mt-3">
+
+        <div class="flex items-center gap-3">
+            <img src="imagenes/pse-logo2.png"
+                 class="w-10 h-10 rounded-full object-cover bg-gray-50">
+
+            <div>
+                <p class="font-bold text-[#0F162A] text-sm">
+                    Pagar con PSE / Tarjetas
+                </p>
+
+                <p class="text-xs text-slate-500">
+                    Plataforma segura Bold - Todos los bancos
+                </p>
+            </div>
+        </div>
+
+    </a>
+
+</div>
+
+            <span class="text-slate-400 text-lg font-bold">
+                →
+            </span>
+
+        </button>
+
+    </div>
+
+    <!-- RESUMEN -->
+    <div class="bg-[#f7f5ef] rounded-2xl p-4 border border-amber-100/50 flex justify-between items-center mt-6">
+
+        <div>
+
+            <p class="text-xs uppercase tracking-wider text-[#CFA754] font-bold">
+                Resumen de Cotización
+            </p>
+
+            <p id="bookingSummary"
+               class="text-xs font-medium text-slate-600 mt-1">
+                Selecciona un día
+            </p>
+
+            <p id="discountSummary"
+               class="text-[11px] text-emerald-600 font-semibold">
+            </p>
+
+        </div>
+
+        <div class="text-right">
+
+            <span class="text-xs text-slate-500">
+                Total Estimado
+            </span>
+
+            <p id="totalPriceDisplay"
+               class="text-2xl font-bold text-[#0F162A]">
+                $0
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- MENSAJE -->
+    <div id="bookingMessage"
+         class="hidden mt-4 rounded-2xl px-4 py-3 text-sm">
+    </div>
+
+    <!-- BOTÓN -->
+    <button id="submitBooking"
+            type="button"
+            onclick="saveService()"
+            class="w-full rounded-full bg-[#0F162A] text-white px-5 py-3.5 font-bold mt-4 hover:bg-slate-800 transition">
+
+        Solicitar servicio →
+
+    </button>
+
+</form>
+</div> <!-- FIN p-10 -->
+
+            </div> <!-- FIN tarjeta blanca -->
+
+        </div> <!-- FIN grid -->
+
+    </div> <!-- FIN max-w -->
+
+</section>
+
+<div class="overflow-hidden leading-none">
+    <svg viewBox="0 0 1440 120" class="w-full h-20">
+        <path fill="#ffffff"
+        d="M0,96L60,90.7C120,85,240,75,360,69.3C480,64,600,64,720,74.7C840,85,960,107,1080,106.7C1200,107,1320,85,1380,74.7L1440,64V120H0Z"></path>
+    </svg>
+</div>
+
+<!-- ======================================
+RESEÑAS DE CLIENTES
+====================================== -->
+
+<section id="reviews-home" class="py-24 bg-white">
+
+    <div class="max-w-7xl mx-auto px-6">
+
+        <div class="text-center mb-10">
+
+            <p class="uppercase tracking-[.25em] text-[#CFA754] font-semibold">
+                TESTIMONIOS
+            </p>
+
+            <h2 class="text-3xl md:text-4xl font-bold text-[#0F162A] mt-2">
+                Lo que opinan nuestros clientes
+            </h2>
+
+            <p class="text-[#274F64] mt-3">
+                Más de 200 servicios realizados con clientes satisfechos.
+            </p>
+
+        </div>
+
+        <div class="swiper homeReviews">
+
+            <div id="homeReviewsWrapper" class="swiper-wrapper">
+
+            </div>
+
+            <div class="swiper-pagination mt-6"></div>
+
+        </div>
+
+    </div>
+
+
+
+
+</section>
+        <section data-template-id="allies-section" class="canva-section py-20 lg:py-28 bg-white"
+            style="background: rgb(255, 255, 255);">
+            <div class="max-w-7xl mx-auto px-5 lg:px-8">
+                <div class="text-center mb-14">
+                    <p data-template-id="allies-eyebrow"
+                        class="canva-text text-xs tracking-[.28em] uppercase font-semibold mb-3"
+                        style="color: #CFA754; font-weight: 700; font-style: normal; font-size: 16px;">
+                        CONFIANZA QUE CRECE</p>
+                    <h2 data-template-id="allies-title" class="canva-text section-title-responsive leading-tight mb-4"
+                        style="color: #0F162A; font-weight: 700; font-style: normal; font-size: 24px;">Nuestras
+                        Empresas Aliadas</h2>
+                    <p data-template-id="allies-subtitle"
+                        class="canva-text text-base md:text-lg text-slate-600 max-w-2xl mx-auto"
+                        style="color: #274F64; font-weight: 400; font-style: normal; font-size: 16px;">
+                        Organizaciones que confían en la calidad y profesionalismo de ProClean Prime</p>
+                </div>
+                <div class="relative overflow-hidden w-full">
+    <div class="ally-carousel">
+        
+        <div class="ally-carousel-item">
+            <div data-template-id="ally-card-1" class="canva-card rounded-2xl bg-white border border-slate-100 h-40 flex items-center justify-center p-6 shadow-md">
+                <img data-template-id="ally-logo-1" loading="lazy" class="canva-image max-h-24 max-w-full object-contain" src="imagenes/boladepelos.jpg" alt="Bola de Pelos">
+            </div>
+        </div>
+        <div class="ally-carousel-item">
+            <div data-template-id="ally-card-2" class="canva-card rounded-2xl bg-white border border-slate-100 h-40 flex items-center justify-center p-6 shadow-md">
+                <img data-template-id="ally-logo-2" loading="lazy" class="canva-image max-h-24 max-w-full object-contain" src="imagenes/davivienda-logo.webp" alt="Davivienda">
+            </div>
+        </div>
+        <div class="ally-carousel-item">
+            <div data-template-id="ally-card-3" class="canva-card rounded-2xl bg-white border border-slate-100 h-40 flex items-center justify-center p-6 shadow-md">
+                <img data-template-id="ally-logo-3" loading="lazy" class="canva-image max-h-24 max-w-full object-contain" src="imagenes/drops.png" alt="DROPS">
+            </div>
+    
+        </div>
+        <div class="ally-carousel-item">
+            <div data-template-id="ally-card-2" class="canva-card rounded-2xl bg-white border border-slate-100 h-40 flex items-center justify-center p-6 shadow-md">
+                <img data-template-id="ally-logo-2" loading="lazy" class="canva-image max-h-24 max-w-full object-contain" src="imagenes/Siigo-4x4-1-1024x717.jpg" alt="siigo">
+            </div>
+        </div>
+        <div class="ally-carousel-item">
+            <div data-template-id="ally-card-bold" class="canva-card rounded-2xl bg-white border border-slate-100 h-40 flex items-center justify-center p-6 shadow-md">
+                <img data-template-id="ally-logo-bold" loading="lazy" class="canva-image max-h-24 max-w-full object-contain" src="imagenes/bold.jpeg" alt="Bold - cree en ti">
+            </div>
+        </div>
+        <div class="ally-carousel-item">
+            <div data-template-id="ally-card-7" class="canva-card rounded-2xl bg-white border border-slate-100 h-40 flex items-center justify-center p-6 shadow-md">
+                <img data-template-id="ally-logo-7" loading="lazy" class="canva-image max-h-24 max-w-full object-contain" src="imagenes/logoskipiscan.png" alt="Spikin">
+            </div>
+        </div>
+        <div class="ally-carousel-item">
+            <div data-template-id="ally-card-4" class="canva-card rounded-2xl bg-white border border-slate-100 h-40 flex items-center justify-center p-6 shadow-md">
+                <img data-template-id="ally-logo-4" loading="lazy" class="canva-image max-h-24 max-w-full object-contain" src="imagenes/sena.png" alt="SENA">
+            </div>
+        </div>
+        <div class="ally-carousel-item">
+            <div data-template-id="ally-card-5" class="canva-card rounded-2xl bg-white border border-slate-100 h-40 flex items-center justify-center p-6 shadow-md">
+                <img data-template-id="ally-logo-5" loading="lazy" class="canva-image max-h-24 max-w-full object-contain" src="imagenes/mariana.png" alt="Universidad Mariana de Belén">
+            </div>
+        </div>
+        <div class="ally-carousel-item">
+            <div data-template-id="ally-card-6" class="canva-card rounded-2xl bg-white border border-slate-100 h-40 flex items-center justify-center p-6 shadow-md">
+                <img data-template-id="ally-logo-6" loading="lazy" class="canva-image max-h-24 max-w-full object-contain" src="imagenes/censa-logo.png" alt="CENSA">
+            </div>
+        </div>
+        
+
+        <div class="ally-carousel-item"><div class="canva-card rounded-2xl bg-white border border-slate-100 h-40 flex items-center justify-center p-6 shadow-md"><img loading="lazy" class="canva-image max-h-24 max-w-full object-contain" src="imagenes/boladepelos.jpg" alt="Bola de Pelos"></div></div>
+        <div class="ally-carousel-item"><div class="canva-card rounded-2xl bg-white border border-slate-100 h-40 flex items-center justify-center p-6 shadow-md"><img loading="lazy" class="canva-image max-h-24 max-w-full object-contain" src="imagenes/davivienda-logo.webp" alt="Davivienda"></div></div>
+        <div class="ally-carousel-item"><div class="canva-card rounded-2xl bg-white border border-slate-100 h-40 flex items-center justify-center p-6 shadow-md"><img loading="lazy" class="canva-image max-h-24 max-w-full object-contain" src="imagenes/drops.png" alt="DROPS"></div></div>
+        <div class="ally-carousel-item"><div class="canva-card rounded-2xl bg-white border border-slate-100 h-40 flex items-center justify-center p-6 shadow-md"><img loading="lazy" class="canva-image max-h-24 max-w-full object-contain" src="imagenes/bold.jpeg" alt="Bold"></div></div>
+        <div class="ally-carousel-item"><div class="canva-card rounded-2xl bg-white border border-slate-100 h-40 flex items-center justify-center p-6 shadow-md"><img loading="lazy" class="canva-image max-h-24 max-w-full object-contain" src="imagenes/sena.png" alt="SENA"></div></div>
+        <div class="ally-carousel-item"><div class="canva-card rounded-2xl bg-white border border-slate-100 h-40 flex items-center justify-center p-6 shadow-md"><img loading="lazy" class="canva-image max-h-24 max-w-full object-contain" src="imagenes/mariana.png" alt="Universidad Mariana de Belén"></div></div>
+        <div class="ally-carousel-item"><div class="canva-card rounded-2xl bg-white border border-slate-100 h-40 flex items-center justify-center p-6 shadow-md"><img loading="lazy" class="canva-image max-h-24 max-w-full object-contain" src="imagenes/censa-logo.png" alt="CENSA"></div></div>
+        <div class="ally-carousel-item"><div class="canva-card rounded-2xl bg-white border border-slate-100 h-40 flex items-center justify-center p-6 shadow-md"><img loading="lazy" class="canva-image max-h-24 max-w-full object-contain" src="imagenes/spikin.jpg" alt="Spikin"></div></div>
+
+    </div>
+
+    <div class="absolute top-0 left-0 h-full w-12 bg-gradient-to-r from-white to-transparent decorative"></div>
+    <div class="absolute top-0 right-0 h-full w-12 bg-gradient-to-l from-white to-transparent decorative"></div>
+</div>
+    </main>
+    <footer id="footer" data-template-id="footer-section"
+class="canva-footer bg-[#0F162A] text-white py-5 border-t border-[#CFA754]/20">
+
+<div class="max-w-7xl mx-auto px-6">
+
+    <div class="grid lg:grid-cols-4 md:grid-cols-2 gap-6 items-center">
+
+        <!-- ===================== -->
+        <!-- LOGO -->
+        <!-- ===================== -->
+
+        <div class="flex flex-col items-center lg:items-start text-center lg:text-left">
+
+            <img
+                src="imagenes/logoazul.png"
+                alt="Logo ProClean Prime"
+                class="w-24 mb-2">
+
+            <h3 class="text-xl font-bold">
+
+                ProClean Prime Colombia
+
+            </h3>
+
+            <p class="text-white/70 mt-2">
+
+                Soluciones profesionales de limpieza.
+
+            </p>
+
+            <p class="text-[#CFA754] font-bold mt-3">
+
+                NIT: 902067282-0
+
+            </p>
+
+        </div>
+
+        <!-- ===================== -->
+        <!-- CONTACTO -->
+        <!-- ===================== -->
+<div class="flex flex-col w-full max-w-[300px] gap-4">
+    
+    <div class="w-full">
+        <h4 class="font-semibold text-white mb-1">Dirección General</h4>
+        <a href="mailto:direccion@pro-clean-prime.com" class="text-white/70 hover:text-[#CFA754] transition block">direccion@pro-clean-prime.com</a>
+    </div>
+
+    <div class="w-full">
+        <h4 class="font-semibold text-white mb-1">Comercial</h4>
+        <a href="mailto:procleanprime.comercial@gmail.com" class="text-white/70 hover:text-[#CFA754] transition block">procleanprime.comercial@gmail.com</a>
+    </div>
+
+    <div class="w-full">
+        <h4 class="font-semibold text-white mb-1">Talento Humano</h4>
+        <a href="mailto:procleanprimecolombia@gmail.com" class="text-white/70 hover:text-[#CFA754] transition block">procleanprimecolombia@gmail.com</a>
+    </div>
+    
+</div>
+        
+
+        <!-- ===================== -->
+        <!-- DIRECCIÓN -->
+        <!-- ===================== -->
+
+        <div>
+
+            <h4 class="font-semibold text-white mb-3">
+
+                Dirección
+
+            </h4>
+
+            <p class="text-white/70">
+
+                Calle 61 #75-116
+
+            </p>
+
+            <p class="text-white/70">
+
+                Medellín - Colombia
+
+            </p>
+
+        </div>
+
+        <!-- ===================== -->
+        <!-- REDES + BOTÓN -->
+        <!-- ===================== -->
+
+        <div class="flex flex-col items-center">
+
+            <h4 class="font-semibold mb-4">
+
+                Síguenos
+
+            </h4>
+
+            <div class="flex items-center gap-4 mb-6">
+
+                <a href="https://www.instagram.com/procleanprime"
+                    target="_blank">
+
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg"
+                        class="w-11 h-11 hover:scale-110 transition">
+
+                </a>
+
+                <a href="https://www.facebook.com/share/1B85Xq61bz/"
+                    target="_blank">
+
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b9/2023_Facebook_icon.svg"
+                        class="w-11 h-11 hover:scale-110 transition">
+
+                </a>
+
+                <a href="https://www.tiktok.com/@proclean_prime?_r=1&_t=ZS-97GP9oD4r8S"
+                    target="_blank">
+
+                    <div class="bg-black rounded-full p-2">
+
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/3/34/Ionicons_logo-tiktok.svg"
+                            class="w-7 invert">
+
+                    </div>
+
+                </a>
+
+                <a href="https://wa.me/573046048958"
+                    target="_blank">
+
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+                        class="w-11 h-11 hover:scale-110 transition">
+
+                </a>
+
+            </div>
+
+            <!-- BOTÓN -->
+            <a id="seccion-equipo"
+
+            href="https://docs.google.com/forms/d/e/1FAIpQLSf2O0w4qvQoeFa_lJXHnzfA-0TG8tnAEHgM5g_rev4Ns6zZPA/viewform?usp=preview"
+
+                target="_blank"
+
+                class="inline-flex items-center gap-2 px-5 py-2.5 border-2 border-[#CFA754] rounded-full hover:bg-[#1e293b] transition-all hover:scale-105">
+
+                <img
+
+                    src="imagenes/LogoTCN2-removebg-preview.png"
+
+                    class="w-10 h-10">
+
+                <span class="text-[#CFA754] font-bold text-base">
+
+                    ¡Únete a nuestro equipo!
+
+                </span>
+
+            </a>
+
+        </div>
+
+    </div>
+
+    <hr class="border-white/10 my-8">
+
+    <div class="flex flex-col lg:flex-row justify-between items-center gap-5">
+
+        <p class="text-sm text-white/60 text-center">
+
+            © 2026 ProClean Prime Colombia. Todos los derechos reservados.
+
+        </p>
+
+        <div class="flex flex-wrap justify-center gap-6 text-sm">
+
+            <a href="#" class="hover:text-[#CFA754] transition">
+
+                Política de Privacidad
+
+            </a>
+
+            <a href="#" class="hover:text-[#CFA754] transition">
+
+                Tratamiento de Datos Personales
+
+            </a>
+
+            <a href="#" class="hover:text-[#CFA754] transition">
+
+                Términos y Condiciones
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+</footer>
+    
+
+                
+    <script>
+        lucide.createIcons();
+
+        const menu = document.getElementById("mobile-menu");
+
+menuBtn.addEventListener("click", () => {
+    menu.classList.toggle("hidden");
+});
+document.addEventListener("click", function (e) {
+
+    if (
+        !menu.contains(e.target) &&
+        !menuBtn.contains(e.target)
+    ) {
+
+        menu.classList.add("hidden");
+
+    }
+
+});
+
+        const slides = [...document.querySelectorAll('.hero-slide')];
+        const dots = [...document.querySelectorAll('.slide-dot')];
+        let currentSlide = 0;
+        let carouselTimer;
+
+        function showSlide(index) {
+            slides[currentSlide].classList.remove('active');
+            dots[currentSlide].style.opacity = '0.4';
+            currentSlide = (index + slides.length) % slides.length;
+            slides[currentSlide].classList.add('active');
+            dots[currentSlide].style.opacity = '1';
+        }
+        function nextSlide() { showSlide(currentSlide + 1); }
+        function prevSlide() { showSlide(currentSlide - 1); }
+        function resetTimer() { clearInterval(carouselTimer); carouselTimer = setInterval(nextSlide, 5500); }
+
+        document.getElementById('nextSlide').addEventListener('click', () => { nextSlide(); resetTimer(); });
+        document.getElementById('prevSlide').addEventListener('click', () => { prevSlide(); resetTimer(); });
+        dots.forEach(dot => dot.addEventListener('click', () => { showSlide(Number(dot.dataset.dot)); resetTimer(); }));
+        resetTimer();
+
+        document.querySelectorAll('.service-accordion').forEach(card => {
+            const trigger = card.querySelector('.accordion-trigger');
+            trigger.addEventListener('click', () => {
+                const wasOpen = card.classList.contains('open');
+                document.querySelectorAll('.service-accordion').forEach(item => item.classList.remove('open'));
+                if (!wasOpen) card.classList.add('open');
+            });
+        });
+
+        const calendarGrid = document.getElementById('calendarGrid');
+        const calendarTitle = document.getElementById('calendarTitle');
+        const prevMonthBtn = document.getElementById('prevMonth');
+        const nextMonthBtn = document.getElementById('nextMonth');
+        const timeSlots = document.getElementById('timeSlots');
+        const bookingSummary = document.getElementById('bookingSummary');
+
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        let calendarDate = new Date(today.getFullYear(), today.getMonth(), 1);
+        let selectedDate = null;
+        let selectedTime = null;
+        const monthNames = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+        const availableTimes = ['08:00', '09:30', '11:00', '14:00', '15:30', '17:00'];
+
+        function isAvailableDate(date) {
+            return date >= today && date.getDay() !== 0;
+        }
+        function formatDate(date) {
+            return date.toLocaleDateString('es-CO', { weekday: 'short', day: 'numeric', month: 'short' });
+        }
+        function updateSummary() {
+    // Código nuevo: Ahora solo se enfoca en el día
+    if (selectedDate) {
+        bookingSummary.textContent = `${formatDate(selectedDate)}`;
+    } else {
+        bookingSummary.textContent = 'Selecciona un día';
+    }
+}
+        function renderTimes() {
+            return;
+            timeSlots.innerHTML = '';
+            availableTimes.forEach(time => {
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = 'time-slot rounded-full border border-slate-200 px-3 py-2 text-sm text-[#243448] hover:bg-slate-50 transition';
+                btn.textContent = time;
+                if (selectedTime === time) btn.classList.add('is-selected');
+                btn.addEventListener('click', () => {
+                    selectedTime = time;
+                    renderTimes();
+                    updateSummary();
+                });
+                timeSlots.appendChild(btn);
+            });
+        }
+        function renderCalendar() {
+            calendarGrid.innerHTML = '';
+            calendarTitle.textContent = `${monthNames[calendarDate.getMonth()]} ${calendarDate.getFullYear()}`;
+            const firstDay = new Date(calendarDate.getFullYear(), calendarDate.getMonth(), 1);
+            const lastDay = new Date(calendarDate.getFullYear(), calendarDate.getMonth() + 1, 0);
+            let startOffset = firstDay.getDay() - 1;
+            if (startOffset < 0) startOffset = 6;
+            for (let i = 0; i < startOffset; i++) calendarGrid.appendChild(document.createElement('div'));
+            for (let day = 1; day <= lastDay.getDate(); day++) {
+                const date = new Date(calendarDate.getFullYear(), calendarDate.getMonth(), day);
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = 'calendar-day h-9 sm:h-10 rounded-full text-sm text-[#243448] transition';
+                btn.textContent = day;
+                if (!isAvailableDate(date)) btn.classList.add('is-disabled');
+                if (selectedDate && date.toDateString() === selectedDate.toDateString()) btn.classList.add('is-selected');
+                btn.addEventListener('click', () => {
+                    if (!isAvailableDate(date)) return;
+                    selectedDate = date;
+                    selectedTime = null;
+                    renderCalendar();
+                    renderTimes();
+                    updateSummary();
+                });
+                calendarGrid.appendChild(btn);
+            }
+        }
+        prevMonthBtn.addEventListener('click', () => {
+            const currentMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+            const previous = new Date(calendarDate.getFullYear(), calendarDate.getMonth() - 1, 1);
+            if (previous >= currentMonth) { calendarDate = previous; renderCalendar(); }
+        });
+        nextMonthBtn.addEventListener('click', () => {
+            calendarDate = new Date(calendarDate.getFullYear(), calendarDate.getMonth() + 1, 1);
+            renderCalendar();
+        });
+
+        renderCalendar();
+        renderTimes();
+        updateSummary();
+
+        const bookingForm = document.getElementById('bookingForm');
+        const bookingMessage = document.getElementById('bookingMessage');
+        const submitBooking = document.getElementById('submitBooking');
+
+        function showBookingMessage(text, type) {
+            bookingMessage.textContent = text;
+            bookingMessage.className = 'mt-4 rounded-2xl px-4 py-3 text-sm';
+            bookingMessage.classList.add(type === 'success' ? 'bg-emerald-50' : 'bg-red-50');
+            bookingMessage.classList.add(type === 'success' ? 'text-emerald-700' : 'text-red-700');
+            bookingMessage.classList.remove('hidden');
+        }
+
+
+// ==========================================
+// 1. FUNCIÓN PARA CALCULAR EL PRECIO EN TIEMPO REAL
+// ==========================================
+let precioCalculadoFila = 0; // Guarda el precio total
+
+// DEJA SOLO ESTA VERSIÓN LARGA (LA QUE TIENE LOS DÍAS Y PLANES):
+function calcularPrecioDinamico() {
+    const checkboxes = document.querySelectorAll('input[name="services"]:checked');
+    const dias = parseInt(document.getElementById('cleaningDays').value) || 1;
+    const plan = document.getElementById('frequencyPlan') ? document.getElementById('frequencyPlan').value : "Ninguno";
+    const esPromoPrimerServicio = document.getElementById('promoPrimerServicio').checked;
+    
+    if (checkboxes.length === 0) {
+        document.getElementById('totalPriceDisplay').innerText = "$0";
+        document.getElementById('bookingSummary').innerText = "Selecciona tus servicios";
+        document.getElementById('discountSummary').innerText = "";
+        return;
+    }
+
+    // 1. Determinar el precio base sumando cada servicio seleccionado
+    let sumaTarifasBase = 0;
+
+    checkboxes.forEach(box => {
+        if (box.value === "Home Pet Grooming") {
+            // El precio fijo que te pidieron para mascotas
+            sumaTarifasBase += 85000; 
+        } else {
+            // Si es cualquier otro servicio de limpieza, usa la tarifa normal o promo
+            sumaTarifasBase += esPromoPrimerServicio ? 178000 : 178000;
+        }
+    });
+    
+    // Ahora el subtotal multiplica la suma de las tarifas seleccionadas por los días
+    let subtotalSinDescuento = sumaTarifasBase * dias;
+
+    // 2. Calcular descuento por rango de días (Volumen de días al mes)
+    let porcentajeDescDias = 0;
+    if (dias >= 8 && dias <= 11) {
+        porcentajeDescDias = 0.02;
+    } else if (dias >= 12 && dias <= 19) {
+        porcentajeDescDias = 0.04;
+    } else if (dias >= 20) {
+        porcentajeDescDias = 0.06;
+    }
+
+    // 3. Calcular descuento por Plan de continuidad (Permanencia)
+    let porcentajeDescPlan = 0;
+    if (plan === "Trimestral") {
+        porcentajeDescPlan = 0.08;
+    } else if (plan === "Semestral") {
+        porcentajeDescPlan = 0.10;
+    } else if (plan === "Anual") {
+        porcentajeDescPlan = 0.16;
+    }
+
+    // Sumamos los porcentajes de descuento aplicables
+    let descuentoTotalPorcentaje = porcentajeDescDias + porcentajeDescPlan;
+    let ahorro = subtotalSinDescuento * descuentoTotalPorcentaje;
+    
+    // Calculamos el total definitivo
+    let precioCalculadoFila = Math.round(subtotalSinDescuento - ahorro);
+
+    // 4. Actualizar textos dinámicos en la interfaz del usuario
+    document.getElementById('totalPriceDisplay').innerText = `$${precioCalculadoFila.toLocaleString('es-CO')}`;
+    
+    let textoResumen = `${checkboxes.length} servicio(s) x ${dias} día(s)`;
+    if (esPromoPrimerServicio) {
+        textoResumen += " (Tarifa Especial Aplicada)";
+    }
+    document.getElementById('bookingSummary').innerText = textoResumen;
+    
+    if (descuentoTotalPorcentaje > 0) {
+        document.getElementById('discountSummary').innerText = `¡Ahorro del ${(descuentoTotalPorcentaje * 100).toFixed(0)}% aplicado con éxito!`;
+    } else {
+        document.getElementById('discountSummary').innerText = "";
+    }
+}
+
+    // ==========================================
+// 2. FUNCIÓN PARA GUARDAR EL SERVICIO EN GOOGLE SHEETS
+// ==========================================
+// ==========================================
+// 1. FUNCIÓN PARA MOSTRAR LAS ALERTAS ELEGANTES
+// ==========================================
+function showNotification(message, type = 'success') {
+    const container = document.getElementById('toast-container');
+    if (!container) return;
+
+    const toast = document.createElement('div');
+    const bgClass = type === 'success' ? 'bg-emerald-500' : 'bg-rose-500';
+    
+    toast.className = `${bgClass} text-white px-6 py-4 rounded-2xl shadow-xl transition-all duration-300 transform translate-y-5 opacity-0 flex items-center gap-3 font-medium text-sm pointer-events-auto`;
+    
+    const icon = type === 'success' ? '✨' : '⚠️';
+    toast.innerHTML = `<span>${icon}</span> <span>${message}</span>`;
+
+    container.appendChild(toast);
+
+    setTimeout(() => {
+        toast.classList.remove('translate-y-5', 'opacity-0');
+    }, 10);
+
+    setTimeout(() => {
+        toast.classList.add('translate-y-2', 'opacity-0');
+        setTimeout(() => {
+            toast.remove();
+        }, 300);
+    }, 3500);
+}
+
+// ==========================================
+// 2. NUEVA FUNCIÓN SAVESERVICE CON VALIDACIONES
+// ==========================================
+function saveService() {
+
+    // ==========================
+    // CAPTURAR DATOS DEL FORMULARIO
+    // ==========================
+    const fullName = document.getElementById("fullName")?.value.trim() || "";
+    const phone = document.getElementById("phone")?.value.trim() || "";
+
+    const documentType = document.getElementById("documentType")?.value || "";
+    const documentNumber = document.getElementById("documentNumber")?.value.trim() || "";
+
+    const referralSource = document.getElementById("referralSource")?.value.trim() || "";
+
+    const address = document.getElementById("address")?.value.trim() || "";
+
+    const observations = document.getElementById("observations")?.value.trim() || "";
+
+    const frequencyPlan = document.getElementById("frequencyPlan")?.value || "Único";
+
+    // ==========================
+    // SERVICIOS SELECCIONADOS
+    // ==========================
+    const checkboxes = document.querySelectorAll('input[name="services"]:checked');
+
+    let serviciosSeleccionados = [];
+
+    checkboxes.forEach(cb => {
+        serviciosSeleccionados.push(cb.value);
+    });
+
+    // ==========================
+    // VALIDACIONES
+    // ==========================
+
+    if (!fullName) {
+        showNotification("Ingresa el nombre completo.", "error");
+        document.getElementById("fullName").focus();
+        return;
+    }
+
+    if (!phone) {
+        showNotification("Ingresa el teléfono.", "error");
+        document.getElementById("phone").focus();
+        return;
+    }
+
+    if (!documentType) {
+        showNotification("Selecciona el tipo de identificación.", "error");
+        document.getElementById("documentType").focus();
+        return;
+    }
+
+    if (!documentNumber) {
+        showNotification("Ingresa el número de identificación.", "error");
+        document.getElementById("documentNumber").focus();
+        return;
+    }
+
+    if (!address) {
+        showNotification("Ingresa la dirección.", "error");
+        document.getElementById("address").focus();
+        return;
+    }
+
+    if (!selectedDate) {
+        showNotification("Selecciona una fecha para el servicio.", "error");
+        return;
+    }
+
+    if (!referralSource) {
+        showNotification("Por favor indícanos cómo conociste ProClean Prime.", "error");
+        document.getElementById("referralSource").focus();
+        return;
+    }
+
+    if (!observations) {
+        showNotification("Cuéntanos un poco más sobre el servicio que necesitas.", "error");
+        document.getElementById("observations").focus();
+        return;
+    }
+
+    // ==========================
+    // OBJETO A ENVIAR
+    // ==========================
+
+    const pedido = {
+
+        nombreCliente: fullName,
+        telefono: phone,
+
+        tipoIdentificacion: documentType,
+        numeroIdentificacion: documentNumber,
+        comoConociste: referralSource,
+
+        servicio: serviciosSeleccionados.length > 0
+            ? serviciosSeleccionados.join(" + ")
+            : "Ninguno",
+
+        categoria: frequencyPlan,
+
+        direccion: address,
+
+        fechaSolicitada: selectedDate
+            ? formatDate(selectedDate)
+            : "No seleccionada",
+
+        hora: "No aplica",
+
+        precio: document.getElementById("totalPriceDisplay")
+            ? document.getElementById("totalPriceDisplay").innerText.replace(/[^0-9]/g, "")
+            : "0",
+
+        formaPago: document.getElementById("paymentMethod")
+            ? document.getElementById("paymentMethod").value
+            : "No seleccionado",
+
+        notas: observations
+
+    };
+
+    console.log("OBJETO ENVIADO:");
+    console.log(pedido);
+
+    // ==========================
+    // ENVIAR A APPS SCRIPT
+    // ==========================
+
+    fetch("https://script.google.com/macros/s/AKfycbzLv4VRFQap0DUswhURjgFHVE05fJg1xVgZstT9UdK2QemPnsV9Z3Wgo9qFkCdji3ULHA/exec", {
+
+        method: "POST",
+
+        headers: {
+            "Content-Type": "text/plain"
+        },
+
+        body: JSON.stringify(pedido)
+
+    })
+
+    .then(response => response.json())
+
+    .then(data => {
+
+        console.log(data);
+
+        document.getElementById("bookingForm").reset();
+
+        selectedDate = null;
+
+        if (typeof renderCalendar === "function") renderCalendar();
+
+        if (typeof updateSummary === "function") updateSummary();
+
+        if (typeof calcularPrecioDinamico === "function") calcularPrecioDinamico();
+
+        alert("¡Servicio solicitado correctamente!");
+
+    })
+
+    .catch(error => {
+
+        console.error(error);
+
+        alert("Ocurrió un error al enviar la solicitud.");
+
+    });
+
+}
+
+
+// ==========================
+// RESEÑAS - PÁGINA PRINCIPAL
+// ==========================
+
+async function cargarResenasHome() {
+
+    try {
+
+        const response = await fetch("https://script.google.com/macros/s/AKfycbyW6DJiFny9iAEWrHL6ce4TOYISa5Q9ByRAFb-9NvXwSVafxxUA24LEGwn8NjHEVfq1/exec");
+
+        const resenas = await response.json();
+
+        const wrapper = document.getElementById("homeReviewsWrapper");
+
+        wrapper.innerHTML = "";
+
+        // Mostrar solo las 6 más recientes
+        const ultimas = resenas.slice(0, 6);
+
+        ultimas.forEach(resena => {
+
+            const estrellas = "⭐".repeat(parseInt(resena.calificacion));
+
+            wrapper.innerHTML += `
+                <div class="swiper-slide">
+
+                    <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-5 h-full">
+
+                        <div class="text-center text-lg mb-3">
+                            ${estrellas}
+                        </div>
+
+                        <p class="text-sm text-[#274F64] italic text-center leading-6 line-clamp-3">
+                            "${resena.comentario}"
+                        </p>
+
+                        <div class="mt-5 text-center">
+
+                            <h3 class="font-bold text-[#0F162A]">
+                                ${resena.nombre}
+                            </h3>
+
+                            <p class="text-[#CFA754] text-sm">
+                                ${resena.servicio}
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            `;
+
+        });
+
+        new Swiper(".homeReviews", {
+
+            loop: true,
+
+            spaceBetween: 20,
+
+            autoplay: {
+
+                delay: 4000,
+
+                disableOnInteraction: false
+
+            },
+
+            pagination: {
+
+                el: "#reviews-home .swiper-pagination",
+
+                clickable: true
+
+            },
+
+            breakpoints: {
+
+                0: {
+                    slidesPerView: 1
+                },
+
+                768: {
+                    slidesPerView: 2
+                },
+
+                1024: {
+                    slidesPerView: 3
+                }
+
+            }
+
+        });
+
+    } catch (error) {
+
+        console.error("Error cargando reseñas Home:", error);
+
+    }
+
+}
+
+cargarResenasHome();
+
+
+
+
+
+    </script>
+    <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-3 pointer-events-none"></div>
+
+    
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+
+</body>
+
+</html>

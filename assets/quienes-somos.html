@@ -1,0 +1,1780 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProClean Prime</title>
+    <link rel="stylesheet" href="css/output.css">
+    <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;display=swap"
+        rel="stylesheet">
+    <style>
+        
+        :root {
+            --navy: #0d152b;
+            --gold: #cbbf94;
+            --cream: #f7f5ef;
+            --ink: #233047;
+            --muted: #5e6b78;
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden
+        }
+
+        body {
+            margin: 0;
+            font-family: 'DM Sans', sans-serif;
+            color: var(--ink);
+            overflow-x: hidden
+        }
+
+        img {
+            object-fit: contain;
+            object-position: center center
+        }
+
+        a,
+        button,
+        input,
+        select,
+        textarea {
+            pointer-events: auto
+        }
+
+        a,
+        button {
+            cursor: pointer
+        }
+        
+
+        .focus-ring:focus-visible,
+        a:focus-visible,
+        button:focus-visible,
+        input:focus-visible,
+        select:focus-visible,
+        textarea:focus-visible {
+            outline: 3px solid rgba(203, 191, 148, .55);
+            outline-offset: 3px;
+        }
+
+        .decorative {
+            pointer-events: none
+        }
+
+        .hero-slide {
+            opacity: 0;
+            transform: scale(1.04);
+            transition: opacity .8s ease, transform 5.5s ease;
+            pointer-events: none
+        }
+
+        .hero-slide.active {
+            opacity: 1;
+            transform: scale(1);
+            pointer-events: none
+        }
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(18px);
+            animation: fadeUp .8s ease forwards
+        }
+
+        .fade-up.delay-1 {
+            animation-delay: .15s
+        }
+
+        .fade-up.delay-2 {
+            animation-delay: .3s
+        }
+
+        .fade-up.delay-3 {
+            animation-delay: .45s
+        }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        .mobile-menu {
+            transform: translateX(-100%);
+            transition: transform .35s ease
+        }
+
+        .mobile-menu.open {
+            transform: translateX(0)
+        }
+
+        .overlay {
+            opacity: 0;
+            pointer-events: none;
+            transition: .3s ease
+        }
+
+        .overlay.open {
+            opacity: 1;
+            pointer-events: auto
+        }
+
+        .accordion-panel {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height .4s ease
+        }
+
+        .service-accordion.open .accordion-panel {
+            max-height: 900px
+        }
+
+        .service-accordion .accordion-icon {
+            transition: transform .3s ease
+        }
+
+        .service-accordion.open .accordion-icon {
+            transform: rotate(45deg)
+        }
+
+        .calendar-day {
+            transition: .2s ease
+        }
+
+        .calendar-day:hover:not(.is-disabled) {
+            background: #edf3f4
+        }
+
+        .calendar-day.is-selected {
+            background: var(--navy) !important;
+            color: #fff !important;
+            font-weight: 700
+        }
+
+        .calendar-day.is-disabled {
+            opacity: .28;
+            pointer-events: none;
+            cursor: not-allowed
+        }
+
+        .time-slot {
+            transition: .2s ease
+        }
+
+        .time-slot:hover {
+            transform: translateY(-2px)
+        }
+
+        .time-slot.is-selected {
+            background: var(--navy) !important;
+            color: #fff !important;
+            border-color: var(--navy) !important
+        }
+
+        .wa-float {
+            box-shadow: 0 14px 35px rgba(20, 110, 73, .28)
+        }
+
+        .promo-orb {
+            animation: floaty 4s ease-in-out infinite
+        }
+
+        @keyframes floaty {
+
+            0%,
+            100% {
+                transform: translateY(0)
+            }
+
+            50% {
+                transform: translateY(-10px)
+            }
+        }
+
+        .hero-title-responsive {
+            font-size: clamp(2.45rem, 6vw, 4.5rem)
+        }
+
+        .section-title-responsive {
+            font-size: clamp(2rem, 4.2vw, 3.1rem)
+        }
+
+        .promo-title-responsive {
+            font-size: clamp(2rem, 4.4vw, 3.35rem)
+        }
+
+        .booking-title-responsive {
+            font-size: clamp(2rem, 4vw, 3.2rem)
+        }
+
+        @keyframes carousel-scroll {
+            0% {
+                transform: translateX(0)
+            }
+
+            100% {
+                transform: translateX(-50%)
+            }
+        }
+
+        .ally-carousel {
+            display: flex;
+            gap: 1.25rem;
+            width: max-content;
+            animation: carousel-scroll 26s linear infinite
+        }
+
+        .ally-carousel:hover {
+            animation-play-state: paused
+        }
+
+        .ally-carousel-item {
+            width: 220px;
+            flex: 0 0 220px
+        }
+
+        @media(max-width:768px) {
+            .ally-carousel-item {
+                width: 160px;
+                flex: 0 0 160px
+            }
+
+            .ally-carousel {
+                animation-duration: 22s
+            }
+        }
+        button:active {
+    transform: scale(0.97);
+    transition: transform 0.1s ease;
+}
+/* --- COLORES CORPORATIVOS PARA EL FORMULARIO --- */
+        
+        /* Cuando el usuario hace clic o escribe en cualquier campo */
+        input:focus, 
+        select:focus, 
+        textarea:focus {
+            outline: none !important;
+            border-color: #cbbf94 !important; /* Tu dorado corporativo */
+            box-shadow: 0 0 0 3px rgba(203, 191, 148, 0.3) !important; /* Destello suave dorado */
+            background-color: #ffffff !important; /* Fondo blanco limpio para escribir */
+            transition: all 0.2s ease-in-out;
+        }
+
+        /* Si quieres que los textos de los títulos de los campos cambien a dorado al activarse */
+        .form-group:focus-within label {
+            color: #cbbf94 !important;
+        }
+        /* Animación de movimiento para el degradado del calendario */
+@keyframes gradientMovement {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.animate-gradient-slow {
+    background-size: 200% 200%;
+    animation: gradientMovement 6s ease infinite;
+}
+/* PINTAR LA TARJETA DEL CALENDARIO REAL (LA DE LA IZQUIERDA) */
+#agenda > div > div:first-child,
+.canva-card:has(#calendarGrid) {
+    background: linear-gradient(-45deg, #070b18, #0d152b, #1e3a8a, #0d152b) !important;
+    background-size: 400% 400% !important;
+    animation: gradientMovement 10s ease infinite !important;
+    padding: 24px !important;
+    border-radius: 24px !important;
+    color: white !important;
+}
+
+/* Forzar que los textos de arriba de esa tarjeta se vuelvan blancos */
+#agenda > div > div:first-child h1,
+#agenda > div > div:first-child h2,
+#agenda > div > div:first-child h3,
+#agenda > div > div:first-child p {
+    color: white !important;
+}
+
+/* Mantener la cajita blanca interna del calendario limpia y legible en el centro */
+#calendarGrid, 
+#agenda div[class*="bg-white"] {
+    background-color: white !important;
+    color: #0d152b !important;
+    border-radius: 16px !important;
+}
+/* ===========================
+   CARRUSEL RESEÑAS
+=========================== */
+
+.review-carousel{
+    display:flex;
+    gap:30px;
+    width:max-content;
+    animation: reviewScroll 35s linear infinite;
+}
+
+.review-carousel:hover{
+    animation-play-state: paused;
+}
+
+.review-card{
+    min-width:350px;
+    flex:0 0 350px;
+    transition:.35s;
+}
+
+.review-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 25px 50px rgba(13,21,43,.15);
+}
+
+@media(max-width:768px){
+
+    .review-card{
+
+        min-width:90%;
+
+        flex:0 0 90%;
+
+    }
+
+}
+
+@keyframes reviewScroll {
+
+    0%{
+        transform:translateX(0);
+    }
+
+    100%{
+        transform:translateX(-50%);
+    }
+
+}
+
+
+    </style>
+    <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+/>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GJ0GMTX6PZ"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-GJ0GMTX6PZ');
+    
+</script>
+</head>
+<body class="font-sans text-[var(--ink)] bg-white overflow-x-hidden">
+    <header class="fixed top-0 left-0 w-full z-50 bg-white/95 backdrop-blur border-b border-white/60">
+
+    <div class="max-w-7xl mx-auto px-5 lg:px-8 h-20 flex items-center justify-between">
+
+        <!-- Logo -->
+        <a href="index.html#inicio" class="flex items-center">
+            <img src="imagenes/logo.jpeg"
+                 alt="ProClean Prime"
+                 class="h-16 w-auto object-contain max-w-[140px]">
+        </a>
+
+        <!-- Menú escritorio -->
+        <nav class="hidden lg:flex items-center gap-8">
+
+            <a href="index.html#inicio"
+               class="text-[#0F162A] hover:text-[#CFA754] font-medium transition">
+                Inicio
+            </a>
+
+            <a href="index.html#servicios"
+               class="text-[#0F162A] hover:text-[#CFA754] font-medium transition">
+                Servicios
+            </a>
+
+            <a href="index.html#cotiza"
+               class="text-[#0F162A] hover:text-[#CFA754] font-medium transition">
+                Promoción
+            </a>
+
+            <a href="index.html#agenda"
+               class="text-[#0F162A] hover:text-[#CFA754] font-medium transition">
+                Agenda
+            </a>
+
+            <a href="quienes-somos.html"
+               class="text-[#0F162A] font-semibold border-b-2 border-[#CFA754] pb-1">
+                Quiénes somos
+            </a>
+
+        </nav>
+
+        <!-- Botón hamburguesa -->
+        <button id="menuBtn"
+                class="lg:hidden w-11 h-11 rounded-full border border-slate-300 grid place-items-center"
+                aria-label="Abrir menú">
+
+            <i data-lucide="menu" class="w-6 h-6 text-[#0F162A]"></i>
+
+        </button>
+
+    </div>
+
+    <!-- Menú desplegable -->
+    <div id="mobile-menu"
+         class="hidden absolute top-20 right-0 w-72 bg-white rounded-b-2xl border-l border-r border-b border-[#CFA754] shadow-2xl p-6 z-50">
+
+        <nav class="flex flex-col gap-6">
+
+            <a href="index.html#inicio"
+               onclick="document.getElementById('mobile-menu').classList.add('hidden')"
+               class="flex items-center gap-2 text-[#0F162A] font-bold hover:text-[#CFA754] transition">
+
+                <i data-lucide="home" class="w-5 h-5"></i>
+                Inicio
+
+            </a>
+
+            <a href="index.html#servicios"
+               onclick="document.getElementById('mobile-menu').classList.add('hidden')"
+               class="flex items-center gap-2 text-[#0F162A] font-bold hover:text-[#CFA754] transition">
+
+                <i data-lucide="sparkles" class="w-5 h-5"></i>
+                Servicios
+
+            </a>
+
+            <a href="index.html#cotiza"
+               onclick="document.getElementById('mobile-menu').classList.add('hidden')"
+               class="flex items-center gap-2 text-[#0F162A] font-bold hover:text-[#CFA754] transition">
+
+                <i data-lucide="tag" class="w-5 h-5"></i>
+                Promoción
+
+            </a>
+
+            <a href="index.html#agenda"
+               onclick="document.getElementById('mobile-menu').classList.add('hidden')"
+               class="flex items-center gap-2 text-[#0F162A] font-bold hover:text-[#CFA754] transition">
+
+                <i data-lucide="calendar-days" class="w-5 h-5"></i>
+                Agenda
+
+            </a>
+
+            <a href="quienes-somos.html"
+               onclick="document.getElementById('mobile-menu').classList.add('hidden')"
+               class="flex items-center gap-2 text-[#CFA754] font-bold">
+
+                <i data-lucide="user" class="w-5 h-5"></i>
+                Quiénes somos
+
+            </a>
+
+            <a href="index.html#seccion-equipo"
+               onclick="document.getElementById('mobile-menu').classList.add('hidden')"
+               class="flex items-center gap-2 text-[#0F162A] font-bold hover:text-[#CFA754] transition">
+
+                <i data-lucide="briefcase" class="w-5 h-5"></i>
+                Únete a nuestro equipo
+
+            </a>
+
+        </nav>
+
+    </div>
+
+</header>
+
+<div id="menuOverlay" class="overlay fixed inset-0 bg-black/35 z-30 hidden"></div>
+<!-- =========================
+     BANNER PRINCIPAL
+========================= -->
+
+<section class="relative pt-20">
+
+    <div class="relative h-[75vh] overflow-hidden">
+
+        <!-- Imagen -->
+        <img
+            src="imagenes/ValentinaTrabajaConNosotros3.jpeg"
+            alt="ProClean Prime"
+            class="absolute inset-0 w-full h-full object-cover">
+
+        <!-- Capa oscura -->
+        <div class="absolute inset-0 bg-black/60"></div>
+
+        <!-- Contenido -->
+        <div class="relative z-10 h-full flex flex-col items-center justify-center text-center px-6">
+
+            <h1 class="text-5xl md:text-7xl font-extrabold text-white mb-6">
+
+                Conoce <br> ProClean Prime
+
+            </h1>
+
+            <p class="text-lg md:text-2xl text-gray-200 max-w-3xl leading-relaxed">
+
+                Comprometidos con ofrecer espacios impecables,
+                seguros y saludables mediante servicios profesionales
+                de limpieza para hogares, oficinas y empresas.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- =========================
+     PRESENTACIÓN
+========================= -->
+
+<section class="py-24 bg-white">
+
+    <div class="max-w-5xl mx-auto px-6 text-center">
+
+        <span class="uppercase tracking-[0.3em] text-[var(--gold)] font-bold">
+
+            QUIÉNES SOMOS
+
+        </span>
+
+        <h2 class="text-4xl md:text-5xl font-extrabold text-[var(--navy)] mt-5 mb-8">
+
+            Más que limpieza,
+            creamos espacios donde las personas se sienten bien.
+
+        </h2>
+
+        <p class="text-lg leading-9 text-gray-600">
+
+            ProClean Prime es una empresa dedicada a la prestación de
+            servicios profesionales de limpieza para hogares,
+            oficinas y espacios comerciales.
+
+            Nuestro compromiso es ofrecer soluciones de alta calidad,
+            generando confianza, bienestar y tranquilidad mediante un
+            equipo altamente capacitado, procesos estandarizados y una
+            atención cercana que supera las expectativas de nuestros clientes.
+
+        </p>
+
+    </div>
+
+</section>
+<!-- =========================
+     HISTORIA
+========================= -->
+
+<section class="py-24 bg-[var(--cream)]">
+
+    <div class="max-w-7xl mx-auto px-6">
+
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+            <!-- Imagen -->
+
+            <div>
+
+                <img
+                    src="imagenes/Papá1.png"
+                    alt="Historia ProClean Prime"
+                    class="rounded-3xl shadow-2xl w-full object-cover h-[750px]">
+
+            </div>
+
+            <!-- Texto -->
+
+            <div>
+
+                <span class="uppercase tracking-[0.3em] text-[var(--gold)] font-bold">
+
+                    NUESTRA HISTORIA
+
+                </span>
+
+                <h2 class="text-4xl font-extrabold text-[var(--navy)] mt-4 mb-8">
+
+                    La excelencia comienza
+                    con la confianza.
+
+                </h2>
+
+                <p class="text-lg text-gray-600 leading-9 mb-6">
+
+                    En ProClean Prime ofrecemos un servicio de limpieza
+                    altamente profesional y de alta categoría,
+                    diseñado para hogares, oficinas y espacios comerciales.
+
+                </p>
+
+                <p class="text-lg text-gray-600 leading-9 mb-6">
+
+                    Nuestra prioridad es garantizar ambientes impecables,
+                    saludables y seguros mediante procesos estandarizados,
+                    tecnología especializada y un equipo humano altamente capacitado.
+
+                </p>
+
+                <p class="text-lg text-gray-600 leading-9">
+
+                    Cada servicio refleja nuestro compromiso con la excelencia,
+                    la confianza y la satisfacción de nuestros clientes,
+                    cuidando cada detalle para superar sus expectativas.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+</section>
+<!-- =====================================
+        MISIÓN Y VISIÓN
+====================================== -->
+
+<section class="py-24 bg-white">
+
+    <div class="max-w-7xl mx-auto px-6">
+
+        <div class="text-center mb-16">
+
+            <span class="uppercase tracking-[.3em] text-[var(--gold)] font-bold">
+
+                NUESTRA ESENCIA
+
+            </span>
+
+            <h2 class="text-4xl md:text-5xl font-extrabold text-[var(--navy)] mt-5">
+
+                Trabajamos con propósito
+
+            </h2>
+
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-10">
+
+            <!-- MISIÓN -->
+
+            <div class="bg-white rounded-3xl p-10 shadow-lg border border-gray-100 hover:-translate-y-3 hover:shadow-2xl transition duration-500">
+
+                <div class="w-20 h-20 rounded-full bg-[var(--gold)]/20 flex items-center justify-center mb-8">
+
+                    <i data-lucide="target" class="w-10 h-10 text-[var(--gold)]"></i>
+
+                </div>
+
+                <h3 class="text-3xl font-bold text-[var(--navy)] mb-6">
+
+                    Misión
+
+                </h3>
+
+                <p class="text-gray-600 leading-9">
+
+                    Brindar soluciones integrales de limpieza y mantenimiento mediante procesos estandarizados,
+                    tecnología especializada y personal altamente capacitado, garantizando ambientes higiénicos,
+                    seguros y eficientes para clientes residenciales y comerciales.
+
+                </p>
+
+            </div>
+
+            <!-- VISIÓN -->
+
+            <div class="bg-white rounded-3xl p-10 shadow-lg border border-gray-100 hover:-translate-y-3 hover:shadow-2xl transition duration-500">
+
+                <div class="w-20 h-20 rounded-full bg-[var(--gold)]/20 flex items-center justify-center mb-8">
+
+                    <i data-lucide="eye" class="w-10 h-10 text-[var(--gold)]"></i>
+
+                </div>
+
+                <h3 class="text-3xl font-bold text-[var(--navy)] mb-6">
+
+                    Visión
+
+                </h3>
+
+                <p class="text-gray-600 leading-9">
+
+                    Posicionarnos como una empresa líder en servicios profesionales de limpieza y saneamiento,
+                    reconocida por la excelencia operativa, la innovación en protocolos de higiene,
+                    el compromiso con la sostenibilidad y la satisfacción de nuestros clientes.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- ==========================
+     NUESTROS VALORES
+========================== -->
+
+<section class="py-24 bg-gradient-to-br from-[#0F162A] to-[#274F64]">
+
+    <div class="max-w-7xl mx-auto px-6">
+
+        <div class="text-center mb-16">
+
+            <p class="uppercase tracking-[.30em] text-[#CFA754] font-semibold mb-3">
+                NUESTRA ESENCIA
+            </p>
+
+            <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-5">
+
+                Nuestros Valores
+
+            </h2>
+
+            <p class="text-[#EFF2F4] text-lg max-w-3xl mx-auto">
+
+                Cada servicio que realizamos refleja nuestro compromiso
+                con la excelencia, la confianza y la satisfacción de
+                nuestros clientes.
+
+            </p>
+
+        </div>
+<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+    <!-- Calidad -->
+    <div class="bg-white rounded-3xl p-8 shadow-lg hover:-translate-y-2 hover:shadow-2xl transition duration-300">
+
+        <i data-lucide="star" class="w-10 h-10 text-[#CFA754] mb-5"></i>
+
+        <h3 class="text-2xl font-bold text-[#0F162A] mb-3">
+            Calidad
+        </h3>
+
+        <p class="text-[#274F64] leading-relaxed">
+            Trabajamos bajo altos estándares para garantizar resultados impecables en cada servicio.
+        </p>
+
+    </div>
+
+    <!-- Confianza -->
+    <div class="bg-white rounded-3xl p-8 shadow-lg hover:-translate-y-2 hover:shadow-2xl transition duration-300">
+
+        <i data-lucide="shield-check" class="w-10 h-10 text-[#CFA754] mb-5"></i>
+
+        <h3 class="text-2xl font-bold text-[#0F162A] mb-3">
+            Confianza
+        </h3>
+
+        <p class="text-[#274F64] leading-relaxed">
+            Actuamos con responsabilidad, honestidad y transparencia en cada servicio prestado.
+        </p>
+
+    </div>
+
+    <!-- Profesionalismo -->
+    <div class="bg-white rounded-3xl p-8 shadow-lg hover:-translate-y-2 hover:shadow-2xl transition duration-300">
+
+        <i data-lucide="briefcase" class="w-10 h-10 text-[#CFA754] mb-5"></i>
+
+        <h3 class="text-2xl font-bold text-[#0F162A] mb-3">
+            Profesionalismo
+        </h3>
+
+        <p class="text-[#274F64] leading-relaxed">
+            Nuestro equipo está capacitado para brindar un servicio eficiente y de alta calidad.
+        </p>
+
+    </div>
+
+    <!-- Compromiso -->
+    <div class="bg-white rounded-3xl p-8 shadow-lg hover:-translate-y-2 hover:shadow-2xl transition duration-300">
+
+        <i data-lucide="check-circle" class="w-10 h-10 text-[#CFA754] mb-5"></i>
+
+        <h3 class="text-2xl font-bold text-[#0F162A] mb-3">
+            Compromiso
+        </h3>
+
+        <p class="text-[#274F64] leading-relaxed">
+            Nos esforzamos por superar las expectativas de cada cliente en cada visita.
+        </p>
+
+    </div>
+
+    <!-- Puntualidad -->
+    <div class="bg-white rounded-3xl p-8 shadow-lg hover:-translate-y-2 hover:shadow-2xl transition duration-300">
+
+        <i data-lucide="clock-3" class="w-10 h-10 text-[#CFA754] mb-5"></i>
+
+        <h3 class="text-2xl font-bold text-[#0F162A] mb-3">
+            Puntualidad
+        </h3>
+
+        <p class="text-[#274F64] leading-relaxed">
+            Respetamos el tiempo de nuestros clientes cumpliendo con los horarios acordados.
+        </p>
+
+    </div>
+
+    <!-- Sostenibilidad -->
+    <div class="bg-white rounded-3xl p-8 shadow-lg hover:-translate-y-2 hover:shadow-2xl transition duration-300">
+
+        <i data-lucide="leaf" class="w-10 h-10 text-[#CFA754] mb-5"></i>
+
+        <h3 class="text-2xl font-bold text-[#0F162A] mb-3">
+            Sostenibilidad
+        </h3>
+
+        <p class="text-[#274F64] leading-relaxed">
+            Promovemos prácticas responsables mediante el uso adecuado de productos y recursos.
+        </p>
+
+    </div>
+
+</div>
+    </div>
+
+</section>
+
+
+<!-- ======================================
+      ¿POR QUÉ ELEGIR PROCLEAN PRIME?
+======================================= -->
+
+<section class="py-24 bg-white">
+
+    <div class="max-w-7xl mx-auto px-6">
+
+        <div class="text-center mb-16">
+
+            <p class="uppercase tracking-[.30em] text-[#CFA754] font-semibold mb-3">
+                NUESTRO DIFERENCIAL
+            </p>
+
+            <h2 class="text-4xl md:text-5xl font-extrabold text-[#0F162A] mb-5">
+                ¿Por qué elegir ProClean Prime?
+            </h2>
+
+            <p class="text-[#274F64] text-lg max-w-3xl mx-auto">
+                Nos esforzamos por ofrecer una experiencia de limpieza
+                profesional basada en la confianza, la calidad y el
+                compromiso con cada uno de nuestros clientes.
+            </p>
+
+        </div>
+
+    <div class="grid lg:grid-cols-2 gap-8">
+
+    <!-- Tarjeta 1 -->
+
+    <div class="bg-white rounded-3xl shadow-xl border-t-4 border-[#CFA754] p-8 transition duration-300 hover:-translate-y-2 hover:shadow-2xl">
+
+        <i data-lucide="sparkles" class="w-10 h-10 text-[#CFA754] mb-5"></i>
+
+        <h3 class="text-2xl font-bold text-[#0F162A] mb-4">
+
+            Atención Personalizada
+
+        </h3>
+
+        <p class="text-[#274F64] leading-8">
+
+            Escuchamos las necesidades de cada cliente para ofrecer
+            soluciones de limpieza adaptadas a su hogar, oficina o
+            espacio comercial.
+
+        </p>
+
+    </div>
+
+    <!-- Tarjeta 2 -->
+
+    <div class="bg-white rounded-3xl shadow-xl border-t-4 border-[#CFA754] p-8 transition duration-300 hover:-translate-y-2 hover:shadow-2xl">
+
+        <i data-lucide="shield-check" class="w-10 h-10 text-[#CFA754] mb-5"></i>
+
+        <h3 class="text-2xl font-bold text-[#0F162A] mb-4">
+
+            Calidad Garantizada
+
+        </h3>
+
+        <p class="text-[#274F64] leading-8">
+
+            Aplicamos procesos profesionales y utilizamos productos
+            adecuados para garantizar resultados impecables en cada
+            servicio.
+
+        </p>
+
+    </div>
+
+    <!-- Tarjeta 3 -->
+
+    <div class="bg-white rounded-3xl shadow-xl border-t-4 border-[#CFA754] p-8 transition duration-300 hover:-translate-y-2 hover:shadow-2xl">
+
+        <i data-lucide="badge-check" class="w-10 h-10 text-[#CFA754] mb-5"></i>
+
+        <h3 class="text-2xl font-bold text-[#0F162A] mb-4">
+
+            Personal Capacitado
+
+        </h3>
+
+        <p class="text-[#274F64] leading-8">
+
+            Nuestro equipo recibe capacitación constante para brindar
+            un servicio seguro, eficiente y con altos estándares de
+            calidad.
+
+        </p>
+
+    </div>
+
+    <!-- Tarjeta 4 -->
+
+    <div class="bg-white rounded-3xl shadow-xl border-t-4 border-[#CFA754] p-8 transition duration-300 hover:-translate-y-2 hover:shadow-2xl">
+
+        <i data-lucide="clock-3" class="w-10 h-10 text-[#CFA754] mb-5"></i>
+
+        <h3 class="text-2xl font-bold text-[#0F162A] mb-4">
+
+            Puntualidad y Compromiso
+
+        </h3>
+
+        <p class="text-[#274F64] leading-8">
+
+            Valoramos el tiempo de nuestros clientes cumpliendo los
+            horarios acordados y manteniendo una comunicación clara
+            durante todo el proceso.
+
+        </p>
+
+    </div>
+
+</div>
+
+</section>
+<!-- ======================================
+RESEÑAS
+====================================== -->
+
+<section class="py-24 bg-white">
+
+    <div class="max-w-6xl mx-auto px-6">
+
+        <div class="text-center mb-16">
+
+            <p class="uppercase tracking-[.30em] text-[#CFA754] font-semibold mb-3">
+
+                TESTIMONIOS
+
+            </p>
+
+            <h2 class="text-4xl md:text-5xl font-extrabold text-[#0F162A] mb-5">
+
+                Lo que dicen nuestros clientes
+
+            </h2>
+
+            <p class="text-[#274F64] text-lg max-w-3xl mx-auto">
+
+                La satisfacción de nuestros clientes es nuestra mejor carta de presentación.
+                Cada servicio representa nuestro compromiso con la excelencia,
+                la confianza y la calidad.
+
+            </p>
+
+            
+
+        </div>
+        <!-- Tarjeta de reseña -->
+<!-- Carrusel de reseñas -->
+<!-- RESEÑAS -->
+
+<section class="py-24 bg-white">
+
+    <div class="max-w-6xl mx-auto px-6">
+
+        ...
+
+        <div class="swiper myReviews">
+
+            <div id="reviewsTrack" class="swiper-wrapper">
+
+            </div>
+
+            <div class="swiper-pagination"></div>
+
+            <div class="swiper-button-prev"></div>
+
+            <div class="swiper-button-next"></div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ==========================
+    COMPARTE TU EXPERIENCIA
+========================== -->
+
+<section class="py-16 bg-white">
+
+    <div class="max-w-5xl mx-auto px-6">
+
+        <div class="bg-gradient-to-r from-[#0F162A] to-[#274F64] rounded-[35px] shadow-2xl p-10 md:p-14 text-center relative overflow-hidden">
+
+            <!-- Decoración -->
+            <div class="absolute -top-16 -left-16 w-40 h-40 bg-[#CFA754]/10 rounded-full blur-3xl"></div>
+            <div class="absolute -bottom-16 -right-16 w-44 h-44 bg-white/5 rounded-full blur-3xl"></div>
+
+            <div class="relative">
+
+                <!-- Estrellas -->
+
+                <div class="flex justify-center gap-1 mb-5">
+
+                    <i data-lucide="star" class="w-6 h-6 text-[#CFA754] fill-[#CFA754]"></i>
+                    <i data-lucide="star" class="w-6 h-6 text-[#CFA754] fill-[#CFA754]"></i>
+                    <i data-lucide="star" class="w-6 h-6 text-[#CFA754] fill-[#CFA754]"></i>
+                    <i data-lucide="star" class="w-6 h-6 text-[#CFA754] fill-[#CFA754]"></i>
+                    <i data-lucide="star" class="w-6 h-6 text-[#CFA754] fill-[#CFA754]"></i>
+
+                </div>
+
+                <p class="uppercase tracking-[.30em] text-[#CFA754] text-sm font-semibold mb-3">
+
+                    TU OPINIÓN NOS IMPORTA
+
+                </p>
+
+                <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-5">
+
+                    ¿Ya disfrutaste de nuestros servicios?
+
+                </h2>
+
+                <p class="text-white/90 text-lg leading-8 max-w-2xl mx-auto mb-8">
+
+                    Cada opinión nos ayuda a seguir creciendo y brindar un
+                    servicio de excelencia. Cuéntanos cómo fue tu experiencia
+                    con <span class="text-[#CFA754] font-semibold">ProClean Prime</span>.
+
+                </p>
+
+                <button
+    id="openReviewModal"
+    class="bg-[#CFA754] hover:bg-[#b79242] text-[#0F162A] font-bold px-8 py-4 rounded-full transition duration-300 shadow-xl hover:scale-105">
+
+    Compartir mi experiencia
+
+</button>
+
+
+
+                <p class="mt-6 text-white/60 text-sm">
+
+                    Solo publicamos reseñas verificadas de clientes que han utilizado nuestros servicios.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ==========================
+MODAL RESEÑAS
+========================== -->
+
+<div id="reviewModal"
+class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden items-center justify-center z-[999] p-5">
+
+    <div class="bg-white rounded-3xl shadow-2xl w-full max-w-xl overflow-hidden">
+
+        <!-- Encabezado -->
+
+        <div class="bg-[#0F162A] text-white px-8 py-6 flex justify-between items-center">
+
+            <div>
+
+                <h2 class="text-2xl font-bold">
+
+                    Déjanos tu reseña
+
+                </h2>
+
+                <p class="text-sm text-gray-300 mt-1">
+
+                    Tu opinión nos ayuda a mejorar.
+
+                </p>
+
+            </div>
+
+            <button
+            id="closeReviewModal"
+            class="text-white hover:text-[#CFA754] transition">
+
+                <i data-lucide="x"></i>
+
+            </button>
+
+        </div>
+
+        <!-- Aquí irá el formulario -->
+
+        <div class="p-8">
+
+            <form id="reviewForm" class="space-y-6">
+
+    <!-- Nombre -->
+
+    <div>
+
+        <label class="block mb-2 font-semibold text-[#0F162A]">
+    Nombre completo
+</label>
+
+        <input
+            type="text"
+            id="reviewName"
+            class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:border-[#CFA754]"
+            placeholder="Escribe tu nombre">
+
+    </div>
+
+    <!-- Servicio -->
+
+    <div>
+
+        <label class="block mb-2 font-semibold text-[#0F162A]">
+            ¿Qué servicio recibiste?
+        </label>
+
+        <select
+            id="reviewService"
+            class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:border-[#CFA754]">
+
+            <option value="">Selecciona un servicio</option>
+
+            <option>Limpieza Hogar</option>
+
+            <option>Limpieza Oficina</option>
+
+            <option>Home Pet Grooming</option>
+
+            <option>Otro</option>
+
+        </select>
+
+    </div>
+
+    <!-- Calificación -->
+
+    <div>
+
+        <label class="block mb-2 font-semibold text-[#0F162A]">
+
+            ¿Cómo calificarías tu experiencia?
+
+        </label>
+
+        <div id="starRating" class="flex gap-2 text-4xl">
+
+    <span class="star cursor-pointer" data-value="1">☆</span>
+
+    <span class="star cursor-pointer" data-value="2">☆</span>
+
+    <span class="star cursor-pointer" data-value="3">☆</span>
+
+    <span class="star cursor-pointer" data-value="4">☆</span>
+
+    <span class="star cursor-pointer" data-value="5">☆</span>
+
+</div>
+
+<input type="hidden" id="reviewStars" value="0">
+
+    </div>
+
+    <!-- Comentario -->
+
+    <div>
+
+        <label class="block mb-2 font-semibold text-[#0F162A]">
+
+            Cuéntanos tu experiencia
+
+        </label>
+
+        <textarea
+
+            id="reviewComment"
+
+            rows="5"
+
+            class="w-full border border-gray-300 rounded-xl px-4 py-3 resize-none focus:outline-none focus:border-[#CFA754]"
+
+            placeholder="Comparte cómo fue tu experiencia con nuestro equipo..."></textarea>
+
+    </div>
+
+    <!-- Autorización -->
+
+    <div class="flex items-start gap-3">
+
+        <input
+            id="reviewPermission"
+            type="checkbox"
+            class="mt-1">
+
+        <label
+            for="reviewPermission"
+            class="text-sm text-[#274F64] leading-6">
+
+            Autorizo a ProClean Prime a publicar mi reseña en su página web.
+
+        </label>
+
+    </div>
+
+    <!-- Botón -->
+
+    <button
+
+        type="submit"
+
+        class="w-full bg-[#CFA754] hover:bg-[#b8943d] text-white font-bold py-4 rounded-xl transition">
+
+        Enviar reseña
+
+    </button>
+
+</form>
+
+        </div>
+
+    </div>
+
+</div>
+</section>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<!-- ==========================
+        FOOTER
+========================== -->
+
+<footer class="bg-[#0F162A] border-t border-[#CFA754]/20">
+
+    <div class="max-w-7xl mx-auto px-6 py-10">
+
+        <div class="flex flex-col lg:flex-row items-center justify-between gap-10">
+
+            <!-- Logo -->
+
+            <div class="flex items-center gap-5">
+
+                <img src="imagenes/logoazul.png"
+                    alt="ProClean Prime"
+                    class="w-28">
+
+                <div>
+
+                    <h3 class="text-white text-2xl font-bold">
+                        ProClean Prime Colombia
+                    </h3>
+
+                    <p class="text-gray-300 mt-2">
+                        Soluciones profesionales de limpieza.
+                    </p>
+
+                    <p class="text-[#CFA754] mt-2 font-semibold">
+                        NIT: 902067282-0
+                    </p>
+
+                </div>
+
+            </div>
+
+            <!-- Información -->
+
+
+            <div class="text-center lg:text-left space-y-4">
+    
+    <div>
+        <div class="flex items-center gap-2 justify-center lg:justify-start mb-1 text-white font-semibold">
+            <i data-lucide="mail" class="text-[#CFA754] w-5 h-5"></i>
+            <h4>Dirección General</h4>
+        </div>
+        <a href="mailto:direccion@pro-clean-prime.com" class="text-gray-300 hover:text-[#CFA754] transition block">
+            direccion@pro-clean-prime.com
+        </a>
+    </div>
+
+    <div>
+        <div class="flex items-center gap-2 justify-center lg:justify-start mb-1 text-white font-semibold">
+            <i data-lucide="mail" class="text-[#CFA754] w-5 h-5"></i>
+            <h4>Comercial</h4>
+        </div>
+        <a href="mailto:procleanprime.comercial@gmail.com" class="text-gray-300 hover:text-[#CFA754] transition block">
+            procleanprime.comercial@gmail.com
+        </a>
+    </div>
+
+    <div>
+    <div class="flex items-center gap-2 justify-center lg:justify-start mb-1 text-white font-semibold">
+        <i data-lucide="mail" class="text-[#CFA754] w-5 h-5"></i>
+        <h4>Talento Humano</h4>
+    </div>
+
+    <a href="mailto:procleanprimecolombia@gmail.com"
+       class="text-gray-300 hover:text-[#CFA754] transition block">
+        procleanprimecolombia@gmail.com
+    </a>
+</div>
+</div>
+
+
+            <!-- Dirección -->
+
+            <div class="text-center lg:text-left">
+
+                <div class="flex items-center gap-2 justify-center lg:justify-start mb-2">
+
+                    <i data-lucide="map-pin" class="text-[#CFA754] w-5 h-5"></i>
+
+                    <span class="text-white font-semibold">
+
+                        Dirección
+
+                    </span>
+
+                </div>
+
+                <p class="text-gray-300">
+
+                    Calle 61 #75-116
+
+                </p>
+
+                <p class="text-gray-300">
+
+                    Medellín - Colombia
+
+                </p>
+
+            </div>
+
+            <!-- Redes -->
+
+            <div>
+
+                <h3 class="text-center text-white font-semibold mb-4">
+
+                    Síguenos
+
+                </h3>
+
+                <div class="flex gap-4">
+
+                    <a data-template-id="footer-instagram" href="https://www.instagram.com/procleanprime" target="_blank" rel="noopener noreferrer" 
+                class="canva-button w-10 h-10 grid place-items-center cursor-pointer transition-transform duration-200 hover:scale-110" 
+                title="Visitar nuestro Instagram">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram ProClean" class="w-full h-full object-contain pointer-events-none">
+            </a>
+            
+
+                    <a data-template-id="footer-facebook" href="https://www.facebook.com/share/1B85Xq61bz/" target="_blank" rel="noopener noreferrer" 
+                class="canva-button w-10 h-10 grid place-items-center cursor-pointer transition-transform duration-200 hover:scale-110" 
+                title="Visitar nuestro Facebook">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/b/b9/2023_Facebook_icon.svg" alt="Facebook ProClean" class="w-full h-full object-contain pointer-events-none">
+            </a>
+
+                    <a data-template-id="footer-tiktok" href="https://www.tiktok.com/@proclean_prime?_r=1&_t=ZS-97GP9oD4r8S" target="_blank" rel="noopener noreferrer" 
+                class="canva-button w-10 h-10 grid place-items-center cursor-pointer transition-transform duration-200 hover:scale-110 bg-black rounded-full p-2" 
+                title="Visitar nuestro TikTok">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/3/34/Ionicons_logo-tiktok.svg" alt="TikTok ProClean" class="w-full h-full object-contain invert pointer-events-none">
+            </a>
+
+                    <a data-template-id="footer-whatsapp" href="https://wa.me/573046048958" target="_blank" rel="noopener noreferrer" 
+                class="canva-button w-10 h-10 grid place-items-center cursor-pointer transition-transform duration-200 hover:scale-110" 
+                title="Escríbenos por WhatsApp">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp ProClean" class="w-full h-full object-contain pointer-events-none">
+            </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <hr class="border-gray-700 my-8">
+
+        <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+
+            <p class="text-gray-400 text-sm text-center">
+
+                © 2026 ProClean Prime Colombia. Todos los derechos reservados.
+
+            </p>
+
+            <div class="flex flex-wrap justify-center gap-6 text-sm">
+
+                <a href="#" class="text-gray-400 hover:text-[#CFA754] transition">
+
+                    Política de Privacidad
+
+                </a>
+
+                <a href="#" class="text-gray-400 hover:text-[#CFA754] transition">
+
+                    Tratamiento de Datos
+
+                </a>
+
+                <a href="#" class="text-gray-400 hover:text-[#CFA754] transition">
+
+                    Términos y Condiciones
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+
+<script>
+    
+
+
+
+
+    // ==========================
+// ENVIAR RESEÑA
+// ==========================
+
+document.getElementById("reviewForm").addEventListener("submit", async function(e){
+
+    e.preventDefault();
+
+    const datos = {
+
+        nombre: document.getElementById("reviewName").value,
+
+        servicio: document.getElementById("reviewService").value,
+
+        calificacion: document.getElementById("reviewStars").value,
+
+        comentario: document.getElementById("reviewComment").value,
+
+        autorizacion: document.getElementById("reviewPermission").checked ? "Sí" : "No"
+
+    };
+
+    try{
+
+        const respuesta = await fetch("https://script.google.com/macros/s/AKfycbyW6DJiFny9iAEWrHL6ce4TOYISa5Q9ByRAFb-9NvXwSVafxxUA24LEGwn8NjHEVfq1/exec",{
+
+            method:"POST",
+
+            body: JSON.stringify(datos)
+
+        });
+
+        const resultado = await respuesta.json();
+
+        if(resultado.success){
+
+            alert("¡Gracias por compartir tu experiencia! Tu reseña será revisada antes de publicarse.");
+
+            document.getElementById("reviewForm").reset();
+
+            reviewStars.value = 0;
+
+            stars.forEach(star=>{
+
+                star.textContent="☆";
+
+                star.style.color="#9CA3AF";
+
+            });
+
+            modal.classList.add("hidden");
+
+            modal.classList.remove("flex");
+
+        }
+
+    }catch(error){
+
+        alert("Ocurrió un error al enviar la reseña.");
+
+        console.error(error);
+
+    }
+
+});
+
+// ==========================
+// CARGAR RESEÑAS
+// ==========================
+
+async function cargarResenas() {
+
+    try {
+
+        const response = await fetch("https://script.google.com/macros/s/AKfycbyW6DJiFny9iAEWrHL6ce4TOYISa5Q9ByRAFb-9NvXwSVafxxUA24LEGwn8NjHEVfq1/exec");
+
+        const resenas = await response.json();
+
+        const contenedor = document.getElementById("reviewsTrack");
+
+        contenedor.innerHTML = "";
+
+        if (resenas.length === 0) {
+
+            contenedor.innerHTML = `
+                <div class="col-span-full text-center text-gray-500 text-lg">
+                    Aún no hay reseñas publicadas.
+                </div>
+            `;
+
+            return;
+        }
+
+        resenas.forEach(resena => {
+
+    const estrellas = "⭐".repeat(parseInt(resena.calificacion));
+
+    contenedor.innerHTML += `
+    
+    <div class="swiper-slide">
+
+        <div class="bg-white rounded-3xl shadow-xl border border-gray-100 p-8 h-full hover:-translate-y-2 hover:shadow-2xl transition duration-300">
+
+            <div class="flex justify-center text-2xl mb-5">
+                ${estrellas}
+            </div>
+
+            <p class="italic text-center text-[#274F64] leading-8 mb-6">
+                "${resena.comentario}"
+            </p>
+
+            <h3 class="text-center font-bold text-xl text-[#0F162A]">
+                ${resena.nombre}
+            </h3>
+
+            <p class="text-center text-[#CFA754] mt-2">
+                ${resena.servicio}
+            </p>
+
+        </div>
+
+    </div>
+
+    `;
+
+});
+console.log("Reseñas cargadas:", resenas.length);
+
+new Swiper(".myReviews", {
+
+    loop: true,
+
+    spaceBetween: 30,
+
+    autoplay: {
+
+        delay: 5000,
+
+        disableOnInteraction: false
+
+    },
+
+    pagination: {
+
+        el: ".swiper-pagination",
+
+        clickable: true
+
+    },
+
+    navigation: {
+
+        nextEl: ".swiper-button-next",
+
+        prevEl: ".swiper-button-prev"
+
+    },
+
+    breakpoints: {
+
+        0: {
+            slidesPerView: 1
+        },
+
+        768: {
+            slidesPerView: 2
+        },
+
+        1024: {
+            slidesPerView: 3
+        }
+
+    }
+
+});
+
+    } catch (error) {
+
+        console.error("Error cargando reseñas:", error);
+
+    }
+
+}
+
+cargarResenas();
+
+
+
+lucide.createIcons();
+
+const modal = document.getElementById("reviewModal");
+const openBtn = document.getElementById("openReviewModal");
+const closeBtn = document.getElementById("closeReviewModal");
+
+console.log("Modal:", modal);
+console.log("Abrir:", openBtn);
+console.log("Cerrar:", closeBtn);
+
+openBtn.addEventListener("click", () => {
+
+    modal.classList.remove("hidden");
+
+    modal.classList.add("flex");
+
+});
+
+closeBtn.addEventListener("click", () => {
+
+    modal.classList.add("hidden");
+
+    modal.classList.remove("flex");
+
+});
+
+modal.addEventListener("click", (e) => {
+
+    if (e.target === modal) {
+
+        modal.classList.add("hidden");
+
+        modal.classList.remove("flex");
+
+    }
+
+});
+
+// ==========================
+// CALIFICACIÓN CON ESTRELLAS
+// ==========================
+
+const stars = document.querySelectorAll(".star");
+const reviewStars = document.getElementById("reviewStars");
+
+stars.forEach(star => {
+
+    star.addEventListener("click", () => {
+
+        const value = star.dataset.value;
+
+        reviewStars.value = value;
+
+        stars.forEach(s => {
+
+            if (s.dataset.value <= value) {
+
+                s.textContent = "★";
+                s.style.color = "#CFA754";
+
+            } else {
+
+                s.textContent = "☆";
+                s.style.color = "#9CA3AF";
+
+            }
+
+        });
+
+    });
+
+});
+
+
+</script>
+
+<script>
+
+lucide.createIcons();
+
+const menuBtn = document.getElementById("menuBtn");
+const menu = document.getElementById("mobile-menu");
+
+if (menuBtn && menu) {
+
+    menuBtn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        menu.classList.toggle("hidden");
+    });
+
+    document.addEventListener("click", function (e) {
+
+        if (!menu.contains(e.target) &&
+            !menuBtn.contains(e.target)) {
+
+            menu.classList.add("hidden");
+
+        }
+
+    });
+
+}
+
+</script>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,1034 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProClean Prime</title>
+    <link rel="stylesheet" href="css/output.css">
+    <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;display=swap"
+        rel="stylesheet">
+    <style>
+        
+        :root {
+            --navy: #0d152b;
+            --gold: #cbbf94;
+            --cream: #f7f5ef;
+            --ink: #233047;
+            --muted: #5e6b78;
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden
+        }
+
+        body {
+            margin: 0;
+            font-family: 'DM Sans', sans-serif;
+            color: var(--ink);
+            overflow-x: hidden
+        }
+
+        img {
+            object-fit: contain;
+            object-position: center center
+        }
+
+        a,
+        button,
+        input,
+        select,
+        textarea {
+            pointer-events: auto
+        }
+
+        a,
+        button {
+            cursor: pointer
+        }
+        
+
+        .focus-ring:focus-visible,
+        a:focus-visible,
+        button:focus-visible,
+        input:focus-visible,
+        select:focus-visible,
+        textarea:focus-visible {
+            outline: 3px solid rgba(203, 191, 148, .55);
+            outline-offset: 3px;
+        }
+
+        .decorative {
+            pointer-events: none
+        }
+
+        .hero-slide {
+            opacity: 0;
+            transform: scale(1.04);
+            transition: opacity .8s ease, transform 5.5s ease;
+            pointer-events: none
+        }
+
+        .hero-slide.active {
+            opacity: 1;
+            transform: scale(1);
+            pointer-events: none
+        }
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(18px);
+            animation: fadeUp .8s ease forwards
+        }
+
+        .fade-up.delay-1 {
+            animation-delay: .15s
+        }
+
+        .fade-up.delay-2 {
+            animation-delay: .3s
+        }
+
+        .fade-up.delay-3 {
+            animation-delay: .45s
+        }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        .mobile-menu {
+            transform: translateX(-100%);
+            transition: transform .35s ease
+        }
+
+        .mobile-menu.open {
+            transform: translateX(0)
+        }
+
+        .overlay {
+            opacity: 0;
+            pointer-events: none;
+            transition: .3s ease
+        }
+
+        .overlay.open {
+            opacity: 1;
+            pointer-events: auto
+        }
+
+        .accordion-panel {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height .4s ease
+        }
+
+        .service-accordion.open .accordion-panel {
+            max-height: 900px
+        }
+
+        .service-accordion .accordion-icon {
+            transition: transform .3s ease
+        }
+
+        .service-accordion.open .accordion-icon {
+            transform: rotate(45deg)
+        }
+
+        .calendar-day {
+            transition: .2s ease
+        }
+
+        .calendar-day:hover:not(.is-disabled) {
+            background: #edf3f4
+        }
+
+        .calendar-day.is-selected {
+            background: var(--navy) !important;
+            color: #fff !important;
+            font-weight: 700
+        }
+
+        .calendar-day.is-disabled {
+            opacity: .28;
+            pointer-events: none;
+            cursor: not-allowed
+        }
+
+        .time-slot {
+            transition: .2s ease
+        }
+
+        .time-slot:hover {
+            transform: translateY(-2px)
+        }
+
+        .time-slot.is-selected {
+            background: var(--navy) !important;
+            color: #fff !important;
+            border-color: var(--navy) !important
+        }
+
+        .wa-float {
+            box-shadow: 0 14px 35px rgba(20, 110, 73, .28)
+        }
+
+        .promo-orb {
+            animation: floaty 4s ease-in-out infinite
+        }
+
+        @keyframes floaty {
+
+            0%,
+            100% {
+                transform: translateY(0)
+            }
+
+            50% {
+                transform: translateY(-10px)
+            }
+        }
+
+        .hero-title-responsive {
+            font-size: clamp(2.45rem, 6vw, 4.5rem)
+        }
+
+        .section-title-responsive {
+            font-size: clamp(2rem, 4.2vw, 3.1rem)
+        }
+
+        .promo-title-responsive {
+            font-size: clamp(2rem, 4.4vw, 3.35rem)
+        }
+
+        .booking-title-responsive {
+            font-size: clamp(2rem, 4vw, 3.2rem)
+        }
+
+        @keyframes carousel-scroll {
+            0% {
+                transform: translateX(0)
+            }
+
+            100% {
+                transform: translateX(-50%)
+            }
+        }
+
+        .ally-carousel {
+            display: flex;
+            gap: 1.25rem;
+            width: max-content;
+            animation: carousel-scroll 26s linear infinite
+        }
+
+        .ally-carousel:hover {
+            animation-play-state: paused
+        }
+
+        .ally-carousel-item {
+            width: 220px;
+            flex: 0 0 220px
+        }
+
+        @media(max-width:768px) {
+            .ally-carousel-item {
+                width: 160px;
+                flex: 0 0 160px
+            }
+
+            .ally-carousel {
+                animation-duration: 22s
+            }
+        }
+        button:active {
+    transform: scale(0.97);
+    transition: transform 0.1s ease;
+}
+/* --- COLORES CORPORATIVOS PARA EL FORMULARIO --- */
+        
+        /* Cuando el usuario hace clic o escribe en cualquier campo */
+        input:focus, 
+        select:focus, 
+        textarea:focus {
+            outline: none !important;
+            border-color: #cbbf94 !important; /* Tu dorado corporativo */
+            box-shadow: 0 0 0 3px rgba(203, 191, 148, 0.3) !important; /* Destello suave dorado */
+            background-color: #ffffff !important; /* Fondo blanco limpio para escribir */
+            transition: all 0.2s ease-in-out;
+        }
+
+        /* Si quieres que los textos de los títulos de los campos cambien a dorado al activarse */
+        .form-group:focus-within label {
+            color: #cbbf94 !important;
+        }
+        /* Animación de movimiento para el degradado del calendario */
+@keyframes gradientMovement {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.animate-gradient-slow {
+    background-size: 200% 200%;
+    animation: gradientMovement 6s ease infinite;
+}
+/* PINTAR LA TARJETA DEL CALENDARIO REAL (LA DE LA IZQUIERDA) */
+#agenda > div > div:first-child,
+.canva-card:has(#calendarGrid) {
+    background: linear-gradient(-45deg, #070b18, #0d152b, #1e3a8a, #0d152b) !important;
+    background-size: 400% 400% !important;
+    animation: gradientMovement 10s ease infinite !important;
+    padding: 24px !important;
+    border-radius: 24px !important;
+    color: white !important;
+}
+
+/* Forzar que los textos de arriba de esa tarjeta se vuelvan blancos */
+#agenda > div > div:first-child h1,
+#agenda > div > div:first-child h2,
+#agenda > div > div:first-child h3,
+#agenda > div > div:first-child p {
+    color: white !important;
+}
+
+/* Mantener la cajita blanca interna del calendario limpia y legible en el centro */
+#calendarGrid, 
+#agenda div[class*="bg-white"] {
+    background-color: white !important;
+    color: #0d152b !important;
+    border-radius: 16px !important;
+}
+/* ===========================
+   CARRUSEL RESEÑAS
+=========================== */
+
+.review-carousel{
+    display:flex;
+    gap:30px;
+    width:max-content;
+    animation: reviewScroll 35s linear infinite;
+}
+
+.review-carousel:hover{
+    animation-play-state: paused;
+}
+
+.review-card{
+    min-width:350px;
+    flex:0 0 350px;
+    transition:.35s;
+}
+
+.review-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 25px 50px rgba(13,21,43,.15);
+}
+
+@media(max-width:768px){
+
+    .review-card{
+
+        min-width:90%;
+
+        flex:0 0 90%;
+
+    }
+
+}
+
+@keyframes reviewScroll {
+
+    0%{
+        transform:translateX(0);
+    }
+
+    100%{
+        transform:translateX(-50%);
+    }
+
+}
+
+
+    </style>
+    <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+/>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GJ0GMTX6PZ"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-GJ0GMTX6PZ');
+    
+</script>
+</head>
+<body class="font-sans text-[var(--ink)] bg-white overflow-x-hidden">
+
+<!-- ==========================================================
+HEADER PORTAL ESPECIALISTAS
+========================================================== -->
+
+<header class="fixed top-0 left-0 w-full z-50">
+
+    <div class="backdrop-blur-xl bg-white/90 border-b border-[#ece6d7] shadow-md">
+
+        <div class="max-w-7xl mx-auto px-6 lg:px-10">
+
+            <div class="h-24 flex items-center justify-between">
+
+                <!-- =====================================
+                LOGO
+                ====================================== -->
+
+                <a href="index.html" class="flex items-center gap-4">
+
+                    <img
+                        src="imagenes/logo-sinfondo.png"
+                        alt="ProClean Prime"
+                        class="w-16 h-16 object-contain">
+
+                    <div>
+
+                        <h1 class="text-2xl font-extrabold text-[#0d152b]">
+
+                            ProClean Prime
+
+                        </h1>
+
+                        <p class="text-sm tracking-wide text-[#5e6b78]">
+
+                            Portal Especialistas
+
+                        </p>
+
+                    </div>
+
+                </a>
+
+                <!-- =====================================
+                MENÚ ESCRITORIO
+                ====================================== -->
+
+                <nav class="hidden lg:flex items-center gap-8">
+
+<a href="https://wa.me/573046048963?text=Hola,%20necesito%20soporte%20con%20el%20Portal%20de%20Especialistas" 
+   target="_blank" 
+   class="text-[#233047] font-medium hover:text-[#cbbf94] transition">
+    Soporte
+</a>
+
+                    <a
+                        href="#login"
+                        class="bg-[#cbbf94] hover:bg-[#b89d63] text-[#0d152b] font-bold px-7 py-3 rounded-full transition duration-300 shadow-lg hover:scale-105">
+
+                        Ingresar al portal
+
+                    </a>
+
+                </nav>
+
+                <!-- =====================================
+                BOTÓN MENÚ MÓVIL
+                ====================================== -->
+
+                <button
+                    id="menuButton"
+                    class="lg:hidden w-12 h-12 rounded-full bg-[#f6f4ee] flex items-center justify-center">
+
+                    <i data-lucide="menu" class="w-6 h-6 text-[#0d152b]"></i>
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</header>
+
+<!-- ==========================================================
+MENÚ MÓVIL
+========================================================== -->
+
+<div
+    id="mobileMenu"
+    class="fixed top-24 left-0 w-full bg-white shadow-xl border-t border-[#ece6d7] hidden z-40">
+
+    <div class="flex flex-col p-6 gap-5">
+
+        <a
+ href="https://wa.me/573046048963?text=Hola,%20necesito%20soporte%20con%20el%20Portal%20de%20Especialistas" 
+   target="_blank" 
+   class="text-[#233047] font-medium hover:text-[#cbbf94] transition">
+    Soporte
+</a>
+
+<a href="#login" class="w-full bg-[#cbbf94] text-[#0d152b] font-bold py-3 rounded-xl text-center block">
+    volver al inicio
+</a>
+
+    </div>
+
+</div>
+
+<!-- ==========================================
+HERO PORTAL ESPECIALISTAS
+========================================== -->
+
+<section id="inicio" class="relative overflow-hidden bg-gradient-to-br from-[#0F162A] via-[#17233D] to-[#284C7A] pt-52 pb-24">
+
+    <!-- Luces decorativas -->
+
+    <div class="absolute -top-40 -left-40 w-96 h-96 rounded-full bg-[#CFA754]/20 blur-3xl"></div>
+
+    <div class="absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full bg-blue-500/10 blur-3xl"></div>
+
+    <div class="max-w-7xl mx-auto px-6 lg:px-10">
+
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+            <!-- =======================================
+            TEXTO
+            ======================================== -->
+
+            <div>
+
+                <span class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/10 border border-white/10 text-[#CFA754] text-sm tracking-[3px] uppercase">
+
+                    Portal Interno
+
+                </span>
+
+                <h1 class="mt-8 text-white text-5xl lg:text-7xl font-extrabold leading-tight">
+
+                    Portal de
+
+                    <span class="block text-[#CFA754]">
+
+                        Especialistas
+
+                    </span>
+
+                </h1>
+
+                <p class="mt-8 text-white/75 text-xl leading-9 max-w-xl">
+
+                    Un espacio creado para nuestro equipo.
+
+                    Comparte tu jornada, conoce las novedades,
+                    aporta nuevas ideas y continúa creciendo junto a
+                    <strong class="text-white">ProClean Prime.</strong>
+
+                </p>
+
+                <div class="flex flex-wrap gap-5 mt-12">
+
+                    <a href="#login"
+
+                       class="bg-[#CFA754] hover:bg-[#b88d2d] transition px-8 py-4 rounded-full font-bold text-[#0F162A] shadow-xl hover:scale-105 duration-300">
+
+                        🔐 Acceder al Portal
+
+                    </a>
+
+                </div>
+
+            </div>
+
+           <!-- =======================================
+COLUMNA DERECHA
+======================================= -->
+
+<div>
+
+    <!-- Imagen principal -->
+
+    <div class="bg-white/10 backdrop-blur-xl border border-white/10 rounded-[40px] p-6 shadow-2xl max-w-[330px] mx-auto">
+
+        <img
+            src="imagenes/fotoportal.png"
+            alt="Portal Especialistas"
+            class="rounded-[30px] w-full max-w-[280px] mx-auto hover:scale-105 transition duration-700">
+
+    </div>
+
+    <!-- Tarjetas -->
+
+    <div class="grid grid-cols-2 gap-5 mt-8">
+
+        <!-- Bienestar -->
+
+        <div class="bg-white/10 backdrop-blur-xl border border-white/10 rounded-2xl p-4 shadow-xl hover:scale-105 transition">
+
+            <div class="text-4xl mb-3">
+                ❤️
+            </div>
+
+            <h4 class="text-white font-bold text-lg">
+                Bienestar
+            </h4>
+
+            <p class="text-white/70 mt-2 text-sm leading-6">
+                Tu bienestar es importante para nosotros.
+            </p>
+
+        </div>
+
+        <!-- Ideas -->
+
+        <div class="bg-white/10 backdrop-blur-xl border border-white/10 rounded-2xl p-4 shadow-xl hover:scale-105 transition">
+
+            <div class="text-4xl mb-3">
+                💡
+            </div>
+
+            <h4 class="text-white font-bold text-lg">
+                Ideas
+            </h4>
+
+            <p class="text-white/70 mt-2 text-sm leading-6">
+                Comparte propuestas para mejorar nuestro servicio.
+            </p>
+
+        </div>
+
+        <!-- Comunicados -->
+
+        <div class="bg-white/10 backdrop-blur-xl border border-white/10 rounded-2xl p-4 shadow-xl hover:scale-105 transition">
+
+            <div class="text-4xl mb-3">
+                📢
+            </div>
+
+            <h4 class="text-white font-bold text-lg">
+                Comunicados
+            </h4>
+
+            <p class="text-white/70 mt-2 text-sm leading-6">
+                Mantente informado de todas las novedades.
+            </p>
+
+        </div>
+
+        <!-- Mi Jornada -->
+
+        <div class="bg-white/10 backdrop-blur-xl border border-white/10 rounded-2xl p-4 shadow-xl hover:scale-105 transition">
+
+            <div class="text-4xl mb-3">
+                🧹
+            </div>
+
+            <h4 class="text-white font-bold text-lg">
+                Mi Jornada
+            </h4>
+
+            <p class="text-white/70 mt-2 text-sm leading-6">
+                Comparte cómo fue tu jornada de trabajo.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ==========================================
+LOGIN ESPECIALISTAS GLASSMORPHISM
+========================================== -->
+
+
+<section 
+id="login"
+class="relative py-24 bg-[#f7f5ef] overflow-hidden">
+
+
+<!-- Decoraciones -->
+
+<div class="absolute top-0 left-0 w-96 h-96 bg-[#cbbf94]/20 blur-3xl rounded-full"></div>
+
+<div class="absolute bottom-0 right-0 w-[450px] h-[450px] bg-[#cbbf94]/20 blur-3xl rounded-full"></div>
+
+
+
+<div class="relative max-w-6xl mx-auto px-6">
+
+
+<div class="grid lg:grid-cols-2 gap-12 items-center">
+
+
+
+<!-- Texto izquierda -->
+
+<div class="text-[#0d152b]">
+
+
+<span class="
+inline-flex
+px-5
+py-2
+rounded-full
+border
+border-[#cbbf94]/40
+bg-white
+text-[#cbbf94]
+uppercase
+tracking-[3px]
+text-sm
+font-semibold">
+
+Acceso Seguro
+
+</span>
+
+
+
+<h2 class="
+mt-8
+text-4xl
+lg:text-6xl
+font-extrabold
+leading-tight">
+
+
+Bienvenido al equipo
+
+
+<span class="block text-[#cbbf94]">
+
+ProClean Prime
+
+</span>
+
+
+</h2>
+
+
+
+<p class="
+mt-6
+text-[#5e6b78]
+text-lg
+leading-8
+max-w-lg">
+
+
+Ingresa a tu portal para gestionar información,
+comunicaciones y actividades como especialista.
+
+
+</p>
+
+
+
+<div class="mt-10 space-y-4">
+
+
+<div class="flex items-center gap-4 text-[#233047]">
+
+<span class="text-2xl">
+✔
+</span>
+
+Agenda organizada
+
+</div>
+
+
+
+<div class="flex items-center gap-4 text-[#233047]">
+
+<span class="text-2xl">
+✔
+</span>
+
+Comunicación interna
+
+</div>
+
+
+
+<div class="flex items-center gap-4 text-[#233047]">
+
+<span class="text-2xl">
+✔
+</span>
+
+Crecimiento profesional
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<!-- CARD LOGIN -->
+
+
+<div id="login" class="
+bg-white
+backdrop-blur-xl
+border
+border border-[#cbbf94]/30
+rounded-[35px]
+p-8
+shadow-2xl">
+
+
+<div class="text-center mb-8">
+
+
+<div class="
+mx-auto
+w-20
+h-20
+rounded-full
+bg-[#cbbf94]
+flex
+items-center
+justify-center
+text-3xl">
+
+
+🔐
+
+</div>
+
+
+
+<h3 class="
+mt-5
+text-[#0d152b]
+text-2xl
+font-bold">
+
+Portal Especialistas
+
+</h3>
+
+
+<p class="
+text-[#0d152b]/60
+mt-2">
+
+Ingresa tus credenciales
+
+</p>
+
+
+
+</div>
+
+
+
+
+
+<form id="loginForm"
+class="space-y-6">
+
+
+
+<div>
+
+
+<label class="text-[#0d152b] text-sm">
+
+Usuario
+
+</label>
+
+
+<div class="
+mt-2
+flex
+items-center
+bg-white
+border
+border border-[#cbbf94]/30
+rounded-xl
+px-4">
+
+
+<span>
+👤
+</span>
+
+
+<input
+
+id="usuario"
+name="usuario"
+autocomplete="username"
+required
+type="text"
+
+placeholder="Usuario"
+
+class="
+w-full
+bg-transparent
+outline-none
+text-[#0d152b]
+px-3
+py-4
+placeholder-[#8a94a6]">
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<div>
+
+
+<label class="text-[#0d152b] text-sm">
+
+Contraseña
+
+</label>
+
+
+<div class="
+mt-2
+flex
+items-center
+bg-white
+border
+border border-[#cbbf94]/30
+rounded-xl
+px-4">
+
+
+<span>
+🔒
+</span>
+
+
+<input
+
+id="password"
+name="password"
+autocomplete="current-password"
+required
+type="password"
+
+placeholder="Contraseña"
+
+class="
+w-full
+bg-transparent
+outline-none
+text-[#0d152b]
+px-3
+py-4
+placeholder-[#8a94a6]">
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<button
+
+id="loginButton"
+
+type="submit"
+
+class="
+w-full
+py-4
+rounded-xl
+bg-[#cbbf94]
+hover:bg-[#b8a875]
+text-[#0d152b]
+font-bold
+transition
+duration-300
+hover:scale-105">
+
+
+Iniciar sesión
+
+
+</button>
+
+<div
+    id="loginMessage"
+    class="hidden mt-5 rounded-xl px-4 py-3 text-sm font-medium">
+</div>
+
+
+
+
+<a href="#" 
+   onclick="recuperarPassword(event)"
+   class="
+   block
+   text-center
+   text-[#0F162A]
+   mt-5
+   text-sm">
+
+¿Olvidaste tu contraseña?
+
+</a>
+
+
+
+</form>
+
+
+</div>
+
+
+
+</div>
+
+</div>
+
+<!-- ==========================
+     LOGIN
+========================== -->
+<script src="js/login.js"></script>
+
+
+</body>
+</html>
