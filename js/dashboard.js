@@ -124,6 +124,52 @@ function startService() {
 }
 
 /*======================================
+RUTA DEL SERVICIO
+======================================*/
+
+// Obtiene la dirección del servicio. Cuando se integre la base de datos,
+// esta función debe devolver la dirección que llegue desde el backend.
+// Por ahora lee el atributo data-direccion del elemento #direccionServicio,
+// que es donde se poblará la dirección de forma dinámica.
+function obtenerDireccionServicio() {
+
+    const el = document.getElementById("direccionServicio");
+
+    const direccion = el ? (el.getAttribute("data-direccion") || el.textContent.trim()) : "";
+
+    // Mantiene sincronizada la dirección que se muestra dentro del modal
+    const modalDireccion = document.getElementById("modalDireccionServicio");
+
+    if (modalDireccion) {
+
+        modalDireccion.textContent = direccion;
+
+    }
+
+    return direccion;
+
+}
+
+// Abre la ruta del servicio en Google Maps según la dirección real.
+function openRoute() {
+
+    const direccion = obtenerDireccionServicio();
+
+    if (!direccion) {
+
+        alert("No se encontró la dirección del servicio.");
+
+        return;
+
+    }
+
+    const url = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(direccion)}`;
+
+    window.open(url, "_blank");
+
+}
+
+/*======================================
 MODAL EVIDENCIAS
 ======================================*/
 

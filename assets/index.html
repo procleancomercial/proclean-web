@@ -1426,6 +1426,20 @@ Nuestros valores nos distinguen:
 
 </div>
 
+     <!-- AUTORIZACIÓN DE DATOS -->
+<div class="mt-4">
+    <label for="dataConsent" class="flex items-start gap-3 text-sm text-slate-600">
+        <input type="checkbox" id="dataConsent" name="autorizacion_datos"
+               class="mt-0.5 h-4 w-4 rounded border-slate-300 accent-[#CFA754]"
+               required>
+        <span>
+            Autorizo el tratamiento de mis datos personales de acuerdo con la
+            <a href="#" class="underline text-[#274F64] hover:text-[#CFA754]">política de tratamiento de datos</a>
+            y acepto las condiciones del servicio.
+        </span>
+    </label>
+</div>
+
      <!-- Forma de Pago -->
 <div class="mt-4">
 
@@ -2241,6 +2255,13 @@ function saveService() {
 
     if (!selectedDate) {
         showNotification("Selecciona una fecha para el servicio.", "error");
+        return;
+    }
+
+    const dataConsent = document.getElementById("dataConsent");
+    if (!dataConsent || !dataConsent.checked) {
+        showNotification("Debes autorizar el tratamiento de tus datos personales.", "error");
+        dataConsent?.focus();
         return;
     }
 

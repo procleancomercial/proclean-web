@@ -63,10 +63,23 @@ function validarLogin(event) {
 
     const urlFinal = `${urlScript}?usuario=${encodeURIComponent(usuario)}&password=${encodeURIComponent(password)}`;
 
+    // El endpoint de Google Apps Script puede devolver la respuesta con
+    // Content-Type "text/html" en lugar de JSON, por lo que response.json()
+    // falla. Leemos la respuesta como texto y la convertimos manualmente.
     fetch(urlFinal)
-        .then(response => response.json())
-        .then(data => {
+        .then(response => response.text())
+        .then(text => {
             desactivarCarga();
+
+            let data;
+            try {
+                data = JSON.parse(text);
+            } catch (e) {
+                mostrarMensaje("❌ La base de datos no respondió correctamente.", "error");
+                console.error("Respuesta no válida del servidor:", text);
+                return;
+            }
+
             if (data.success === true) {
                 // Guardamos el nombre que viene desde Google Sheets
                 localStorage.setItem("nombreEspecialista", data.nombre || "Especialista");

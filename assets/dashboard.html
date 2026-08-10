@@ -77,12 +77,10 @@
 <!-- Menú -->
 <div class="sidebar-menu">
 
-    <a href="#" class="menu-item active">
+    <a href="index.html" class="menu-item">
         <i data-lucide="home"></i>
-        <span>Inicio</span>
+        <span>Volver al inicio</span>
     </a>
-
-
 
     <a href="#" class="menu-item">
         <i data-lucide="user"></i>
@@ -115,42 +113,30 @@
 BIENVENIDA
 ========================================= -->
 
-<section class="bg-white rounded-[35px] shadow-xl p-10 mb-6">
+<section style="background-color: #ffffff; border-radius: 35px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); padding: 40px; margin: 20px auto; max-width: 900px; width: 100%;">
 
-    <div class="flex justify-between items-start">
+    <div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
 
-        <div>
+        <div style="width: 64px; height: 64px; border-radius: 50%; background-color: #f7f3e8; display: flex; align-items: center; justify-content: center; font-size: 28px; margin-bottom: 15px;">👋</div>
 
-            <span class="text-4xl">👋</span>
+        <p style="color: #cbbf94; text-transform: uppercase; letter-spacing: 0.25em; font-size: 12px; font-weight: bold; margin-bottom: 10px;">Portal Especialistas</p>
 
-            <h1 class="text-5xl font-extrabold text-[#0d152b] mt-4">
-                Buenas tardes, Especialista
-            </h1>
+        <h1 style="font-size: 38px; color: #0d152b; font-weight: 800; line-height: 1.2; margin-bottom: 15px;">
+            <span id="saludo">Buenas tardes</span>, Especialista
+        </h1>
 
-            <p class="text-xl text-gray-500 mt-4">
-                Bienvenida nuevamente a
-                <span class="font-bold text-[#cbbf94]">
-                    ProClean Prime
-                </span>.
-            </p>
+        <p style="font-size: 16px; color: #6b7280; margin-bottom: 12px;">
+            Bienvenida nuevamente a
+            <span style="font-weight: bold; color: #cbbf94;">ProClean Prime</span>.
+        </p>
 
-            <p class="mt-5 text-gray-500 max-w-2xl">
-            Gracias por ser parte de ProClean Prime. Tu dedicación y compromiso hacen posible 
-            brindar una experiencia de calidad a cada cliente.
-            </p>
+        <p style="font-size: 15px; color: #6b7280; max-width: 600px; line-height: 1.5; margin-bottom: 20px;">
+            Gracias por ser parte de ProClean Prime. Tu dedicación y compromiso hacen posible brindar una experiencia de calidad a cada cliente.
+        </p>
 
-        </div>
-
-        <div class="text-right">
-
-            <p class="text-[#cbbf94] uppercase tracking-widest text-sm">
-                Hoy es
-            </p>
-
-            <h3 id="fechaActual"
-                class="text-2xl font-bold text-[#0d152b] mt-3">
-            </h3>
-
+        <div style="display: inline-flex; align-items: center; gap: 10px; border-radius: 50px; border: 1px solid #ece8dd; background-color: #faf9f5; padding: 8px 20px;">
+            <span style="color: #cbbf94; text-transform: uppercase; font-size: 11px; font-weight: bold; letter-spacing: 0.1em;">Hoy es</span>
+            <span id="fechaActual" style="font-size: 14px; font-weight: bold; color: #0d152b;"></span>
         </div>
 
     </div>
@@ -271,7 +257,7 @@ SERVICIO DE HOY
                     Dirección
                 </span>
 
-                <strong id="direccionServicio">
+                <strong id="direccionServicio" data-direccion="Calle 45 #20-30">
                     Calle 45 #20-30
                 </strong>
 
@@ -447,7 +433,7 @@ MODAL VER SERVICIO
 
                     <span>Dirección</span>
 
-                    <strong>Calle 45 #12-34 Medellín</strong>
+                    <strong id="modalDireccionServicio">Calle 45 #12-34 Medellín</strong>
 
                 </div>
 
@@ -531,7 +517,7 @@ MODAL VER SERVICIO
 
         <div class="service-actions">
 
-<button class="secondary-action">
+<button class="secondary-action" onclick="openRoute()">
     <i data-lucide="map-pin"></i>
     Ruta
 </button>
