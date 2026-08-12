@@ -381,7 +381,7 @@
 
         <!-- Logo -->
         <a href="index.html#inicio" class="flex items-center">
-            <img src="imagenes/logo.jpeg"
+            <img src="imagenes/logoblanco.jpeg"
                  alt="ProClean Prime"
                  class="h-16 w-auto object-contain max-w-[140px]">
         </a>
@@ -1437,42 +1437,63 @@ class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden items-center justify-ce
         <hr class="border-gray-700 my-8">
 
         <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-
             <p class="text-gray-400 text-sm text-center">
-
                 © 2026 ProClean Prime Colombia. Todos los derechos reservados.
-
             </p>
 
             <div class="flex flex-wrap justify-center gap-6 text-sm">
-
-                <a href="#" class="text-gray-400 hover:text-[#CFA754] transition">
-
+                <a href="javascript:void(0);" onclick="abrirModal('privacidad')" class="text-gray-400 hover:text-[#CFA754] transition">
                     Política de Privacidad
-
                 </a>
-
-                <a href="#" class="text-gray-400 hover:text-[#CFA754] transition">
-
+                <a href="javascript:void(0);" onclick="abrirModal('datos')" class="text-gray-400 hover:text-[#CFA754] transition">
                     Tratamiento de Datos
-
                 </a>
-
-                <a href="#" class="text-gray-400 hover:text-[#CFA754] transition">
-
+                <a href="javascript:void(0);" onclick="abrirModal('terminos')" class="text-gray-400 hover:text-[#CFA754] transition">
                     Términos y Condiciones
-
                 </a>
-
             </div>
-
         </div>
-
-    </div>
 
 </footer>
 
+<!-- Estructura del Modal Limpia -->
+<div id="legal-modal" style="display: none; position: fixed; inset: 0; z-index: 9999; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); align-items: center; justify-content: center; padding: 1rem;">
+    
+    <div style="background: #ffffff; width: 100%; max-width: 650px; height: 80vh; border-radius: 1rem; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); display: flex; flex-direction: column; position: relative;">
+        
+        <!-- Botón de cerrar -->
+        <button onclick="cerrarModal()" style="position: absolute; right: 15px; top: 15px; background: #f3f4f6; border: none; font-size: 20px; font-weight: bold; cursor: pointer; border-radius: 50%; width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; z-index: 10;">&times;</button>
+        
+        <!-- Título -->
+        <div style="padding: 20px 24px; border-bottom: 1px solid #e5e7eb; flex-shrink: 0;">
+            <h3 id="modal-title" style="margin: 0; font-size: 1.25rem; font-weight: bold; color: #111827;"></h3>
+        </div>
+        
+        <!-- Cuerpo con Scroll -->
+        <div style="padding: 24px; overflow-y: auto; flex-grow: 1; -webkit-overflow-scrolling: touch;">
+            <div id="modal-content" style="font-size: 0.875rem; color: #4b5563; line-height: 1.6;"></div>
+        </div>
+        
+        <!-- Pie -->
+        <div style="padding: 15px 24px; border-top: 1px solid #e5e7eb; background: #f9fafb; text-align: right; border-bottom-left-radius: 1rem; border-bottom-right-radius: 1rem; flex-shrink: 0;">
+            <button onclick="cerrarModal()" style="padding: 8px 16px; background: #1f2937; color: #ffffff; border: none; border-radius: 0.5rem; cursor: pointer; font-weight: 500;">Cerrar</button>
+        </div>
+        
+    </div>
+</div>
 
+<!-- Agregamos una animación suavecita (opcional pero queda bien) -->
+<style>
+    @keyframes fade-in {
+        from { opacity: 0; transform: scale(0.95); }
+        to { opacity: 1; transform: scale(1); }
+    }
+    .animate-fade-in {
+        animation: fade-in 0.3s ease-out;
+    }
+    /* Asegura que los párrafos dentro de modal-content tengan margen */
+    #modal-content p { margin-bottom: 1em; }
+</style>
 
 <script>
     
@@ -1480,7 +1501,7 @@ class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden items-center justify-ce
 
 
 
-    // ==========================
+ // ==========================
 // ENVIAR RESEÑA
 // ==========================
 
@@ -1770,6 +1791,362 @@ if (menuBtn && menu) {
     });
 
 }
+
+
+// Textos legales para los modales
+const legalTexts = {
+    privacidad: {
+        title: "Política de Privacidad",
+        content: `
+            <p>PROClean Prime Colombia es responsable del tratamiento de los datos personales recolectados mediante su página web, formularios, WhatsApp, correo electrónico, redes sociales, llamadas telefónicas y demás canales oficiales.</p>
+            
+            <p><strong>Finalidad</strong></p>
+            <p>Los datos proporcionados serán utilizados para:</p>
+            <p>- Responder solicitudes de información.<br>
+            - Elaborar cotizaciones.<br>
+            - Gestionar agendamientos.<br>
+            - Coordinar servicios.<br>
+            - Contactar al cliente.<br>
+            - Gestionar pagos y facturación.<br>
+            - Atender solicitudes, peticiones, quejas y reclamos.<br>
+            - Cumplir obligaciones legales y contractuales.<br>
+            - Enviar comunicaciones comerciales cuando exista autorización.</p>
+            
+            <p><strong>Derechos del titular</strong></p>
+            <p>Como titular de los datos usted puede:</p>
+            <p>- Conocer, actualizar y rectificar sus datos.<br>
+            - Solicitar información sobre el tratamiento realizado.<br>
+            - Solicitar prueba de la autorización.<br>
+            - Solicitar la supresión de sus datos cuando corresponda.<br>
+            - Revocar la autorización cuando sea legalmente procedente.<br>
+            - Presentar consultas y reclamos.<br>
+            - Presentar quejas ante la Superintendencia de Industria y Comercio.</p>
+            <p>La Ley 1581 de 2012 reconoce estos derechos dentro del régimen colombiano de protección de datos personales.</p>
+            
+            <p><strong>Autorización</strong></p>
+            <p>Al seleccionar la casilla de aceptación y enviar este formulario, el titular declara que ha leído el presente aviso y autoriza a PROClean Prime Colombia, cuando corresponda, para realizar el tratamiento de sus datos personales de acuerdo con su Política de Tratamiento y Protección de Datos Personales.</p>
+            
+            <p><strong>Casilla recomendada para el formulario:</strong><br>
+            - [ ] He leído y acepto el Aviso de Privacidad y autorizo el tratamiento de mis datos personales conforme a la Política de Tratamiento de Datos Personales de PROClean Prime.</p>
+            
+            <p><strong>Comunicaciones comerciales — opcional y separada:</strong><br>
+            - [ ] Autorizo a PROClean Prime a enviarme información comercial, promociones, novedades y ofertas a través de los canales de contacto que he autorizado.</p>
+            
+            <p>La autorización para comunicaciones comerciales debe mantenerse separada de la aceptación necesaria para gestionar la solicitud o prestar el servicio, y debe existir un mecanismo sencillo para retirar dicha autorización cuando corresponda. La Ley 2300 de 2023 establece reglas específicas para comunicaciones comerciales por llamadas, SMS, correo electrónico y aplicaciones de mensajería.</p>
+            
+            <p><strong>Consulta de la política completa</strong></p>
+            <p>La Política de Tratamiento y Protección de Datos Personales de PROClean Prime se encuentra disponible en el sitio web oficial.</p>
+        `
+    },
+    datos: {
+        title: "Política de Tratamiento y Protección de Datos Personales",
+        content: `
+            <p>PROClean Prime Colombia, en adelante “PROClean Prime”, adopta la presente Política de Tratamiento y Protección de Datos Personales con el propósito de establecer los criterios, procedimientos y mecanismos aplicables a la recolección, almacenamiento, uso, circulación, actualización, rectificación y supresión de datos personales de sus clientes, potenciales clientes, proveedores, trabajadores, contratistas y demás titulares cuyos datos sean tratados por la empresa.</p>
+            <p>Esta política se adopta en cumplimiento de la normativa colombiana aplicable en materia de protección de datos personales, especialmente la Ley 1581 de 2012 y sus normas reglamentarias y complementarias.</p>
+            <p>La Ley 1581 establece, entre otros, los principios de legalidad, finalidad, libertad, veracidad, transparencia, acceso restringido, seguridad y confidencialidad.</p>
+            
+            <p><strong>2. Responsable del tratamiento</strong></p>
+            <p>Responsable: PROClean Prime Colombia<br>
+            NIT: 902.067.282-0<br>
+            Domicilio: Medellín, Antioquia, Colombia<br>
+            Dirección: Calle 61 #75-116<br>
+            Correo: direccion@pro-clean-prime.com<br>
+            Sitio web: https://procleanprimeweb.com/</p>
+            <p>PROClean Prime será responsable de las bases de datos que administre y del tratamiento que realice sobre los datos personales dentro del desarrollo de sus actividades comerciales y administrativas.</p>
+            
+            <p><strong>3. Datos personales que podemos recolectar</strong></p>
+            <p>Dependiendo de la relación con el titular y del servicio solicitado, PROClean Prime podrá recolectar:</p>
+            <p>- Nombre y apellidos.<br>
+            - Número de identificación cuando sea necesario.<br>
+            - Número telefónico.<br>
+            - Número de WhatsApp.<br>
+            - Dirección de prestación del servicio.<br>
+            - Correo electrónico.<br>
+            - Información relacionada con el servicio solicitado.<br>
+            - Información necesaria para elaborar cotizaciones.<br>
+            - Información relacionada con reservas y agendamientos.<br>
+            - Información de facturación y pagos.<br>
+            - Información de contacto empresarial.<br>
+            - Historial de servicios contratados.<br>
+            - Información proporcionada voluntariamente mediante formularios, WhatsApp, correo electrónico, redes sociales o página web.</p>
+            <p>PROClean Prime solamente solicitará información pertinente y necesaria para las finalidades informadas.</p>
+            
+            <p><strong>4. Finalidades del tratamiento</strong></p>
+            <p>Los datos personales podrán ser tratados para:</p>
+            <p>1. Gestionar solicitudes de información.<br>
+            2. Elaborar cotizaciones.<br>
+            3. Programar y confirmar servicios de limpieza.<br>
+            4. Coordinar la prestación de servicios.<br>
+            5. Contactar al cliente antes, durante o después de la prestación del servicio.<br>
+            6. Gestionar pagos, facturación y obligaciones contables.<br>
+            7. Atender peticiones, quejas, reclamos y solicitudes.<br>
+            8. Mantener registros históricos de servicios.<br>
+            9. Mejorar la calidad de los servicios.<br>
+            10. Gestionar garantías, novedades o reclamaciones relacionadas con los servicios.<br>
+            11. Cumplir obligaciones legales, contractuales y contables.<br>
+            12. Prevenir fraude, suplantación o usos indebidos de los canales de atención.<br>
+            13. Realizar análisis internos de servicio y satisfacción.<br>
+            14. Enviar información comercial, promociones, novedades o campañas cuando exista la autorización correspondiente.<br>
+            15. Gestionar comunicaciones relacionadas directamente con servicios solicitados o contratados.</p>
+            <p>El tratamiento deberá obedecer a finalidades legítimas e informadas al titular.</p>
+            
+            <p><strong>5. Autorización</strong></p>
+            <p>PROClean Prime solicitará, cuando sea legalmente necesario, autorización previa, expresa e informada para el tratamiento de los datos personales.</p>
+            <p>La autorización podrá obtenerse mediante formularios físicos o electrónicos, casillas de aceptación, comunicaciones electrónicas, mecanismos digitales u otros medios legalmente admisibles.</p>
+            <p>La autorización deberá permitir demostrar que el titular fue informado sobre el tratamiento de sus datos.</p>
+            
+            <p><strong>6. Derechos de los titulares</strong></p>
+            <p>El titular tiene derecho a:</p>
+            <p>- Conocer los datos personales tratados por PROClean Prime.<br>
+            - Solicitar actualización de sus datos.<br>
+            - Solicitar rectificación de información incorrecta o incompleta.<br>
+            - Solicitar prueba de la autorización otorgada.<br>
+            - Conocer el uso que se ha dado a sus datos.<br>
+            - Presentar consultas y reclamos.<br>
+            - Solicitar la supresión de sus datos cuando corresponda.<br>
+            - Revocar la autorización cuando sea legalmente procedente.<br>
+            - Acceder gratuitamente a sus datos personales tratados.<br>
+            - Presentar quejas ante la Superintendencia de Industria y Comercio cuando considere que se han vulnerado sus derechos.</p>
+            <p>Estos derechos se encuentran contemplados dentro del régimen colombiano de protección de datos personales.</p>
+            
+            <p><strong>7. Datos sensibles</strong></p>
+            <p>PROClean Prime evitará solicitar datos sensibles salvo que sean estrictamente necesarios y exista una base legal que permita su tratamiento.</p>
+            <p>Cuando se soliciten datos sensibles, se informará al titular que su entrega es facultativa cuando así corresponda y se solicitará la autorización correspondiente.</p>
+            
+            <p><strong>8. Datos de niños, niñas y adolescentes</strong></p>
+            <p>PROClean Prime no recopilará deliberadamente datos personales de niños, niñas o adolescentes salvo en aquellos casos permitidos por la legislación colombiana y observando las garantías especiales aplicables.</p>
+            <p>La Ley 1581 establece protección especial respecto del tratamiento de datos de niños, niñas y adolescentes.</p>
+            
+            <p><strong>9. Seguridad de la información</strong></p>
+            <p>PROClean Prime adoptará medidas técnicas, humanas y administrativas razonables para proteger los datos personales frente a:</p>
+            <p>- Pérdida.<br>
+            - Alteración.<br>
+            - Acceso no autorizado.<br>
+            - Uso indebido.<br>
+            - Divulgación no autorizada.<br>
+            - Destrucción.<br>
+            - Fraude o suplantación.</p>
+            <p>El acceso a la información estará limitado a las personas que necesiten conocerla para desarrollar sus funciones.</p>
+            
+            <p><strong>10. Confidencialidad</strong></p>
+            <p>Las personas que intervengan en el tratamiento de datos personales deberán mantener la confidencialidad de la información que conozcan en ejercicio de sus funciones.</p>
+            <p>Esta obligación permanecerá incluso después de finalizar la relación laboral, contractual o comercial cuando corresponda.</p>
+            
+            <p><strong>11. Encargados del tratamiento</strong></p>
+            <p>PROClean Prime podrá utilizar proveedores tecnológicos, administrativos, contables, de comunicaciones, almacenamiento, alojamiento web, CRM, mensajería, pagos u otros servicios que requieran tratamiento de información.</p>
+            <p>Cuando corresponda, dichos terceros deberán cumplir las obligaciones legales aplicables al tratamiento y seguridad de datos personales.</p>
+            
+            <p><strong>12. Transferencia y transmisión de datos</strong></p>
+            <p>Cuando resulte necesario para prestar los servicios o cumplir obligaciones legales o contractuales, PROClean Prime podrá realizar transmisiones o transferencias de información de acuerdo con las condiciones establecidas por la legislación colombiana.</p>
+            
+            <p><strong>13. Comunicaciones comerciales</strong></p>
+            <p>Cuando el titular haya autorizado el envío de comunicaciones comerciales, PROClean Prime podrá utilizar los canales autorizados para enviar información sobre servicios, promociones, novedades y campañas.</p>
+            <p>El titular podrá solicitar en cualquier momento el retiro de comunicaciones comerciales mediante los mecanismos habilitados.</p>
+            <p>Las comunicaciones comerciales por llamadas, SMS, correo electrónico y aplicaciones de mensajería estarán sujetas a las reglas aplicables, incluyendo la Ley 2300 de 2023. Esta norma establece condiciones sobre canales, horarios y mecanismos para cancelar comunicaciones comerciales.</p>
+            
+            <p><strong>14. Procedimiento para consultas y reclamos</strong></p>
+            <p>El titular podrá presentar consultas, solicitudes, reclamos o solicitudes de actualización, rectificación, supresión o revocatoria mediante:</p>
+            <p>Correo: direccion@pro-clean-prime.com</p>
+            <p>La solicitud deberá incluir, cuando sea posible:</p>
+            <p>- Nombre completo.<br>
+            - Documento de identificación.<br>
+            - Datos de contacto.<br>
+            - Descripción clara de la solicitud.<br>
+            - Documentos que considere pertinentes.</p>
+            <p>PROClean Prime tramitará las solicitudes conforme a los términos establecidos por la legislación colombiana aplicable.</p>
+            
+            <p><strong>15. Vigencia de las bases de datos</strong></p>
+            <p>Los datos personales serán conservados durante el tiempo necesario para cumplir las finalidades autorizadas, las obligaciones legales, contractuales, contables, fiscales y administrativas aplicables, o mientras exista una relación que justifique su conservación.</p>
+            <p>Posteriormente podrán ser eliminados, anonimizados o conservados cuando exista una obligación legal o una finalidad legítima que permita su conservación.</p>
+            
+            <p><strong>16. Actualización de la política</strong></p>
+            <p>PROClean Prime podrá actualizar esta política cuando sea necesario debido a cambios normativos, tecnológicos, operativos o comerciales.</p>
+            <p>La versión vigente será publicada en los canales digitales correspondientes.</p>
+            <p>PROClean Prime Colombia<br>NIT 902.067.282-0</p>
+        `
+    },
+    terminos: {
+        title: "Términos y Condiciones",
+        content: `
+           <p><strong>1. Aceptación</strong></p>
+            <p>El acceso, navegación, consulta, solicitud de cotizaciones, agendamiento o contratación de servicios de PROClean Prime implica la aceptación de estos Términos y Condiciones en lo que resulte aplicable.</p>
+            <p>Cuando exista un contrato, cotización, orden de servicio o acuerdo específico entre las partes, las condiciones particulares de dicho documento prevalecerán sobre estas disposiciones cuando exista contradicción.</p>
+            
+            <p><strong>2. Información del proveedor</strong></p>
+            <p>PROClean Prime Colombia<br>
+            NIT: 902.067.282-0<br>
+            Dirección: Calle 61 #75-116, Medellín, Colombia<br>
+            Correo: direccion@pro-clean-prime.com<br>
+            WhatsApp: 304 604 8958</p>
+            <p>PROClean Prime presta servicios profesionales de limpieza y servicios relacionados de acuerdo con la disponibilidad, cobertura y condiciones informadas al cliente.</p>
+            
+            <p><strong>3. Servicios</strong></p>
+            <p>PROClean Prime podrá ofrecer, entre otros:</p>
+            <p>- Limpieza profesional de hogares.<br>
+            - Limpieza de oficinas.<br>
+            - Limpieza de espacios empresariales.<br>
+            - Limpieza profunda.<br>
+            - Servicios para conjuntos residenciales.<br>
+            - Atención y spa para mascotas.<br>
+            - Servicios personalizados.</p>
+            <p>La disponibilidad de cada servicio dependerá de la ubicación, características del espacio, duración, requerimientos y capacidad operativa.</p>
+            
+            <p><strong>4. Cotizaciones</strong></p>
+            <p>Las cotizaciones estarán sujetas a:</p>
+            <p>- Características del servicio.<br>
+            - Ubicación.<br>
+            - Número de jornadas.<br>
+            - Duración estimada.<br>
+            - Frecuencia.<br>
+            - Condiciones particulares del espacio.<br>
+            - Requerimientos especiales.</p>
+            <p>Una cotización no constituye por sí sola una reserva definitiva hasta que PROClean Prime confirme el servicio conforme al procedimiento comercial establecido.</p>
+            
+            <p><strong>5. Agendamiento</strong></p>
+            <p>Los servicios deberán ser solicitados con una anticipación mínima de un día, salvo disponibilidad excepcional confirmada por PROClean Prime.</p>
+            <p>El cliente deberá proporcionar información correcta sobre:</p>
+            <p>- Dirección.<br>
+            - Fecha.<br>
+            - Horario.<br>
+            - Tipo de servicio.<br>
+            - Características relevantes del lugar.<br>
+            - Condiciones especiales que puedan afectar la prestación del servicio.</p>
+            
+            <p><strong>6. Disponibilidad</strong></p>
+            <p>La confirmación de un servicio estará sujeta a disponibilidad de personal y cobertura.</p>
+            <p>PROClean Prime podrá rechazar o reprogramar una solicitud cuando existan circunstancias operativas, de seguridad, fuerza mayor o información insuficiente que impidan prestar adecuadamente el servicio.</p>
+            
+            <p><strong>7. Productos e insumos de limpieza</strong></p>
+            <p>Salvo que se indique expresamente lo contrario en una cotización o acuerdo particular, PROClean Prime no suministra los productos de limpieza necesarios para la prestación ordinaria del servicio.</p>
+            <p>El cliente deberá disponer de los productos e implementos previamente indicados por PROClean Prime.</p>
+            <p>Si se requieren productos o equipos especiales, estos deberán ser acordados previamente.</p>
+            
+            <p><strong>8. Acceso al inmueble</strong></p>
+            <p>El cliente deberá garantizar el acceso seguro al lugar donde se prestará el servicio.</p>
+            <p>Cuando el inmueble requiera llaves, códigos, autorizaciones de ingreso, registros ante porterías o permisos especiales, el cliente será responsable de gestionarlos oportunamente.</p>
+            
+            <p><strong>9. Condiciones de seguridad</strong></p>
+            <p>PROClean Prime podrá suspender o rechazar un servicio cuando las condiciones del lugar representen un riesgo razonable para el personal, incluyendo situaciones de riesgo eléctrico, químico, estructural, biológico, violencia, animales no controlados u otras circunstancias peligrosas.</p>
+            <p>La suspensión por razones de seguridad no constituye incumplimiento cuando la situación sea ajena a PROClean Prime.</p>
+            
+            <p><strong>10. Precios</strong></p>
+            <p>El precio aplicable será el informado y aceptado por el cliente en la cotización, orden de servicio o acuerdo correspondiente.</p>
+            <p>Los precios podrán variar según las características específicas del servicio.</p>
+            <p>Cuando el precio publicado incluya impuestos, estos deberán entenderse incluidos en el valor informado.</p>
+            
+            <p><strong>11. Forma de pago</strong></p>
+            <p>Las condiciones de pago serán las indicadas en la cotización o acuerdo comercial.</p>
+            <p>PROClean Prime podrá establecer anticipos, pagos completos o condiciones especiales según el tipo de servicio.</p>
+            
+            <p><strong>12. Cancelaciones y reprogramaciones</strong></p>
+            <p>Las solicitudes de cancelación o reprogramación deberán realizarse con la mayor anticipación posible.</p>
+            <p>Cuando una cancelación genere costos operativos, desplazamientos o afectación de recursos previamente asignados, podrán aplicarse las condiciones informadas al cliente al momento de contratar.</p>
+            
+            <p><strong>13. Prestación del servicio</strong></p>
+            <p>PROClean Prime procurará prestar los servicios conforme a las características acordadas.</p>
+            <p>El tiempo de servicio podrá variar dependiendo de las condiciones reales encontradas en el lugar.</p>
+            <p>Si durante la prestación se identifican condiciones que aumenten considerablemente el alcance inicialmente contratado, PROClean Prime podrá informar al cliente y solicitar su autorización antes de ejecutar trabajos adicionales.</p>
+            
+            <p><strong>14. Conformidad y novedades</strong></p>
+            <p>Si el cliente considera que existe una novedad relacionada con el servicio, deberá comunicarla oportunamente a PROClean Prime mediante sus canales oficiales.</p>
+            <p>La empresa analizará la situación y, cuando corresponda, propondrá una solución razonable conforme a las condiciones contratadas.</p>
+            
+            <p><strong>15. Fotografías y evidencia del servicio</strong></p>
+            <p>Cuando resulte necesario para documentar el estado inicial o final de un servicio, PROClean Prime podrá tomar fotografías del espacio.</p>
+            <p>Las fotografías que permitan identificar personas o contengan datos personales deberán ser tratadas conforme a la Política de Tratamiento de Datos Personales.</p>
+            <p>El uso publicitario de imágenes identificables requerirá la autorización correspondiente cuando sea necesaria.</p>
+            
+            <p><strong>16. Propiedad intelectual</strong></p>
+            <p>Los textos, logotipos, diseños, fotografías, videos, piezas gráficas, elementos visuales, nombres comerciales y demás contenidos publicados en los canales digitales de PROClean Prime están protegidos por las normas aplicables de propiedad intelectual.</p>
+            <p>No se permite su reproducción, modificación, distribución o explotación comercial sin autorización cuando dicha autorización sea requerida.</p>
+            
+            <p><strong>17. Página web y contenidos</strong></p>
+            <p>PROClean Prime procurará mantener información actualizada en sus canales digitales. Sin embargo, pueden presentarse errores involuntarios, interrupciones, cambios de disponibilidad o modificaciones de precios y servicios.</p>
+            <p>La información definitiva será la establecida en la cotización, orden de servicio o acuerdo confirmado.</p>
+            
+            <p><strong>18. Comercio electrónico</strong></p>
+            <p>Cuando PROClean Prime utilice mecanismos electrónicos para ofrecer o contratar servicios, se observarán las normas colombianas aplicables al comercio electrónico y protección del consumidor.</p>
+            <p>La Ley 527 de 1999 reconoce y regula jurídicamente los mensajes de datos y el comercio electrónico en Colombia.</p>
+            <p>Asimismo, el Estatuto del Consumidor y sus modificaciones serán aplicables cuando exista una relación de consumo. La Ley 2439 de 2024 introdujo medidas adicionales de protección para consumidores de comercio electrónico.</p>
+            
+            <p><strong>19. Protección al consumidor</strong></p>
+            <p>PROClean Prime reconoce los derechos establecidos in el Estatuto del Consumidor y demás normas aplicables.</p>
+            <p>La información relacionada con servicios, precios, condiciones y características deberá proporcionarse de manera clara, verificable y suficiente.</p>
+            <p>La SIC ejerce funciones de inspección, vigilancia y control respecto del cumplimiento de las normas de protección al consumidor.</p>
+            
+            <p><strong>20. Enlace a la Superintendencia de Industria y Comercio</strong></p>
+            <p>Cuando la legislación aplicable lo exija, PROClean Prime dispondrá en su plataforma de comercio electrónico un enlace visible y fácilmente identificable hacia la página oficial de la Superintendencia de Industria y Comercio.</p>
+            <p>La SIC ha señalado que esta obligación aplica a proveedores que comercializan productos o servicios mediante comercio electrónico.</p>
+            
+            <p><strong>21. Protección de datos personales</strong></p>
+            <p>El tratamiento de datos personales se realizará conforme a la Política de Tratamiento y Protección de Datos Personales de PROClean Prime.</p>
+            <p>El usuario podrá consultar dicha política en el sitio web.</p>
+            
+            <p><strong>22. Comunicaciones</strong></p>
+            <p>PROClean Prime podrá utilizar los canales autorizados por el cliente para comunicaciones relacionadas con:</p>
+            <p>- Confirmación de servicios.<br>
+            - Cotizaciones.<br>
+            - Agendamientos.<br>
+            - Cambios o novedades.<br>
+            - Facturación.<br>
+            - Atención al cliente.<br>
+            - Información solicitada.</p>
+            <p>Las comunicaciones comerciales estarán sujetas a la autorización correspondiente y a las normas aplicables.</p>
+            <p>La Ley 2300 de 2023 establece reglas específicas para comunicaciones comerciales mediante llamadas, SMS, correo electrónico y aplicaciones de mensajería.</p>
+            
+            <p><strong>23. Responsabilidad del cliente</strong></p>
+            <p>El cliente deberá proporcionar información veraz y suficiente y comunicar cualquier condición especial que pueda afectar la prestación del servicio.</p>
+            <p>El cliente será responsable de informar oportunamente sobre restricciones de acceso, riesgos, materiales peligrosos, condiciones especiales del inmueble, animales o cualquier circunstancia relevante.</p>
+            
+            <p><strong>24. Fuerza mayor</strong></p>
+            <p>PROClean Prime no será responsable por retrasos o imposibilidad de prestar el servicio cuando estos se originen en circunstancias imprevisibles o irresistibles ajenas a su control, sin perjuicio de los derechos que legalmente correspondan al consumidor.</p>
+            
+            <p><strong>25. Peticiones, quejas y reclamos</strong></p>
+            <p>El cliente podrá presentar solicitudes, peticiones, quejas o reclamos mediante:</p>
+            <p>Correo: direccion@pro-clean-prime.com<br>
+            WhatsApp: 304 604 8958</p>
+            <p>PROClean Prime atenderá las solicitudes conforme a la naturaleza de cada caso y la legislación aplicable.</p>
+            
+            <p><strong>26. Modificación de los términos</strong></p>
+            <p>PROClean Prime podrá modificar estos Términos y Condiciones cuando sea necesario.</p>
+            <p>La versión vigente será publicada en el sitio web.</p>
+            <p>Los cambios no afectarán derechos adquiridos ni condiciones específicas ya aceptadas cuando la legislación aplicable disponga lo contrario.</p>
+            
+            <p><strong>27. Legislación aplicable</strong></p>
+            <p>Estos Términos y Condiciones se regirán por las leyes de la República de Colombia.</p>
+            
+            <p><strong>28. Vigencia</strong></p>
+            <p>Los presentes Términos y Condiciones entran en vigencia el 12 de agosto de 2026.</p>
+            <p>PROClean Prime Colombia<br>NIT 902.067.282-0</p>
+        `
+    }
+};
+
+function abrirModal(tipo) {
+    const modal = document.getElementById("legal-modal");
+    const titleEl = document.getElementById("modal-title");
+    const contentEl = document.getElementById("modal-content");
+
+    if (legalTexts[tipo]) {
+        titleEl.textContent = legalTexts[tipo].title;
+        contentEl.innerHTML = legalTexts[tipo].content;
+        modal.style.display = "flex"; // Muestra el modal correctamente
+    }
+}
+
+function cerrarModal() {
+    const modal = document.getElementById("legal-modal");
+    modal.style.display = "none"; // Oculta el modal
+}
+
+// Cierra el modal si hacen clic en el fondo oscuro
+window.addEventListener("click", function(event) {
+    const modal = document.getElementById("legal-modal");
+    if (event.target === modal) {
+        cerrarModal();
+    }
+});
+
 
 </script>
 
