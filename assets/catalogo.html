@@ -67,15 +67,17 @@
 
         <div class="catalog-home-text">
 
-            <h1>
-                Productos para cuidar
-                tus espacios
-            </h1>
+            <div class="catalog-home-text-content">
+                <h1>
+                    Productos para cuidar
+                    tus espacios
+                </h1>
 
-            <p class="catalog-home-message">
-                Encuentra todo lo que necesitas
-                para cuidar tus espacios.
-            </p>
+                <p class="catalog-home-message">
+                    Encuentra todo lo que necesitas
+                    para cuidar tus espacios.
+                </p>
+            </div>
 
             <a href="#productos" class="catalog-home-button">
                 Explorar productos
@@ -898,12 +900,212 @@
 </div>
 
 
+<!-- =========================================================
+     PIE DE PÁGINA — QUIÉNES SOMOS
+========================================================= -->
+<footer class="catalog-footer">
+
+    <div class="catalog-footer-inner">
+
+        <div class="catalog-footer-grid">
+
+            <!-- QUIÉNES SOMOS -->
+            <div class="catalog-footer-about">
+
+                <img src="imagenes/logo-sinfondo.png" alt="Logo ProClean Prime" class="catalog-footer-logo">
+
+                <h3>ProClean Prime Colombia</h3>
+
+                <p>Soluciones profesionales de limpieza.</p>
+
+                <p class="catalog-footer-nit">NIT: 902067282-0</p>
+
+            </div>
+
+            <!-- CONTACTO -->
+            <div class="catalog-footer-contact">
+
+                <h4>Contacto</h4>
+
+                <p><i data-lucide="mail" class="catalog-footer-icon"></i> <strong>General:</strong> direccion@pro-clean-prime.com</p>
+                <p><i data-lucide="mail" class="catalog-footer-icon"></i> <strong>Comercial:</strong> procleanprime.comercial@gmail.com</p>
+                <p><i data-lucide="mail" class="catalog-footer-icon"></i> <strong>Talento Humano:</strong> procleanprimecolombia@gmail.com</p>
+
+                <p class="catalog-footer-address">
+                    <i data-lucide="map-pin" class="catalog-footer-icon"></i>
+                    <span>Calle 61 #75-116<br>Medellín - Colombia</span>
+                </p>
+
+            </div>
+
+            <!-- REDES -->
+            <div class="catalog-footer-social">
+
+                <h4>Síguenos</h4>
+
+                <div class="catalog-footer-social-links">
+
+                    <a href="https://www.instagram.com/procleanprime" target="_blank">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram">
+                    </a>
+
+                    <a href="https://www.facebook.com/share/1B85Xq61bz/" target="_blank">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b9/2023_Facebook_icon.svg" alt="Facebook">
+                    </a>
+
+                    <a href="https://www.tiktok.com/@proclean_prime?_r=1&_t=ZS-97GP9oD4r8S" target="_blank">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/3/34/Ionicons_logo-tiktok.svg" alt="TikTok">
+                    </a>
+
+                    <a href="https://wa.me/573046048958" target="_blank">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <hr class="catalog-footer-divider">
+
+        <div class="catalog-footer-legal">
+            <a href="javascript:void(0)" onclick="abrirModal('privacidad')">Política de Privacidad</a>
+            <a href="javascript:void(0)" onclick="abrirModal('datos')">Tratamiento de Datos Personales</a>
+            <a href="javascript:void(0)" onclick="abrirModal('terminos')">Términos y Condiciones</a>
+        </div>
+
+        <p class="catalog-footer-copy">
+            © 2026 ProClean Prime Colombia. Todos los derechos reservados.
+        </p>
+
+    </div>
+
+</footer>
+
+
+<!-- MODAL LEGAL -->
+<div id="legal-modal" style="display: none; position: fixed; inset: 0; z-index: 9999; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); align-items: center; justify-content: center; padding: 1rem;">
+    <div style="background: #ffffff; width: 100%; max-width: 650px; height: 80vh; border-radius: 1rem; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); display: flex; flex-direction: column; position: relative;">
+        <button onclick="cerrarModal()" style="position: absolute; right: 15px; top: 15px; background: #f3f4f6; border: none; font-size: 20px; font-weight: bold; cursor: pointer; border-radius: 50%; width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; z-index: 10;">&times;</button>
+        <div style="padding: 20px 24px; border-bottom: 1px solid #e5e7eb; flex-shrink: 0;">
+            <h3 id="modal-title" style="margin: 0; font-size: 1.25rem; font-weight: bold; color: #111827;"></h3>
+        </div>
+        <div style="padding: 24px; overflow-y: auto; flex-grow: 1; -webkit-overflow-scrolling: touch;">
+            <div id="modal-content" style="font-size: 0.875rem; color: #4b5563; line-height: 1.6;"></div>
+        </div>
+        <div style="padding: 15px 24px; border-top: 1px solid #e5e7eb; background: #f9fafb; text-align: right; border-bottom-left-radius: 1rem; border-bottom-right-radius: 1rem; flex-shrink: 0;">
+            <button onclick="cerrarModal()" style="padding: 8px 16px; background: #1f2937; color: #ffffff; border: none; border-radius: 0.5rem; cursor: pointer; font-weight: 500;">Cerrar</button>
+        </div>
+    </div>
+</div>
+
+<style>
+    #modal-content p { margin-bottom: 1em; }
+</style>
+
+
 <!-- JAVASCRIPT -->
 
     <script src="js/catalogo.js"></script>
 
     <script>
         lucide.createIcons();
+    </script>
+
+    <script>
+const legalTexts = {
+    privacidad: {
+        title: "Política de Privacidad",
+        content: `
+            <p>PROClean Prime Colombia es responsable del tratamiento de los datos personales recolectados mediante su página web, formularios, WhatsApp, correo electrónico, redes sociales, llamadas telefónicas y demás canales oficiales.</p>
+            <p><strong>Finalidad</strong></p>
+            <p>Los datos proporcionados serán utilizados para:</p>
+            <p>- Responder solicitudes de información.<br>
+            - Elaborar cotizaciones.<br>
+            - Gestionar agendamientos.<br>
+            - Coordinar servicios.<br>
+            - Contactar al cliente.<br>
+            - Gestionar pagos y facturación.<br>
+            - Atender solicitudes, peticiones, quejas y reclamos.<br>
+            - Cumplir obligaciones legales y contractuales.<br>
+            - Enviar comunicaciones comerciales cuando exista autorización.</p>
+            <p><strong>Derechos del titular</strong></p>
+            <p>Como titular de los datos usted puede:</p>
+            <p>- Conocer, actualizar y rectificar sus datos.<br>
+            - Solicitar información sobre el tratamiento realizado.<br>
+            - Solicitar prueba de la autorización.<br>
+            - Solicitar la supresión de sus datos cuando corresponda.<br>
+            - Revocar la autorización cuando sea legalmente procedente.<br>
+            - Presentar consultas y reclamos.<br>
+            - Presentar quejas ante la Superintendencia de Industria y Comercio.</p>
+            <p>La Ley 1581 de 2012 reconoce estos derechos dentro del régimen colombiano de protección de datos personales.</p>
+            <p><strong>Autorización</strong></p>
+            <p>Al seleccionar la casilla de aceptación y enviar este formulario, el titular declara que ha leído el presente aviso y autoriza a PROClean Prime Colombia, cuando corresponda, para realizar el tratamiento de sus datos personales de acuerdo con su Política de Tratamiento y Protección de Datos Personales.</p>
+            <p><strong>Consulta de la política completa</strong></p>
+            <p>La Política de Tratamiento y Protección de Datos Personales de PROClean Prime se encuentra disponible en el sitio web oficial.</p>
+        `
+    },
+    datos: {
+        title: "Política de Tratamiento y Protección de Datos Personales",
+        content: `
+            <p>PROClean Prime Colombia adopta la presente Política de Tratamiento y Protección de Datos Personales con el propósito de establecer los criterios, procedimientos y mecanismos aplicables a la recolección, almacenamiento, uso, circulación, actualización, rectificación y supresión de datos personales de sus clientes, potenciales clientes, proveedores, trabajadores, contratistas y demás titulares cuyos datos sean tratados por la empresa.</p>
+            <p><strong>2. Responsable del tratamiento</strong></p>
+            <p>Responsable: PROClean Prime Colombia<br>NIT: 902.067.282-0<br>Domicilio: Medellín, Antioquia, Colombia<br>Dirección: Calle 61 #75-116<br>Correo: direccion@pro-clean-prime.com<br>Sitio web: https://procleanprimeweb.com/</p>
+            <p><strong>3. Datos personales que podemos recolectar</strong></p>
+            <p>- Nombre y apellidos.<br>- Número de identificación cuando sea necesario.<br>- Número telefónico.<br>- Número de WhatsApp.<br>- Dirección de prestación del servicio.<br>- Correo electrónico.<br>- Información relacionada con el servicio solicitado.<br>- Información necesaria para elaborar cotizaciones.<br>- Información de facturación y pagos.<br>- Historial de servicios contratados.</p>
+            <p><strong>4. Finalidades del tratamiento</strong></p>
+            <p>1. Gestionar solicitudes de información.<br>2. Elaborar cotizaciones.<br>3. Programar y confirmar servicios de limpieza.<br>4. Coordinar la prestación de servicios.<br>5. Contactar al cliente antes, durante o después de la prestación del servicio.<br>6. Gestionar pagos, facturación y obligaciones contables.<br>7. Atender peticiones, quejas, reclamos y solicitudes.<br>8. Cumplir obligaciones legales, contractuales y contables.</p>
+            <p><strong>6. Derechos de los titulares</strong></p>
+            <p>- Conocer los datos personales tratados por PROClean Prime.<br>- Solicitar actualización de sus datos.<br>- Solicitar rectificación de información incorrecta.<br>- Solicitar la supresión de sus datos cuando corresponda.<br>- Revocar la autorización cuando sea legalmente procedente.<br>- Acceder gratuitamente a sus datos personales tratados.</p>
+            <p><strong>9. Seguridad de la información</strong></p>
+            <p>PROClean Prime adoptará medidas técnicas, humanas y administrativas razonables para proteger los datos personales frente a pérdida, alteración, acceso no autorizado, uso indebido, divulgación no autorizada, destrucción, fraude o suplantación.</p>
+            <p><strong>14. Procedimiento para consultas y reclamos</strong></p>
+            <p>Correo: direccion@pro-clean-prime.com</p>
+            <p>PROClean Prime Colombia<br>NIT 902.067.282-0</p>
+        `
+    },
+    terminos: {
+        title: "Términos y Condiciones",
+        content: `
+            <p><strong>1. Aceptación</strong></p>
+            <p>El acceso, navegación, consulta, solicitud de cotizaciones, agendamiento o contratación de servicios de PROClean Prime implica la aceptación de estos Términos y Condiciones en lo que resulte aplicable.</p>
+            <p><strong>2. Información del proveedor</strong></p>
+            <p>PROClean Prime Colombia<br>NIT: 902.067.282-0<br>Dirección: Calle 61 #75-116, Medellín, Colombia<br>Correo: direccion@pro-clean-prime.com<br>WhatsApp: 304 604 8958</p>
+            <p><strong>3. Servicios</strong></p>
+            <p>- Limpieza profesional de hogares.<br>- Limpieza de oficinas.<br>- Limpieza de espacios empresariales.<br>- Limpieza profunda.<br>- Servicios para conjuntos residenciales.<br>- Atención y spa para mascotas.<br>- Servicios personalizados.</p>
+            <p><strong>10. Precios</strong></p>
+            <p>El precio aplicable será el informado y aceptado por el cliente en la cotización, orden de servicio o acuerdo correspondiente.</p>
+            <p><strong>12. Cancelaciones y reprogramaciones</strong></p>
+            <p>Las solicitudes de cancelación o reprogramación deberán realizarse con la mayor anticipación posible.</p>
+            <p><strong>25. Peticiones, quejas y reclamos</strong></p>
+            <p>Correo: direccion@pro-clean-prime.com<br>WhatsApp: 304 604 8958</p>
+            <p><strong>28. Vigencia</strong></p>
+            <p>Los presentes Términos y Condiciones entran en vigencia el 12 de agosto de 2026.</p>
+            <p>PROClean Prime Colombia<br>NIT 902.067.282-0</p>
+        `
+    }
+};
+
+function abrirModal(tipo) {
+    const modal = document.getElementById("legal-modal");
+    const titleEl = document.getElementById("modal-title");
+    const contentEl = document.getElementById("modal-content");
+    if (legalTexts[tipo]) {
+        titleEl.textContent = legalTexts[tipo].title;
+        contentEl.innerHTML = legalTexts[tipo].content;
+        modal.style.display = "flex";
+    }
+}
+
+function cerrarModal() {
+    document.getElementById("legal-modal").style.display = "none";
+}
+
+window.addEventListener("click", function(event) {
+    const modal = document.getElementById("legal-modal");
+    if (event.target === modal) cerrarModal();
+});
     </script>
 
 </body>
