@@ -1,0 +1,911 @@
+﻿<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Productos de Aseo | ProClean Prime</title>
+
+    <link rel="stylesheet" href="css/output.css">
+    <link rel="stylesheet" href="css/catalogo.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- ENCABEZADO -->
+
+<header class="catalog-header">
+
+   <div class="catalog-header-content">
+
+    <!-- LOGO -->
+    <a href="index.html" class="catalog-logo">
+        <img
+            src="imagenes/logo-sinfondo.png"
+            alt="ProClean Prime">
+    </a>
+
+    <!-- VOLVER + CARRITO -->
+    <div class="catalog-header-actions">
+
+        <a href="index.html" class="catalog-back-button">
+            <i data-lucide="arrow-left"></i>
+            <span>Volver al inicio</span>
+        </a>
+
+        <button
+            type="button"
+            class="catalog-cart-button"
+            id="openCart">
+
+            <i data-lucide="shopping-cart"></i>
+            <span>Carrito</span>
+            <span class="cart-count">0</span>
+
+        </button>
+
+    </div>
+
+</div>
+
+</header>
+
+<!-- =========================================================
+     HOME DEL CATALOGO
+========================================================= -->
+
+<section class="catalog-home">
+
+    <div class="catalog-home-content">
+
+        <div class="catalog-home-text">
+
+            <h1>
+                Productos para cuidar
+                tus espacios
+            </h1>
+
+            <p class="catalog-home-message">
+                Encuentra todo lo que necesitas
+                para cuidar tus espacios.
+            </p>
+
+            <a href="#productos" class="catalog-home-button">
+                Explorar productos
+                <i data-lucide="arrow-down"></i>
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================================================
+     PRODUCTOS DESTACADOS
+========================================================= -->
+
+<div class="featured-products-header">
+
+   
+
+    <h2>Productos destacados</h2>
+
+</div>
+
+<div class="featured-carousel">
+
+
+
+
+    <div class="featured-carousel-window">
+
+        <div
+            class="featured-carousel-track"
+            id="featuredTrack">
+
+
+            <!-- PRODUCTO DESTACADO 1 -->
+
+            <article class="featured-flip-card">
+
+                <div class="featured-flip-inner">
+
+                    <div class="featured-card-front">
+
+                        <div
+                            class="featured-card-image"
+>
+
+                            <img
+                                src="imagenes/bye12x80.png"
+                                alt="Producto destacado 1">
+
+                        </div>
+
+                        <div class="featured-card-content">
+
+                            <span>PRODUCTO DESTACADO</span>
+
+                            <h3>Bye,Bye Manchas x250</h3>
+
+                            <strong>$35.000</strong>
+
+                            <span class="featured-card-info">
+                                ↻ Ver información
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="featured-card-back"
+>
+                        <img
+                            src="imagenes/infobye.jpg"
+                            alt="Información del producto destacado 1">
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- PRODUCTO DESTACADO 2 -->
+
+            <article class="featured-flip-card">
+
+                <div class="featured-flip-inner">
+
+                    <div class="featured-card-front">
+
+                        <div
+                            class="featured-card-image"
+>
+                            <img
+                                src="imagenes/kit800.jpg"
+                                alt="Producto destacado 2">
+
+                        </div>
+
+<div class="featured-card-content">
+
+    <span class="featured-offer-badge">
+        🔥 OFERTA
+    </span>
+
+    <h3>Súper Kit de productos de limpieza Drops</h3>
+
+    <div class="featured-price-offer">
+        <span class="featured-old-price">$180.000</span>
+        <strong>$153.000</strong>
+    </div>
+
+    <span class="featured-card-info">
+        ↻ Ver información
+    </span>
+
+</div>
+                    </div>
+
+
+                    <div
+                        class="featured-card-back"
+>
+
+                        <img
+                            src="imagenes/infocombo1.jpg"
+                            alt="Información del producto destacado 2">
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- PRODUCTO DESTACADO 3 -->
+
+            <article class="featured-flip-card">
+
+                <div class="featured-flip-inner">
+
+                    <div class="featured-card-front">
+
+                        <div
+                            class="featured-card-image"
+>
+
+                            <img
+                                src="imagenes/jun1200x800.png"
+                                alt="Producto destacado 3">
+
+                        </div>
+
+                        <div class="featured-card-content">
+
+                            <span>PRODUCTO DESTACADO</span>
+
+                            <h3>Cepillo individual</h3>
+
+                            <strong>$35.000</strong>
+
+                            <span class="featured-card-info">
+                                ↻ Ver información
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="featured-card-back"
+>
+                        <img
+                            src="imagenes/infocepillo.jpg"
+                            alt="Información del producto destacado 3">
+
+                    </div>
+
+                </div>
+
+            </article>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+</section>
+
+
+        <!-- CATALOGO -->
+
+        <section class="catalog-products" id="productos">
+
+            <div class="section-heading">
+
+                <span>
+                    Productos de Aseo
+                </span>
+
+                <h2>
+                    Encuentra lo que necesitas
+                </h2>
+
+            </div>
+
+
+            <!-- BUSCADOR -->
+
+            <div class="catalog-search">
+
+                <i data-lucide="search"></i>
+
+                <input
+                    type="search"
+                    id="productSearch"
+                    placeholder="¿Qué producto estás buscando?"
+                    autocomplete="off">
+
+            </div>
+
+
+            <!-- TODOS LOS PRODUCTOS -->
+
+            <div class="products-heading">
+
+                <h2>
+                    Todos los productos
+                </h2>
+
+            </div>
+
+
+            <div
+                class="products-grid"
+                id="productsGrid">
+
+                <!-- Los productos serán generados desde catalogo.js -->
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- MODAL PRODUCTO -->
+
+    <div
+        class="product-modal"
+        id="productModal"
+        aria-hidden="true">
+
+        <div class="product-modal-overlay"></div>
+
+        <div
+            class="product-modal-content"
+            role="dialog"
+            aria-modal="true">
+
+            <button
+                type="button"
+                class="product-modal-close"
+                id="closeProductModal"
+                aria-label="Cerrar">
+
+                <i data-lucide="x"></i>
+
+            </button>
+
+            <div id="productModalBody"></div>
+
+        </div>
+
+    </div>
+
+
+<!-- =========================================================
+     CARRITO
+========================================================= -->
+
+<aside
+    class="cart-panel"
+    id="cartPanel"
+    aria-hidden="true">
+
+    <div class="cart-panel-header">
+
+        <div>
+            <span>Tu compra</span>
+            <h2>Carrito</h2>
+        </div>
+
+        <button
+            type="button"
+            id="closeCart"
+            aria-label="Cerrar carrito">
+
+            <i data-lucide="x"></i>
+
+        </button>
+
+    </div>
+
+
+    <div
+        class="cart-items"
+        id="cartItems">
+    </div>
+
+
+    <div class="cart-summary">
+
+        <div class="cart-summary-row">
+            <span>Subtotal</span>
+            <strong id="cartSubtotal">$0</strong>
+        </div>
+
+        <div class="cart-summary-row">
+            <span>Domicilio</span>
+            <strong id="cartDelivery">$0</strong>
+        </div>
+
+        <div class="cart-summary-total">
+            <span>Total</span>
+            <strong id="cartTotal">$0</strong>
+        </div>
+
+        <button
+            type="button"
+            class="checkout-button"
+            id="checkoutButton">
+
+            Continuar con la compra
+
+        </button>
+
+    </div>
+
+</aside>
+
+
+<!-- FONDO DEL CARRITO -->
+
+<div
+    class="cart-overlay"
+    id="cartOverlay">
+</div>
+
+
+<!-- =========================================================
+     MODAL DATOS DE ENTREGA
+========================================================= -->
+
+<div
+    class="checkout-modal-overlay"
+    id="checkoutModalOverlay">
+
+    <div
+        class="checkout-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="checkoutTitle">
+
+        <button
+            type="button"
+            class="checkout-close-button"
+            id="closeCheckout"
+            aria-label="Cerrar">
+
+            <i data-lucide="x"></i>
+
+        </button>
+
+
+        <div class="checkout-header">
+
+            <span>Finaliza tu compra</span>
+
+            <h2 id="checkoutTitle">
+                Datos de entrega
+            </h2>
+
+            <p>
+                Completa tus datos para recibir tus productos.
+            </p>
+
+        </div>
+
+
+        <form id="checkoutForm">
+
+            <div class="checkout-form-group">
+
+                <label for="customerName">
+                    Nombre completo
+                </label>
+
+                <input
+                    type="text"
+                    id="customerName"
+                    name="customerName"
+                    placeholder="Ej. Angie Marín"
+                    required>
+
+            </div>
+
+
+            <div class="checkout-form-group">
+
+                <label for="customerPhone">
+                    Número de celular
+                </label>
+
+                <input
+                    type="tel"
+                    id="customerPhone"
+                    name="customerPhone"
+                    placeholder="Ej. 300 123 4567"
+                    required>
+
+            </div>
+
+
+            <div class="checkout-form-group">
+
+                <label for="customerEmail">
+                    Correo electrónico
+                </label>
+
+                <input
+                    type="email"
+                    id="customerEmail"
+                    name="customerEmail"
+                    placeholder="Ej. correo@ejemplo.com"
+                    required>
+
+            </div>
+
+
+            <div class="checkout-form-group">
+
+                <label for="customerAddress">
+                    Dirección de entrega
+                </label>
+
+                <input
+                    type="text"
+                    id="customerAddress"
+                    name="customerAddress"
+                    placeholder="Ej. Cra. 50 # 20-30"
+                    required>
+
+            </div>
+
+
+            <div class="checkout-form-group">
+
+                <label for="customerNeighborhood">
+                    Barrio
+                </label>
+
+                <input
+                    type="text"
+                    id="customerNeighborhood"
+                    name="customerNeighborhood"
+                    placeholder="Ej. Laureles"
+                    required>
+
+            </div>
+
+
+            <div class="checkout-form-group">
+
+                <label for="deliveryNotes">
+                    Indicaciones para la entrega
+                    <span>(opcional)</span>
+                </label>
+
+                <textarea
+                    id="deliveryNotes"
+                    name="deliveryNotes"
+                    rows="3"
+                    placeholder="Ej. Portería, apartamento, referencia del lugar..."></textarea>
+
+            </div>
+
+
+            <div class="delivery-zone-notice">
+
+                <i data-lucide="map-pin"></i>
+
+                <span>
+                    Domicilio disponible en Medellín y Área Metropolitana.
+                </span>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="checkout-continue-button">
+
+                Continuar
+
+                <i data-lucide="arrow-right"></i>
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<!-- =========================================================
+     MODAL RESUMEN DEL PEDIDO
+========================================================= -->
+
+<div
+    class="order-summary-overlay"
+    id="orderSummaryOverlay">
+
+    <div
+        class="order-summary-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="orderSummaryTitle">
+
+
+        <!-- CERRAR -->
+
+        <button
+            type="button"
+            class="order-summary-close"
+            id="closeOrderSummary"
+            aria-label="Cerrar">
+
+            <i data-lucide="x"></i>
+
+        </button>
+
+
+        <!-- ENCABEZADO -->
+
+        <div class="order-summary-header">
+
+            <span>Revisa tu compra</span>
+
+            <h2 id="orderSummaryTitle">
+                Resumen del pedido
+            </h2>
+
+            <p>
+                Verifica que tus productos y datos de entrega sean correctos.
+            </p>
+
+        </div>
+
+
+        <!-- PRODUCTOS -->
+
+        <div class="order-summary-section">
+
+            <h3>
+                <i data-lucide="shopping-bag"></i>
+                Tu pedido
+            </h3>
+
+            <div
+                class="order-summary-products"
+                id="orderSummaryProducts">
+            </div>
+
+        </div>
+
+
+        <!-- DATOS DE ENTREGA -->
+
+        <div class="order-summary-section">
+
+            <h3>
+                <i data-lucide="map-pin"></i>
+                Datos de entrega
+            </h3>
+
+            <div
+                class="customer-summary"
+                id="customerSummary">
+            </div>
+
+        </div>
+
+
+        <!-- TOTALES -->
+
+        <div class="order-summary-totals">
+
+            <div>
+                <span>Subtotal</span>
+                <strong id="summarySubtotal">
+                    $0
+                </strong>
+            </div>
+
+            <div>
+                <span>Domicilio</span>
+                <strong id="summaryDelivery">
+                    $0
+                </strong>
+            </div>
+
+            <div class="order-summary-total">
+
+                <span>Total</span>
+
+                <strong id="summaryTotal">
+                    $0
+                </strong>
+
+            </div>
+
+        </div>
+
+        <!-- FORMA DE PAGO -->
+
+<div class="order-summary-section">
+
+    <h3>
+        <i data-lucide="credit-card"></i>
+        Forma de pago
+    </h3>
+
+    <!-- Bre-B -->
+
+    <a
+        href="https://checkout.bold.co/payment/LNK_QMFMMNY3DK"
+        target="_blank"
+        onclick="document.getElementById('catalogPaymentMethod').value='Bre-B';"
+        class="flex items-center justify-between p-4 bg-white border border-slate-200 rounded-2xl shadow-sm hover:border-[#cbbf94] transition-all group">
+
+        <div class="flex items-center gap-3">
+
+            <img
+                src="imagenes/bre-b.avif"
+                class="w-10 h-10 rounded-full object-cover">
+
+            <div>
+
+                <p class="font-bold text-[#0F162A] text-sm">
+                    Paga con tu llave Bre-B
+                </p>
+
+                <p class="text-xs text-slate-500 font-mono font-semibold text-emerald-700">
+                    @bold3103764723
+                </p>
+
+            </div>
+
+        </div>
+
+        <span class="text-xs font-semibold bg-green-100 text-green-700 px-2 py-1 rounded-md">
+            Nuevo
+        </span>
+
+    </a>
+
+
+ <!-- TRANSFERENCIA BANCARIA -->
+
+<button
+    type="button"
+    onclick="seleccionarTransferencia()"
+    class="flex items-center justify-between p-4 bg-white border border-slate-200 rounded-2xl shadow-sm hover:border-[#cbbf94] transition-all group text-left w-full mt-3">
+
+    <div class="flex items-center gap-3">
+
+        <img
+            src="imagenes/davivienda (1).png"
+            class="w-10 h-10 rounded-full object-cover">
+
+        <div>
+
+            <p class="font-bold text-[#0F162A] text-sm">
+                Transferencia Bancaria
+            </p>
+
+            <p class="text-xs text-slate-500">
+                Davivienda
+            </p>
+
+        </div>
+
+    </div>
+
+</button>
+
+
+<!-- DATOS DE TRANSFERENCIA -->
+
+<div
+    id="transferenciaInfo"
+    class="hidden mt-3 p-5 rounded-2xl border border-red-100 bg-red-50">
+
+    <p class="text-sm font-bold text-[#0F162A] mb-3">
+        Datos para realizar la transferencia
+    </p>
+
+    <div class="space-y-2 text-sm text-slate-600">
+
+        <p>
+            <strong>Banco:</strong>
+            Davivienda
+        </p>
+
+
+
+    </div>
+
+    <div class="mt-4 pt-4 border-t border-red-200">
+
+        <p class="text-xs text-slate-500 uppercase font-semibold">
+            Total a transferir
+        </p>
+
+        <p
+            id="transferAmount"
+            class="text-2xl font-bold text-[#0F162A] mt-1">
+            $0
+        </p>
+
+    </div>
+
+    <p class="text-xs text-slate-500 mt-4">
+        Realiza la transferencia por el valor exacto indicado
+        y conserva el comprobante de pago.
+    </p>
+
+</div>
+
+
+    <!-- PSE / TARJETAS -->
+
+    <a
+        href="https://checkout.bold.co/payment/LNK_QMFMMNY3DK"
+        target="_blank"
+        onclick="document.getElementById('catalogPaymentMethod').value='PSE / Tarjeta';"
+        class="flex items-center justify-between p-4 bg-white border-2 border-[#cbbf94] rounded-2xl shadow-sm hover:shadow-md hover:border-[#0F162A] transition-all group mt-3">
+
+        <div class="flex items-center gap-3">
+
+            <img
+                src="imagenes/pse-logo2.png"
+                class="w-10 h-10 rounded-full object-cover bg-gray-50">
+
+            <div>
+
+                <p class="font-bold text-[#0F162A] text-sm">
+                    Pagar con PSE / Tarjetas
+                </p>
+
+                <p class="text-xs text-slate-500">
+                    Plataforma segura Bold - Todos los bancos
+                </p>
+
+            </div>
+
+        </div>
+
+    </a>
+
+
+    <!-- MEDIO DE PAGO SELECCIONADO -->
+
+    <input
+        type="hidden"
+        id="catalogPaymentMethod"
+        value="No seleccionado">
+
+</div>
+
+
+        <!-- ACCIONES -->
+
+        <div class="order-summary-actions">
+
+            <button
+                type="button"
+                class="order-back-button"
+                id="backToCheckout">
+
+                <i data-lucide="arrow-left"></i>
+
+                Volver
+
+            </button>
+
+
+            <button
+                type="button"
+                class="order-payment-button"
+                id="goToPayment">
+
+                Continuar al pago
+
+                <i data-lucide="arrow-right"></i>
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- JAVASCRIPT -->
+
+    <script src="js/catalogo.js"></script>
+
+    <script>
+        lucide.createIcons();
+    </script>
+
+</body>
+
+</html>

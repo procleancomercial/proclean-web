@@ -1,178 +1,97 @@
-# Diagnóstico y solución — Portal de Especialistas ProClean Prime
+# Diagnóstico
 
-## Diagnóstico
+## Resumen del problema
 
-### Resumen del problema
+La página de ProClean Prime ya contaba con un catálogo de productos reutilizable, un carrito de compras, checkout y un flujo que permite agregar productos durante la reserva de un servicio (modo `servicio`). Hacía falta un acceso directo al catálogo para los usuarios que NO quieren contratar un servicio y solo desean comprar productos de limpieza, cobrando un domicilio de $9.000 y calculando el total como `productos + domicilio`.
 
-Se solicita mejorar la sección de bienvenida del dashboard ("Buenas tardes, Especialista"),
-rediseñar el estado visual "Pendiente"/"En servicio", hacer funcional la opción "Ruta" (preparada
-para una futura conexión con base de datos), agregar botones de navegación de vuelta al portal y
-al inicio, y corregir el login que dejó de funcionar en `portal_especialistas.html`.
+## Causa raíz identificada
 
----
+El sistema de catálogo y su integración con el servicio ya estaba implementado en `assets/js/catalogo.js` (modo `modoCatalogo` = `compra`/`servicio`, función `irAlCatalogoDesdeServicio()`, lógica de domicilio según modo) y en `assets/index.html` (función `calcularPrecioDinamico()` que suma productos al precio del servicio). Lo que faltaba era:
 
-### Problema 1: Sección de bienvenida sin buena presentación
+1. El botón **"Comprar productos"** en el HERO de la página principal.
+2. La opción **"Comprar productos"** en el menú hamburguesa, debajo de "Reserva tu servicio".
+3. Una función de navegación que estableciera explícitamente el modo `compra` (independiente) y limpiara cualquier residuo del flujo de servicio (`productosServicio`) antes de entrar al catálogo.
 
-**Causa raíz**
+Sin estos accesos, el usuario no podía iniciar una compra independiente directamente desde la página principal: debía pasar primero por el formulario de reserva.
 
-- El saludo estaba **hardcodeado** ("Buenas tardes, Especialista") en el HTML.
-- La función `mostrarSaludo()` de `js/dashboard.js` buscaba un elemento con `id="saludo"` que **no existía**,
-  por lo que el saludo dinámico jamás se aplicaba.
-- El layout usaba `flex justify-between` (contenido a la izquierda y fecha a la derecha), lo que daba una
-  apariencia descentrada y poco cuidada.
+## Evidencias / Cómo se confirmó
 
-**Evidencia**
+- En `assets/index.html` el HERO solo tenía dos botones (`Solicitar servicio` y `Conocer servicios`) en el bloque `fade-up delay-3`, líneas ~585-592.
+- El menú hamburguesa activo es `#mobile-menu` (toggleado por `#menuBtn` en el script de línea ~2022); ahí existía la opción "Reserva tu servicio" sin una opción de compra debajo.
+- `assets/js/catalogo.js` ya definía `DELIVERY_COST = 9000`, `catalogMode = sessionStorage.getItem("modoCatalogo") || "compra"`, `isServiceMode`, `irAlCatalogoDesdeServicio()` y `volverAlServicio()`, confirmando que la infraestructura de contexto de compra existía.
+- `assets/index.html` (función `calcularPrecioDinamico`) ya leía `productosServicio` de `sessionStorage` y calculaba `precioServicio + totalProductos`.
+- No existía ningún vínculo desde la página principal hacia `catalogo.html` en modo compra independiente.
 
-- `js/dashboard.js:45` → `const saludo = document.getElementById("saludo")`.
-- En `dashboard.html` no existía ningún `id="saludo"`; el texto del `h1` estaba fijo.
+## Solución propuesta
 
-**Cómo se confirmó**
+Mantener el catálogo único y reutilizable (sin crear un segundo catálogo), y exporner los accesos directos al flujo de compra independiente:
 
-- Se cruzó el `getElementById("saludo")` del JS contra el HTML: no había coincidencia, por lo que
-  `mostrarSaludo()` retornaba al inicio (`if (!saludo) return;`) y nunca cambiaba nada.
+- Añadir un tercer botón **"Comprar productos"** en el HERO, al lado de los existentes, con la identidad visual de ProClean Prime.
+- Añadir la opción **"Comprar productos"** en el menú hamburguesa, justo debajo de "Reserva tu servicio".
+- Crear la función global `irAlCatalogoIndependiente()` que:
+  - Establece `sessionStorage.modoCatalogo = "compra"` (compra independiente).
+  - Elimina `sessionStorage.productosServicio` (evita arrastrar productos del flujo de servicio a una compra nueva).
+  - Redirige a `catalogo.html`.
 
-**Solución propuesta / cambios realizados**
-
-- Se añadió `<span id="saludo">Buenas tardes</span>` dentro del `h1`, activando el saludo dinámico
-  (Buenos días / Buenas tardes / Buenas noches según la hora).
-- Se rediseñó la tarjeta de bienvenida a un layout **centrado y profesional**: avatar circular, título
-  con mejor tipografía, fecha en una píldora con borde redondeado y botones de acción.
-
----
-
-### Problema 2: Estado "Pendiente"/"En servicio" poco elegante
-
-**Causa raíz**
-
-- Los estados `.status-pending` (naranja) y `.status-active` (verde) eran simples rectángulos de color
-  con `border-radius:30px` pero sin borde ni indicador visual, lo que se percibía como poco profesional.
-
-**Evidencia**
-
-- `css/dashboard.css`: `.status-pending { background:#FEF3C7; color:#B45309 }` y
-  `.status-active { background:#DCFCE7; color:#15803D }`.
-
-**Solución propuesta / cambios realizados**
-
-- Se rediseñaron ambos estados como **píldoras modernas** (`border-radius:999px`) con borde suave,
-  fondo tenue, tipografía legible y un **punto indicador** animado de estado, manteniendo la claridad
-  (naranja = Pendiente, verde = En servicio). La lógica JS de cambio de clase no se modificó, por lo que
-  la transición Pendiente → En servicio sigue funcionando igual.
-
----
-
-### Problema 3: Opción "Ruta" sin función real
-
-**Causa raíz**
-
-- El botón "Ruta" en el modal no tenía `onclick` ni lógica asociada, por lo que no hacía nada.
-- La dirección del servicio estaba hardcodeada y no había un punto único desde el cual leerla, lo que
-  dificulta su reemplazo futuro por un valor de la base de datos.
-
-**Solución propuesta / cambios realizados**
-
-- Se agregó `onclick="openRoute()"` al botón "Ruta".
-- Se creó en `js/dashboard.js` la función `obtenerDireccionServicio()` que lee la dirección desde
-  `#direccionServicio` (mediante `data-direccion`). Este atributo es el punto de entrada donde se
-  poblará la dirección proveniente de la base de datos; **no se simula ninguna conexión**.
-- `openRoute()` abre `https://www.google.com/maps/search/?api=1&query=<dirección>` en una pestaña nueva.
-- Se sincroniza la dirección mostrada dentro del modal (`#modalDireccionServicio`) con la dirección real.
-
----
-
-### Problema 4: Falta de botones "Volver al portal" y "Volver al inicio"
-
-**Causa raíz**
-
-- El dashboard no tenía controles claros de navegación de regreso hacia `portal_especialistas.html`
-  (login) ni hacia `index.html`.
-
-**Solución propuesta / cambios realizados**
-
-- En la tarjeta de bienvenida se agregaron dos botones:
-  - **Volver al portal** → `portal_especialistas.html` (donde está el login / cierre de sesión).
-  - **Volver al inicio** → `index.html`.
-- Ambos usan rutas relativas correctas (los archivos están en `assets/`).
-
----
-
-### Problema 5: Login que dejó de funcionar
-
-**Causa raíz**
-
-1. **Ruta del script inconsistente** tras la reorganización de carpetas: en el commit
-   `ee10615 "Organizar carpetas css y js dentro de assets"` se movieron `css/` y `js/`, y en `6a3db1d`
-   la referencia cambió de `js/login.js` a `../js/login.js`. Actualmente `js/` está en la raíz y la ruta
-   `../js/login.js` es correcta, pero la reorganización dejó las rutas frágiles frente a la estructura
-   de despliegue.
-2. **Falló el parseo de la respuesta del endpoint**: el formulario usaba `response.json()`, pero el
-   endpoint de Google Apps Script (`/exec`) responde con `Content-Type: text/html`. Eso hacía que
-   `response.json()` lanzara un error y el flujo cayera en el `catch`, mostrando
-   "Error al conectar con la base de datos" (percepción de "login roto") aunque las credenciales
-   fueran correctas.
-3. **ID duplicado**: existían dos elementos con `id="login"` (la sección y la tarjeta del formulario),
-   HTML inválido que podía causar comportamientos inesperados en anclas/navegación.
-
-**Evidencia**
-
-- `js/login.js` (original): `.then(response => response.json())`.
-- `portal_especialistas.html`: `<section id="login">` y `<div id="login">` repetidos.
-
-**Cómo se confirmó**
-
-- Se verificó que `login.js` se carga correctamente y que el `submit` del formulario está enlazado.
-- Se identificó que el único punto frágil del flujo de red era el `response.json()` sobre una respuesta
-  que Apps Script entrega como `text/html`.
-
-**Solución propuesta / cambios realizados**
-
-- En `js/login.js` se cambió a `response.text()` + `JSON.parse()` con manejo de errores, de modo que el
-  login funcione sin importar si el `Content-Type` es `text/html` o `application/json`.
-- Se renombró el `div` de la tarjeta de `id="login"` a `id="loginCard"`, dejando un único `id="login"`
-  (la sección) y evitando el HTML inválido.
-
----
+Con esto `catalogo.js` (que ya lee `modoCatalogo` para decidir domicilio $9.000 vs $0) aplica automáticamente la regla correcta en cada contexto.
 
 ## Cambios realizados
 
 | Archivo | Cambio |
-| --- | --- |
-| `assets/dashboard.html` | Rediseño de la sección de bienvenida (centrada, tipografía mejorada, `id="saludo"`, fecha en píldora, botones "Volver al portal" e "Volver al inicio"). |
-| `assets/dashboard.html` | Botón "Ruta" ahora ejecuta `openRoute()`. |
-| `assets/dashboard.html` | Dirección del modal con `id="modalDireccionServicio"`. |
-| `assets/dashboard.html` | `#direccionServicio` con `data-direccion` para futura carga desde BD. |
-| `css/dashboard.css` | Rediseño de `.status-pending` / `.status-active` como píldoras elegantes con indicador. |
-| `css/dashboard.css` | Nuevo estilo `.btn-outline` para el botón secundario. |
-| `js/dashboard.js` | Nuevas funciones `obtenerDireccionServicio()` y `openRoute()` (ruta a Google Maps, lista para BD). |
-| `js/login.js` | Login robusto: `response.text()` + `JSON.parse()` con manejo de errores. |
-| `assets/portal_especialistas.html` | Se eliminó el `id="login"` duplicado de la tarjeta (`loginCard`). |
+| ------- | ------ |
+| `assets/index.html` | Se añadió el botón "Comprar productos" en el HERO (bloque `fade-up delay-3`) con `data-template-id="hero-buy-cta"` y onClick a `irAlCatalogoIndependiente()`. |
+| `assets/index.html` | Se añadió la opción "Comprar productos" en el menú hamburguesa `#mobile-menu`, debajo de "Reserva tu servicio", con icono de carrito que cierra el menú y llama a `irAlCatalogoIndependiente()`. |
+| `assets/index.html` | Se añadió la función global `irAlCatalogoIndependiente()` en el bloque `<script>` principal (junto al manejador del menú). |
+| `assets/css/output.css` | Se regeneró con `npm run build` para incluir la clase Tailwind nueva `border-[#CFA754]` usada por el botón del HERO. |
 
-## Archivos modificados
+No se modificó `assets/js/catalogo.js` ni la lógica de `calcularPrecioDinamico()`/`saveService()`, porque ya cumplían con la regla de domicilio y el total por contexto.
 
-- `assets/dashboard.html`
-- `assets/portal_especialistas.html`
-- `css/dashboard.css`
-- `js/dashboard.js`
-- `js/login.js`
+## Flujo de compra independiente
 
-## Pasos para verificar el fix
+1. El usuario pulsa **"Comprar productos"** en el HERO o en el menú hamburguesa.
+2. `irAlCatalogoIndependiente()` pone `modoCatalogo = "compra"` y limpia `productosServicio`.
+3. Se abre `catalogo.html`.
+4. El usuario agrega productos al carrito.
+5. `catalogo.js` calcula el subtotal, y como `isServiceMode === false`, aplica `delivery = DELIVERY_COST (9000)`.
+6. El carrito muestra Subtotal, Domicilio ($9.000) y Total (`productos + 9000`).
+7. El usuario continúa al checkout (Datos de entrega), revisa el Resumen del pedido (Subtotal, Domicilio, Total) y pasa al pago.
 
-1. **Login**: abrir `assets/portal_especialistas.html`, ingresar credenciales válidas y confirmar que
-   redirige a `dashboard.html` y muestra el nombre del especialista.
-2. **Saludo**: en `dashboard.html` confirmar que el título muestra "Buenos días", "Buenas tardes" o
-   "Buenas noches" según la hora del día, y que está centrado con buena tipografía.
-3. **Estado del servicio**: abrir el modal "Ver servicio", presionar "Iniciar servicio" y confirmar que
-   el estado pasa de la píldora "Pendiente" (naranja) a "En servicio" (verde) de forma elegante.
-4. **Ruta**: en el modal, hacer clic en "Ruta" y confirmar que se abre Google Maps con la dirección del
-   servicio.
-5. **Navegación**: presionar "Volver al portal" (abre `portal_especialistas.html`) y "Volver al inicio"
-   (abre `index.html`).
-6. **Consola**: abrir DevTools y confirmar que no hay errores JS al cargar `dashboard.html` ni
-   `portal_especialistas.html`.
+## Flujo de productos desde servicio
 
-## Resultado esperado
+1. Riesgo previo: durante la reserva, el usuario se encuentra en `assets/index.html#booking`.
+2. Pulsa **"Agregar productos"** → `irAlCatalogoDesdeServicio()` pone `modoCatalogo = "servicio"` y abre `catalogo.html`.
+3. El usuario agrega productos al carrito.
+4. Como `isServiceMode === true`, `catalogo.js` usa `delivery = 0` y el botón cambia a "Agregar al servicio".
+5. Al pulsar "Agregar al servicio", `volverAlServicio()` guarda el carrito en `sessionStorage.productosServicio` y regresa a `index.html#booking`.
+6. `calcularPrecioDinamico()` lee `productosServicio`, suma su total y muestra `servicio + productos`, con domicilio $0.
+7. `saveService()` envía el total real (servicio + productos) vía Apps Script.
 
-Aplicación funcional con una presentación visual más profesional y coherente: bienvenida centrada y
-dinámica, estados de servicio elegantes, opción de ruta operativa y preparada para integrarse con la
-base de datos, navegación clara de regreso al portal y al inicio, y un login que vuelve a funcionar de
-forma robusta sin romper las funcionalidades existentes.
+## Manejo del domicilio
+
+- **Compra independiente** (`modoCatalogo = "compra"`): se cobra **$9.000** de domicilio. Total = `productos + 9000`.
+- **Productos desde servicio** (`modoCatalogo = "servicio"`): **no se cobra** domicilio. Total = `precioServicio + totalProductos`.
+
+La regla vive en `assets/js/catalogo.js`: `const delivery = isServiceMode ? 0 : DELIVERY_COST;` con `DELIVERY_COST = 9000`.
+
+## Verificación
+
+- **PRUEBA 1 — Hero:** al pulsar "Comprar productos" se abre `catalogo.html` directamente. ✔ (función y enlace enlazados correctamente)
+- **PRUEBA 2 — Menú:** desde el menú hamburguesa "Comprar productos" abre el mismo catálogo. ✔
+- **PRUEBA 3 — 1 producto:** el carrito suma `producto + $9.000`. ✔ (lógica existente en `catalogo.js`)
+- **PRUEBA 4 — 2+ productos:** suma el subtotal de productos + $9.000. ✔
+- **PRUEBA 5 — servicio + productos:** domicilio = $0 y total = servicio + productos. ✔
+- **PRUEBA 6 — modificar cantidad:** `renderCart()` recalcula subtotal/domicilio/total. ✔
+- **PRUEBA 7 — eliminar producto:** recalcula los totales. ✔
+- **PRUEBA 8 — sin productos en servicio:** el servicio funciona como antes. ✔
+- **PRUEBA 9 — compra independiente:** funciona como compra independiente sin necesidad de servicio. ✔
+
+> Nota: las pruebas se verificaron de forma estática (revisión de función, enlaces y reglas de cálculo). Se recomienda una prueba funcional en navegador real para confirmar el comportamiento visual y de navegación en dispositivos móviles y escritorio.
+
+## Riesgos o puntos pendientes
+
+- **Bold / pago:** la integración de pago con Bold sigue pendiente de credenciales y configuración del monto exacto a cobrar (productos + domicilio en compra independiente; servicio + productos en servicio). No se deben colocar claves privadas en HTML/JS.
+- **Google Apps Script:** la URL existente de envío no se modificó. Si se desea registrar campos nuevos (modoCompra, productos, totalProductos, domicilio, totalFinal) en la hoja, debe ajustarse el script del backend y actualizarse `saveService()`/checkout para enviarlos. Actualmente `saveService()` envía el total real y el servicio seleccionado.
+- **Catálogo:** los productos 6–9 en `assets/js/catalogo.js` tienen `price: 0` y nombres/imágenes provisionales; deben completarse antes de ponerlo en producción.
+- **Carrito en modo servicio:** el carrito conserva estado en memoria de la sesión; si el usuario vuelve y cambia de contexto, `irAlCatalogoIndependiente()` limpia `productosServicio` para evitar mezclar flujos.
+- **Menú hamburguesa duplicado:** en `assets/index.html` existen dos contenedores (`#mobile-menu` activo y un `<aside id="mobileMenu">` sin lógica). Solo el `#mobile-menu` está en uso; el aside se dejó intacto para no romper nada, pero podría eliminarse en una limpieza futura.
+- **Duplicación de listeners en `catalogo.js`:** hay listeners repetidos para `checkoutButton`, `closeCheckout`, `checkoutModalOverlay` y `checkoutForm` (idénticos en comportamiento). No rompen la funcionalidad pero se recomienda unificarlos en una limpieza posterior.

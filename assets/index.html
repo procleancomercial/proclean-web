@@ -350,6 +350,46 @@ href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
         <div id="particles-container" class="relative w-full h-full"></div>
     </div>
 
+    <script>
+        // 🪁 Lluvia de Cometas de Bienvenida (script independiente)
+        (function () {
+            var splashScreen = document.getElementById("seasonal-splash");
+            var container = document.getElementById("particles-container");
+
+            if (!splashScreen || !container) return;
+
+            var currentThemeIcon = "🪁🪁";
+            var particleCount = 50;
+            var splashDuration = 3500;
+
+            for (var i = 0; i < particleCount; i++) {
+                var span = document.createElement("span");
+                span.className = "seasonal-particle";
+                span.textContent = currentThemeIcon;
+
+                var randomLeft = Math.random() * 100;
+                var randomDuration = 2.5 + Math.random() * 2.5;
+                var randomDelay = Math.random() * 2;
+                var randomSize = 1.5 + Math.random() * 1.5;
+
+                span.style.left = randomLeft + "%";
+                span.style.animationDuration = randomDuration + "s";
+                span.style.animationDelay = randomDelay + "s";
+                span.style.fontSize = randomSize + "rem";
+
+                container.appendChild(span);
+            }
+
+            setTimeout(function () {
+                splashScreen.style.transition = "opacity 1s ease";
+                splashScreen.style.opacity = "0";
+                setTimeout(function () {
+                    splashScreen.remove();
+                }, 1000);
+            }, splashDuration);
+        })();
+    </script>
+
     <header data-template-id="site-header"
         class="canva-header fixed top-0 left-0 w-full z-50 bg-white/95 backdrop-blur border-b border-white/60"
         style="background: rgb(255, 255, 255);">
@@ -398,6 +438,15 @@ href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
     </svg>
     Reserva tu servicio 
+</a>
+    <a href="catalogo.html"
+    onclick="event.preventDefault(); document.getElementById('mobile-menu').classList.add('hidden'); irAlCatalogoIndependiente()"
+    class="flex items-center gap-2 text-[#0f172a] hover:text-[#CFA754] font-bold transition">
+    <!-- Icono de Carrito de Compras -->
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+    </svg>
+    Comprar productos
 </a>
     <a href="quienes-somos.html"
     onclick="document.getElementById('mobile-menu').classList.add('hidden')"
@@ -587,9 +636,17 @@ href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
                             class="canva-button px-6 py-3 rounded-full font-semibold inline-flex items-center gap-2"
                             style="background: #CFA754; color: #0F162A; font-weight: 700; font-style: normal; font-size: 16px;">Solicitar
                             servicio</a> <a data-template-id="hero-secondary-cta" href="#servicios"
-                            class="canva-button px-6 py-3 rounded-full font-semibold inline-flex items-center gap-2 border border-white/25"
-                            style="background: rgba(255, 255, 255, 0.12); color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 16px;">Conocer
-                            servicios</a>
+                            class="canva-button px-6 py-3 rounded-full font-semibold inline-flex items-center gap-2"
+                            style="background: #CFA754; color: #0F162A; font-weight: 700; font-style: normal; font-size: 16px;">Conocer
+                            servicio</a> <a data-template-id="hero-secondary-cta" href="#servicios"
+                            href="#servicios" 
+                            onclick="event.preventDefault(); irAlCatalogoIndependiente()" 
+                            class="canva-button px-6 py-3 rounded-full font-semibold inline-flex items-center gap-2" 
+                            style="background: #CFA754; color: #0F162A; font-weight: 700; font-size: 16px;" 
+                            data-template-id="hero-secondary-cta">
+                            <i data-lucide="shopping-cart" class="w-4 h-4"></i>
+                            Comprar Pruducto 
+</a>
                     </div>
                 </div>
             </div>
@@ -625,8 +682,7 @@ href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
                             Medellín y alrededores</p>
                     </div>
                 </div>
-                <div class="flex items-center gap-1 text-[#b99c52] text-sm mb-2">
-                    ★★★★★
+
                 </div>
                 <p data-template-id="hero-card-copy" class="canva-text text-sm leading-6"
                     style="color: rgb(77, 93, 109); font-weight: 400; font-style: normal; font-size: 16px;">Equipo
@@ -1297,18 +1353,7 @@ Nuestros valores nos distinguen:
 <input type="hidden" id="bookingDate" value="2026-06-30">
 <input type="hidden" id="bookingTime" value="15:30">
 
-<!-- COLUMNA: Datos de contacto (Ahora es el bloque principal) -->
-<div class="canva-card p-5 bg-white rounded-3xl border border-slate-100 shadow-sm">
-
-    <h3>Datos de contacto</h3>
-
-    <div class="space-y-4">
-        <input type="hidden" id="paymentMethod" name="formadepago" value="No seleccionado">
-
-        </div>
-
-    </form>
-    
+    <input type="hidden" id="paymentMethod" name="formadepago" value="No seleccionado">
 
         <!-- Primera fila -->
 <div class="grid md:grid-cols-2 gap-4">
@@ -1336,7 +1381,7 @@ Nuestros valores nos distinguen:
 </div>
 
 <!-- Segunda fila -->
-<div class="grid md:grid-cols-2 gap-4 mt-4">
+<div class="grid md:grid-cols-2 gap-4 mt-5">
 
     <div>
         <label class="block text-sm font-medium text-gray-700 mb-2">
@@ -1387,7 +1432,7 @@ Nuestros valores nos distinguen:
             </div>
 
             <!-- Selección de servicios -->
-            <label class="block text-sm font-medium text-gray-700 mt-6 mb-4 uppercase">Selecciona los servicios que necesitas</label>
+            <label class="block text-sm font-medium text-gray-700 mt-5 mb-2 uppercase">Selecciona los servicios que necesitas</label>
 
             <div class="flex flex-col space-y-2">
                 <label class="flex items-center p-3 rounded-xl border border-slate-200 bg-[#fbfbfa] cursor-pointer hover:border-slate-400">
@@ -1410,7 +1455,7 @@ Nuestros valores nos distinguen:
             <p class="text-xs font-bold text-[#0F162A] uppercase tracking-wider">⚡ Cotiza tu servicio en segundos</p>
             
             <div>
-                <label class="block text-sm font-medium text-[#0F162A] mt-7">¿Cuántos días necesitas al mes?</label>
+                <label class="block text-sm font-medium text-[#0F162A] mt-5 mb-2">¿Cuántos días necesitas al mes?</label>
                 <div class="flex items-center gap-4">
                     <input type="range" id="cleaningDays" min="1" max="30" value="1" oninput="document.getElementById('daysDisplay').value = this.value; calcularPrecioDinamico();" class="w-full accent-[#0F162A]">
                     <input type="number" id="daysDisplay" min="1" max="30" value="1" oninput="document.getElementById('cleaningDays').value = this.value; calcularPrecioDinamico();" class="w-16 text-center font-bold border border-slate-300 rounded-xl py-1">
@@ -1418,8 +1463,37 @@ Nuestros valores nos distinguen:
             </div>
         </div>
 
-        <!-- Dirección -->
+<!-- PRODUCTOS PARA EL SERVICIO -->
+<div class="mt-5 p-5 rounded-3xl border border-slate-200 bg-white">
+
+    <div class="flex items-center justify-between gap-4">
+
         <div>
+            <p class="text-sm font-bold text-[#0F162A]">
+                🧴 ¿Necesitas productos de limpieza?
+            </p>
+
+            <p class="text-xs text-slate-500 mt-1">
+                Puedes agregarlos a tu servicio y la especialista los llevará.
+            </p>
+        </div>
+
+        <button
+            type="button"
+            onclick="irAlCatalogoDesdeServicio()"
+            class="shrink-0 rounded-full bg-[#0F162A] text-white px-5 py-3 font-bold text-sm hover:bg-slate-800 transition">
+            Agregar productos
+        </button>
+
+    </div>
+
+    <div id="productosServicioResumen" class="mt-4">
+    </div>
+
+</div>
+
+        <!-- Dirección -->
+        <div class="mt-5">
     <label for="address"
         class="block text-sm font-medium text-gray-700 mb-2 uppercase">
         Dirección <span class="text-red-500">*</span>
@@ -1432,7 +1506,7 @@ Nuestros valores nos distinguen:
 </div>
 
         <!-- Notas / Observaciones -->
-        <div>
+        <div class="mt-5">
     <label for="observations"
         class="block text-sm font-medium text-gray-700 mb-2 uppercase">
         Cuéntanos un poco más (Notas) <span class="text-red-500">*</span>
@@ -1443,7 +1517,7 @@ Nuestros valores nos distinguen:
         class="w-full rounded-2xl border border-slate-200 px-4 py-3 bg-[#fbfbfa] focus:bg-blue-50 focus:border-blue-400 focus:outline-none transition-colors duration-300">
     </textarea>
 </div>
-        <div class="mt-3">
+        <div class="mt-5">
 
     <label for="referralSource"
         class="block text-sm font-medium text-gray-700 mb-2 uppercase">
@@ -1462,7 +1536,7 @@ Nuestros valores nos distinguen:
 </div>
 
      <!-- AUTORIZACIÓN DE DATOS -->
-<div class="mt-4">
+<div class="mt-5">
     <label for="dataConsent" class="flex items-start gap-3 text-sm text-slate-600">
         <input type="checkbox" id="dataConsent" name="autorizacion_datos"
                class="mt-0.5 h-4 w-4 rounded border-slate-300 accent-[#CFA754]"
@@ -1476,7 +1550,7 @@ Nuestros valores nos distinguen:
 </div>
 
      <!-- Forma de Pago -->
-<div class="mt-4">
+<div class="mt-5">
 
     <label class="block text-sm font-medium text-gray-700 mb-2 uppercase">
         Forma de Pago
@@ -1556,16 +1630,10 @@ Nuestros valores nos distinguen:
 
 </div>
 
-            <span class="text-slate-400 text-lg font-bold">
-                →
-            </span>
-
-        </button>
-
     </div>
 
     <!-- RESUMEN -->
-    <div class="bg-[#f7f5ef] rounded-2xl p-4 border border-amber-100/50 flex justify-between items-center mt-6">
+    <div class="bg-[#f7f5ef] rounded-2xl p-4 border border-amber-100/50 flex justify-between items-center mt-5">
 
         <div>
 
@@ -1608,7 +1676,7 @@ Nuestros valores nos distinguen:
     <button id="submitBooking"
             type="button"
             onclick="saveService()"
-            class="w-full rounded-full bg-[#0F162A] text-white px-5 py-3.5 font-bold mt-4 hover:bg-slate-800 transition">
+            class="w-full rounded-full bg-[#0F162A] text-white px-5 py-3.5 font-bold mt-5 hover:bg-slate-800 transition">
 
         Solicitar servicio →
 
@@ -1992,6 +2060,7 @@ class="canva-footer bg-[#0F162A] text-white py-5 border-t border-[#CFA754]/20">
         lucide.createIcons();
 
         const menu = document.getElementById("mobile-menu");
+        const menuBtn = document.getElementById("menuBtn");
 
 menuBtn.addEventListener("click", () => {
     menu.classList.toggle("hidden");
@@ -2008,6 +2077,17 @@ document.addEventListener("click", function (e) {
     }
 
 });
+
+function irAlCatalogoIndependiente() {
+    sessionStorage.setItem("modoCatalogo", "compra");
+    sessionStorage.removeItem("productosServicio");
+    window.location.href = "catalogo.html";
+}
+
+function irAlCatalogoDesdeServicio() {
+    sessionStorage.setItem("modoCatalogo", "servicio");
+    window.location.href = "catalogo.html";
+}
 
         const slides = [...document.querySelectorAll('.hero-slide')];
         const dots = [...document.querySelectorAll('.slide-dot')];
@@ -2142,79 +2222,308 @@ document.addEventListener("click", function (e) {
 // ==========================================
 // 1. FUNCIÓN PARA CALCULAR EL PRECIO EN TIEMPO REAL
 // ==========================================
-let precioCalculadoFila = 0; // Guarda el precio total
 
-// DEJA SOLO ESTA VERSIÓN LARGA (LA QUE TIENE LOS DÍAS Y PLANES):
+let precioCalculadoFila = 0;
+
+
+// DEJA SOLO ESTA VERSIÓN
 function calcularPrecioDinamico() {
-    const checkboxes = document.querySelectorAll('input[name="services"]:checked');
-    const dias = parseInt(document.getElementById('cleaningDays').value) || 1;
-    const plan = document.getElementById('frequencyPlan') ? document.getElementById('frequencyPlan').value : "Ninguno";
-    const esPromoPrimerServicio = document.getElementById('promoPrimerServicio').checked;
-    
+
+    const checkboxes =
+        document.querySelectorAll('input[name="services"]:checked');
+
+    const dias =
+        parseInt(document.getElementById('cleaningDays').value) || 1;
+
+    const plan =
+        document.getElementById('frequencyPlan')
+            ? document.getElementById('frequencyPlan').value
+            : "Ninguno";
+
+    const esPromoPrimerServicio =
+        document.getElementById('promoPrimerServicio').checked;
+
+
+    // =========================================================
+    // SI NO HAY SERVICIOS SELECCIONADOS
+    // =========================================================
+
     if (checkboxes.length === 0) {
+
         document.getElementById('totalPriceDisplay').innerText = "$0";
-        document.getElementById('bookingSummary').innerText = "Selecciona tus servicios";
+
+        document.getElementById('bookingSummary').innerText =
+            "Selecciona tus servicios";
+
         document.getElementById('discountSummary').innerText = "";
+
+        const productosResumen =
+            document.getElementById("productosServicioResumen");
+
+        if (productosResumen) {
+            productosResumen.innerHTML = "";
+        }
+
         return;
     }
 
-    // 1. Determinar el precio base sumando cada servicio seleccionado
+
+    // =========================================================
+    // 1. DETERMINAR PRECIO BASE DE LOS SERVICIOS
+    // =========================================================
+
     let sumaTarifasBase = 0;
 
+
     checkboxes.forEach(box => {
+
         if (box.value === "Home Pet Grooming") {
-            // El precio fijo que te pidieron para mascotas
-            sumaTarifasBase += 85000; 
+
+            // Precio fijo para mascotas
+            sumaTarifasBase += 85000;
+
         } else {
-            // Si es cualquier otro servicio de limpieza, usa la tarifa normal o promo
-            sumaTarifasBase += esPromoPrimerServicio ? 178000 : 178000;
+
+            // Limpieza residencial / oficinas
+            sumaTarifasBase +=
+                esPromoPrimerServicio ? 178000 : 178000;
+
         }
+
     });
-    
-    // Ahora el subtotal multiplica la suma de las tarifas seleccionadas por los días
-    let subtotalSinDescuento = sumaTarifasBase * dias;
 
-    // 2. Calcular descuento por rango de días (Volumen de días al mes)
+
+    // Multiplicar servicios por cantidad de días
+    let subtotalSinDescuento =
+        sumaTarifasBase * dias;
+
+
+    // =========================================================
+    // 2. DESCUENTO POR CANTIDAD DE DÍAS
+    // =========================================================
+
     let porcentajeDescDias = 0;
+
+
     if (dias >= 8 && dias <= 11) {
+
         porcentajeDescDias = 0.02;
+
     } else if (dias >= 12 && dias <= 19) {
+
         porcentajeDescDias = 0.04;
+
     } else if (dias >= 20) {
+
         porcentajeDescDias = 0.06;
+
     }
 
-    // 3. Calcular descuento por Plan de continuidad (Permanencia)
+
+    // =========================================================
+    // 3. DESCUENTO POR PLAN DE CONTINUIDAD
+    // =========================================================
+
     let porcentajeDescPlan = 0;
+
+
     if (plan === "Trimestral") {
+
         porcentajeDescPlan = 0.08;
+
     } else if (plan === "Semestral") {
+
         porcentajeDescPlan = 0.10;
+
     } else if (plan === "Anual") {
+
         porcentajeDescPlan = 0.16;
+
     }
 
-    // Sumamos los porcentajes de descuento aplicables
-    let descuentoTotalPorcentaje = porcentajeDescDias + porcentajeDescPlan;
-    let ahorro = subtotalSinDescuento * descuentoTotalPorcentaje;
-    
-    // Calculamos el total definitivo
-    let precioCalculadoFila = Math.round(subtotalSinDescuento - ahorro);
 
-    // 4. Actualizar textos dinámicos en la interfaz del usuario
-    document.getElementById('totalPriceDisplay').innerText = `$${precioCalculadoFila.toLocaleString('es-CO')}`;
-    
-    let textoResumen = `${checkboxes.length} servicio(s) x ${dias} día(s)`;
+    // =========================================================
+    // CALCULAR DESCUENTOS
+    // =========================================================
+
+    let descuentoTotalPorcentaje =
+        porcentajeDescDias + porcentajeDescPlan;
+
+    let ahorro =
+        subtotalSinDescuento * descuentoTotalPorcentaje;
+
+
+    // =========================================================
+    // PRECIO FINAL DEL SERVICIO
+    // =========================================================
+
+    precioCalculadoFila =
+        Math.round(subtotalSinDescuento - ahorro);
+
+
+    // =========================================================
+    // PRODUCTOS AGREGADOS DESDE EL CATÁLOGO
+    // =========================================================
+
+    let productosServicio = [];
+
+
+    try {
+
+        productosServicio = JSON.parse(
+            sessionStorage.getItem("productosServicio") || "[]"
+        );
+
+    } catch (error) {
+
+        productosServicio = [];
+
+    }
+
+
+    // =========================================================
+    // CALCULAR TOTAL DE PRODUCTOS
+    // =========================================================
+
+    let totalProductos =
+        productosServicio.reduce((total, producto) => {
+
+            return total + (
+                Number(producto.price || 0) *
+                Number(producto.quantity || 0)
+            );
+
+        }, 0);
+
+
+    // =========================================================
+    // TOTAL FINAL
+    // SERVICIO + PRODUCTOS
+    // =========================================================
+
+    let totalFinal =
+        precioCalculadoFila + totalProductos;
+
+
+    // =========================================================
+    // MOSTRAR TOTAL FINAL
+    // =========================================================
+
+    document.getElementById('totalPriceDisplay').innerText =
+        `$${totalFinal.toLocaleString('es-CO')}`;
+
+
+    // =========================================================
+    // MOSTRAR PRODUCTOS AGREGADOS
+    // =========================================================
+
+    const productosResumen =
+        document.getElementById("productosServicioResumen");
+
+
+    if (productosResumen) {
+
+        if (productosServicio.length === 0) {
+
+            productosResumen.innerHTML = "";
+
+        } else {
+
+            productosResumen.innerHTML = `
+
+                <div class="border-t border-slate-200 pt-4 mt-4">
+
+                    <p class="text-xs font-bold uppercase tracking-wider text-[#0F162A] mb-3">
+                        Productos agregados
+                    </p>
+
+
+                    ${productosServicio.map(producto => `
+
+                        <div class="flex justify-between items-center text-sm mb-2">
+
+                            <span class="text-slate-600">
+
+                                ${producto.name}
+                                × ${producto.quantity}
+
+                            </span>
+
+
+                            <strong class="text-[#0F162A]">
+
+                                $${(
+                                    Number(producto.price) *
+                                    Number(producto.quantity)
+                                ).toLocaleString("es-CO")}
+
+                            </strong>
+
+                        </div>
+
+                    `).join("")}
+
+
+                    <div class="flex justify-between border-t border-slate-200 pt-3 mt-3">
+
+                        <span class="font-bold text-[#0F162A]">
+                            Productos
+                        </span>
+
+
+                        <strong class="text-[#0F162A]">
+
+                            $${totalProductos.toLocaleString("es-CO")}
+
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            `;
+
+        }
+
+    }
+
+
+    // =========================================================
+    // RESUMEN DEL SERVICIO
+    // =========================================================
+
+    let textoResumen =
+        `${checkboxes.length} servicio(s) x ${dias} día(s)`;
+
+
     if (esPromoPrimerServicio) {
-        textoResumen += " (Tarifa Especial Aplicada)";
+
+        textoResumen +=
+            " (Tarifa Especial Aplicada)";
+
     }
-    document.getElementById('bookingSummary').innerText = textoResumen;
-    
+
+
+    document.getElementById('bookingSummary').innerText =
+        textoResumen;
+
+
+    // =========================================================
+    // MOSTRAR DESCUENTO
+    // =========================================================
+
     if (descuentoTotalPorcentaje > 0) {
-        document.getElementById('discountSummary').innerText = `¡Ahorro del ${(descuentoTotalPorcentaje * 100).toFixed(0)}% aplicado con éxito!`;
+
+        document.getElementById('discountSummary').innerText =
+            `¡Ahorro del ${(descuentoTotalPorcentaje * 100).toFixed(0)}% aplicado con éxito!`;
+
     } else {
-        document.getElementById('discountSummary').innerText = "";
+
+        document.getElementById('discountSummary').innerText =
+            "";
+
     }
+
 }
 
     // ==========================================
@@ -2537,43 +2846,7 @@ async function cargarResenasHome() {
 cargarResenasHome();
 
 
-    // 🪁 Lluvia de Cometas de Bienvenida
-    const splashScreen = document.getElementById("seasonal-splash");
-    const container = document.getElementById("particles-container");
-
-    const currentThemeIcon = "🪁"; 
-    const particleCount = 50;       
-    const splashDuration = 3500;    
-
-    if (container && splashScreen) {
-        for (let i = 0; i < particleCount; i++) {
-            const span = document.createElement("span");
-            span.className = "seasonal-particle";
-            span.textContent = currentThemeIcon;
-
-            const randomLeft = Math.random() * 100;
-            const randomDuration = 2.5 + Math.random() * 2.5; 
-            const randomDelay = Math.random() * 2;         
-            const randomSize = 1.5 + Math.random() * 1.5;   
-
-            span.style.left = `${randomLeft}%`;
-            span.style.animationDuration = `${randomDuration}s`;
-            span.style.animationDelay = `${randomDelay}s`;
-            span.style.fontSize = `${randomSize}rem`;
-
-            container.appendChild(span);
-        }
-
-        setTimeout(() => {
-            splashScreen.style.transition = "opacity 1s ease";
-            splashScreen.style.opacity = "0";
-            setTimeout(() => {
-                splashScreen.remove();
-            }, 1000);
-        }, splashDuration);
-    }
-
-// Textos legales para los modales
+    // Textos legales para los modales
 const legalTexts = {
     privacidad: {
         title: "Política de Privacidad",

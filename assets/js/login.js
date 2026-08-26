@@ -64,7 +64,12 @@ function validarLogin(event) {
     const urlFinal = `${urlScript}?usuario=${encodeURIComponent(usuario)}&password=${encodeURIComponent(password)}`;
 
     fetch(urlFinal)
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("HTTP " + response.status);
+            }
+            return response.json();
+        })
         .then(data => {
             desactivarCarga();
             if (data.success === true) {
@@ -85,8 +90,9 @@ function validarLogin(event) {
         })
         .catch(error => {
             desactivarCarga();
-            mostrarMensaje("❌ Error al conectar con la base de datos.", "error");
-            console.error("Error:", error);
+            console.error("Error en login:", error);
+            console.error("URL consultada:", urlFinal);
+            mostrarMensaje("❌ No se pudo conectar con la base de datos. Verifica que el Google Apps Script esté desplegado con acceso público.", "error");
         });
         
     return false;
