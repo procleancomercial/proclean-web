@@ -1061,10 +1061,14 @@ body {
     will-change: transform;
 }
 
-.featured-flip-card:hover .featured-flip-inner {
-    transform: rotateY(180deg);
+/* HOVER solo en dispositivos con mouse */
+@media (hover: hover) and (pointer: fine) {
+    .featured-flip-card:hover .featured-flip-inner {
+        transform: rotateY(180deg);
+    }
 }
 
+/* TOQUE en móvil: clase .flipped controlada por JS */
 .featured-flip-card.flipped .featured-flip-inner {
     transform: rotateY(180deg);
 }
@@ -1094,6 +1098,15 @@ body {
         0 10px 30px rgba(31, 49, 97, 0.12);
 }
 
+/* FIX iOS: forzar a cada cara a有自己的堆叠上下文 */
+.featured-card-front {
+    transform: rotateY(0deg);
+}
+
+.featured-card-back {
+    transform: rotateY(180deg);
+}
+
 
 /* FRENTE */
 
@@ -1118,6 +1131,10 @@ body {
         );
 
     overflow: hidden;
+
+    /* FIX iOS: evitar que rompa el preserve-3d */
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
 }
 
 .featured-card-image img {
