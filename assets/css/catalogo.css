@@ -1057,9 +1057,15 @@ body {
     transition: transform 0.7s ease;
 
     transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    will-change: transform;
 }
 
 .featured-flip-card:hover .featured-flip-inner {
+    transform: rotateY(180deg);
+}
+
+.featured-flip-card.flipped .featured-flip-inner {
     transform: rotateY(180deg);
 }
 
