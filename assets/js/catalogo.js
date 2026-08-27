@@ -147,13 +147,6 @@ card.dataset.productId = product.id;
                     <div class="product-card-image">
 
                         <img
-                            class="imagen-fondo-difuminada"
-                            src="${product.image}"
-                            alt=""
-                            aria-hidden="true"
-                        >
-
-                        <img
                             src="${product.image}"
                             alt="${product.name}"
                         >
@@ -211,13 +204,6 @@ card.dataset.productId = product.id;
 
                 <!-- REVERSO -->
                 <div class="product-card-back">
-
-                    <img
-                        class="imagen-fondo-difuminada"
-                        src="${product.infoImage}"
-                        alt=""
-                        aria-hidden="true"
-                    >
 
                     <img
                         src="${product.infoImage}"
