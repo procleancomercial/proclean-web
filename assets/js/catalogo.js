@@ -1336,3 +1336,88 @@ if (checkoutForm) {
     });
 
 }
+
+// formulario drive
+
+document.addEventListener('DOMContentLoaded', () => {
+  const checkoutForm = document.getElementById('checkoutForm');
+  const goToPaymentBtn = document.getElementById('goToPayment'); 
+
+  if (goToPaymentBtn) {
+    goToPaymentBtn.addEventListener('click', async function(e) {
+      e.preventDefault();
+
+      // CAPTURAMOS LOS PRODUCTOS DIRECTAMENTE DESDE LOS ELEMENTOS VISIBLES EN EL CARRITO
+      let productsText = "Sin productos especificados";
+      try {
+        // Buscamos los contenedores de productos dentro del carrito en el HTML
+        // (Ajusta los selectores si tus clases o IDs de los elementos del carrito son diferentes)
+        const cartProductElements = document.querySelectorAll('.cart-item, #cartItemsContainer > div, [data-cart-item]');
+        
+        if (cartProductElements && cartProductElements.length > 0) {
+          const items = [];
+          cartProductElements.forEach(el => {
+            const name = el.querySelector('.product-name, h3, h4, span')?.innerText || 'Producto';
+            const qty = el.querySelector('.product-qty, input[type="number"], .quantity')?.value || 
+                        el.querySelector('.product-qty, .quantity')?.innerText || '1';
+            items.push(`${name.trim()} (Cant: ${qty.trim()})`);
+          });
+          if (items.length > 0) {
+            productsText = items.join(' | ');
+          }
+        } else {
+          // Plan B: Si están en el modal de resumen actual
+          const summaryItems = document.querySelectorAll('#orderSummaryProducts > div');
+          if (summaryItems && summaryItems.length > 0) {
+            const items = [];
+            summaryItems.forEach(el => {
+              const text = el.innerText.replace(/\n/g, ' - ');
+              if(text) items.push(text);
+            });
+            if (items.length > 0) productsText = items.join(' | ');
+          }
+        }
+      } catch (err) {
+        console.error("Error obteniendo productos de la interfaz:", err);
+      }
+
+      // DATOS DEL FORMULARIO Y MEDIO DE PAGO
+      const formData = {
+        customerName: document.getElementById('customerName')?.value || '',
+        customerCedula: document.getElementById('customerCedula')?.value || '',
+        customerPhone: document.getElementById('customerPhone')?.value || '',
+        customerEmail: document.getElementById('customerEmail')?.value || '',
+        customerAddress: document.getElementById('customerAddress')?.value || '',
+        customerNeighborhood: document.getElementById('customerNeighborhood')?.value || '',
+        cartItems: productsText, 
+        deliveryNotes: document.getElementById('deliveryNotes')?.value || '',
+        paymentMethod: document.getElementById('catalogPaymentMethod')?.value || 'No especificado'
+      };
+
+      const scriptURL = 'https://script.google.com/macros/s/AKfycby3y62omYGnY0SPAZljXVP1i7X_lXWlJDvGUen1arB2JgWTzpZ_RuHPnfBQ8XUjBRo/exec';
+
+      try {
+        await fetch(scriptURL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData)
+        });
+
+        alert('¡Pedido registrado con éxito!');
+        
+        if (checkoutForm) checkoutForm.reset();
+
+        const orderSummaryOverlay = document.getElementById('orderSummaryOverlay');
+        if (orderSummaryOverlay) orderSummaryOverlay.style.display = 'none';
+
+        const modalOverlay = document.getElementById('checkoutModalOverlay');
+        if (modalOverlay) modalOverlay.style.display = 'none';
+
+      } catch (error) {
+        console.error('Error al enviar el pedido:', error);
+        alert('Hubo un error al procesar tu pedido. Inténtalo de nuevo.');
+      }
+    });
+  }
+});

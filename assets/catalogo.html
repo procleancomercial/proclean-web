@@ -434,10 +434,6 @@
 </div>
 
 
-<!-- =========================================================
-     MODAL DATOS DE ENTREGA
-========================================================= -->
-
 <div
     class="checkout-modal-overlay"
     id="checkoutModalOverlay">
@@ -458,7 +454,6 @@
 
         </button>
 
-
         <div class="checkout-header">
 
             <span>Finaliza tu compra</span>
@@ -473,29 +468,42 @@
 
         </div>
 
-
         <form id="checkoutForm">
 
             <div class="checkout-form-group">
 
                 <label for="customerName">
-                    Nombre completo
+                    Nombre completo <span style="color: #e53e3e;">*</span>
                 </label>
 
                 <input
                     type="text"
                     id="customerName"
                     name="customerName"
-                    placeholder="Ej. Angie Marín"
+                    placeholder="Ej. Gloria Marín"
                     required>
 
             </div>
 
+            <div class="checkout-form-group">
+
+                <label for="customerCedula">
+                    Número de cédula <span style="color: #e53e3e;">*</span>
+                </label>
+
+                <input
+                    type="text"
+                    id="customerCedula"
+                    name="customerCedula"
+                    placeholder="Ej. 415896741"
+                    required>
+
+            </div>
 
             <div class="checkout-form-group">
 
                 <label for="customerPhone">
-                    Número de celular
+                    Número de celular <span style="color: #e53e3e;">*</span>
                 </label>
 
                 <input
@@ -507,11 +515,10 @@
 
             </div>
 
-
             <div class="checkout-form-group">
 
                 <label for="customerEmail">
-                    Correo electrónico
+                    Correo electrónico <span style="color: #e53e3e;">*</span>
                 </label>
 
                 <input
@@ -523,11 +530,10 @@
 
             </div>
 
-
             <div class="checkout-form-group">
 
                 <label for="customerAddress">
-                    Dirección de entrega
+                    Dirección de entrega <span style="color: #e53e3e;">*</span>
                 </label>
 
                 <input
@@ -539,11 +545,10 @@
 
             </div>
 
-
             <div class="checkout-form-group">
 
                 <label for="customerNeighborhood">
-                    Barrio
+                    Barrio <span style="color: #e53e3e;">*</span>
                 </label>
 
                 <input
@@ -555,12 +560,11 @@
 
             </div>
 
-
             <div class="checkout-form-group">
 
                 <label for="deliveryNotes">
                     Indicaciones para la entrega
-                    <span>(opcional)</span>
+                    <span style="color: #718096; font-weight: normal;">(opcional)</span>
                 </label>
 
                 <textarea
@@ -571,7 +575,6 @@
 
             </div>
 
-
             <div class="delivery-zone-notice">
 
                 <i data-lucide="map-pin"></i>
@@ -581,7 +584,6 @@
                 </span>
 
             </div>
-
 
             <button
                 type="submit"
@@ -922,7 +924,7 @@
 
             </div>
 
-            <!-- CONTACTO -->
+<!-- CONTACTO -->
             <div class="catalog-footer-contact">
 
                 <h4>Contacto</h4>
@@ -931,10 +933,17 @@
                 <p><i data-lucide="mail" class="catalog-footer-icon"></i> <strong>Comercial:</strong> procleanprime.comercial@gmail.com</p>
                 <p><i data-lucide="mail" class="catalog-footer-icon"></i> <strong>Talento Humano:</strong> procleanprimecolombia@gmail.com</p>
 
-                <p class="catalog-footer-address">
+                <a href="https://maps.google.com/?cid=5118961961527842428&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQ" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   class="catalog-footer-address group inline-block text-inherit no-underline transition-colors duration-300">
                     <i data-lucide="map-pin" class="catalog-footer-icon"></i>
-                    <span>Calle 51sur #48-57<br>Medellín - Colombia</span>
-                </p>
+                    <span class="transition-colors duration-300 group-hover:text-[#C4A77D]" 
+                          onmouseover="this.style.color='#C4A77D'" 
+                          onmouseout="this.style.color='inherit'">
+                        Calle 51sur #48-57<br>Medellín - Colombia
+                    </span>
+                </a>
 
             </div>
 
