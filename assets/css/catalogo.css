@@ -1306,17 +1306,17 @@ body {
 ========================================================= */
 
 .catalog-home {
-    position: relative;
-    height: 72vh;
-    min-height: 500px;
+    /* ... tus otras propiedades actuales ... */
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    max-height: 80vh;
     display: flex;
     align-items: center;
 
-    background-image: url("../imagenes/home-burbina-4.png");
-    background-size: 100% 100%;
+    background-image: url("../imagenes/burbinaamor1.jpg");
+    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-
     overflow: hidden;
 }
 
@@ -1432,7 +1432,7 @@ body {
     padding: 14px 22px;
     border-radius: 999px;
 
-    background: #1F3161;
+    background: #b40312;
     color: #FFFFFF;
 
     font-size: 15px;
@@ -1457,13 +1457,6 @@ body {
     content: "";
     position: absolute;
     inset: 0;
-
-    background: linear-gradient(
-        90deg,
-        rgba(247, 245, 255, 0.35) 0%,
-        rgba(247, 245, 255, 0.15) 45%,
-        rgba(247, 245, 255, 0) 75%
-    );
 
     z-index: 1;
 }
@@ -3085,4 +3078,23 @@ body {
     .catalog-footer-contact p {
         font-size: 13px;
     }
+}
+
+/* =========================================================
+   LLUVIA DE COMETAS DE BIENVENIDA
+========================================================= */
+
+@keyframes floatDown {
+    0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
+    20% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+}
+
+.seasonal-particle {
+    position: absolute;
+    top: -50px;
+    animation: floatDown linear infinite;
+    user-select: none;
+    pointer-events: none;
 }

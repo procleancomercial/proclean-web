@@ -1420,4 +1420,50 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+
+
+
+  
 });
+
+/* =========================================================
+   LLUVIA DE COMETAS DE BIENVENIDA (script independiente)
+========================================================= */
+(function () {
+    var splashScreen = document.getElementById("seasonal-splash");
+    var container = document.getElementById("particles-container");
+
+    if (!splashScreen || !container) return;
+
+    var currentThemeIcon = "♥️ ❤️ ❤️";
+    var particleCount = 50;
+    var splashDuration = 3500;
+
+    for (var i = 0; i < particleCount; i++) {
+        var span = document.createElement("span");
+        span.className = "seasonal-particle";
+        span.textContent = currentThemeIcon;
+
+        var randomLeft = Math.random() * 100;
+        var randomDuration = 2.5 + Math.random() * 2.5;
+        var randomDelay = Math.random() * 2;
+        var randomSize = 1.5 + Math.random() * 1.5;
+
+        span.style.left = randomLeft + "%";
+        span.style.animationDuration = randomDuration + "s";
+        span.style.animationDelay = randomDelay + "s";
+        span.style.fontSize = randomSize + "rem";
+
+        container.appendChild(span);
+    }
+
+    setTimeout(function () {
+        splashScreen.style.transition = "opacity 1s ease";
+        splashScreen.style.opacity = "0";
+        setTimeout(function () {
+            splashScreen.remove();
+        }, 1000);
+    }, splashDuration);
+})();
+
