@@ -1467,3 +1467,39 @@ document.addEventListener('DOMContentLoaded', () => {
     }, splashDuration);
 })();
 
+/* =========================================================
+   BOTÓN FLOTANTE WHATSAPP (visibilidad según scroll)
+========================================================= */
+(function () {
+    var floatBtn = document.getElementById("whatsappFloat");
+
+    if (!floatBtn) return;
+
+    var footer = document.querySelector(".catalog-footer");
+
+    function updateWhatsAppVisibility() {
+        var scrollY = window.scrollY || window.pageYOffset;
+        var vh = window.innerHeight || document.documentElement.clientHeight;
+
+        var show = true;
+
+        if (scrollY < 60) {
+            show = false;
+        }
+
+        if (footer) {
+            var footerTop = footer.getBoundingClientRect().top;
+            if (footerTop < vh - 20) {
+                show = false;
+            }
+        }
+
+        floatBtn.classList.toggle("visible", show);
+    }
+
+    window.addEventListener("scroll", updateWhatsAppVisibility, { passive: true });
+    window.addEventListener("resize", updateWhatsAppVisibility);
+
+    updateWhatsAppVisibility();
+})();
+
