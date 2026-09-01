@@ -340,7 +340,7 @@ const cartDelivery = document.getElementById("cartDelivery");
 const cartTotal = document.getElementById("cartTotal");
 const cartCount = document.querySelector(".cart-count");
 
-const DELIVERY_COST = 9000;
+const DELIVERY_COST = 12000;
 
 /* =========================================================
    MODO DEL CATÁLOGO
@@ -349,6 +349,20 @@ const DELIVERY_COST = 9000;
 const catalogMode = sessionStorage.getItem("modoCatalogo") || "compra";
 
 const isServiceMode = catalogMode === "servicio";
+
+// Si la página del catálogo se refresca manualmente (F5), limpiamos el agendamiento
+(function limpiarPorRefrescoCatalogo() {
+    try {
+        if (window.performance && performance.getEntriesByType) {
+            var entries = performance.getEntriesByType("navigation");
+            if (entries.length && entries[0].type === "reload") {
+                sessionStorage.removeItem("modoCatalogo");
+                sessionStorage.removeItem("productosServicio");
+                sessionStorage.removeItem("formularioServicio");
+            }
+        }
+    } catch (error) { }
+})();
 
 
 /* =========================================================

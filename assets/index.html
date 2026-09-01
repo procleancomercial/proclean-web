@@ -1520,7 +1520,7 @@ Nuestros valores nos distinguen:
                 </label>
                 <label class="flex items-center p-3 rounded-xl border border-slate-200 bg-[#fbfbfa] cursor-pointer hover:border-slate-400">
                     <input type="checkbox" name="services" value="Home Pet Grooming" onchange="calcularPrecioDinamico()" class="w-5 h-5 accent-[#0F162A] mr-3">
-                    <span class="text-sm font-medium text-[#0F162A]">Home Pet Grooming ($85.000 / día)</span>
+                    <span class="text-sm font-medium text-[#0F162A]">Home Pet Grooming ($178.000 / día)</span>
                 </label>
             </div>
         </div>
@@ -2167,9 +2167,122 @@ function irAlCatalogoIndependiente() {
     window.location.href = "catalogo.html";
 }
 
+function guardarFormularioServicio() {
+
+    var data = {
+        fullName: document.getElementById("fullName")?.value || "",
+        phone: document.getElementById("phone")?.value || "",
+        documentType: document.getElementById("documentType")?.value || "",
+        documentNumber: document.getElementById("documentNumber")?.value || "",
+        address: document.getElementById("address")?.value || "",
+        observations: document.getElementById("observations")?.value || "",
+        referralSource: document.getElementById("referralSource")?.value || "",
+        cleaningDays: document.getElementById("cleaningDays")?.value || "1",
+        promoPrimerServicio: document.getElementById("promoPrimerServicio")?.checked || false,
+        dataConsent: document.getElementById("dataConsent")?.checked || false,
+        paymentMethod: document.getElementById("paymentMethod")?.value || "",
+        services: []
+    };
+
+    document.querySelectorAll('input[name="services"]').forEach(function (cb) {
+        if (cb.checked) {
+            data.services.push(cb.value);
+        }
+    });
+
+    sessionStorage.setItem("formularioServicio", JSON.stringify(data));
+}
+
 function irAlCatalogoDesdeServicio() {
+    guardarFormularioServicio();
     sessionStorage.setItem("modoCatalogo", "servicio");
     window.location.href = "catalogo.html";
+}
+
+function restaurarFormularioServicio() {
+
+    var raw = sessionStorage.getItem("formularioServicio");
+
+    if (!raw) return;
+
+    var data;
+
+    try {
+        data = JSON.parse(raw);
+    } catch (error) {
+        return;
+    }
+
+    function setVal(id, value) {
+        var el = document.getElementById(id);
+        if (el && value !== undefined && value !== null) {
+            el.value = value;
+        }
+    }
+
+    setVal("fullName", data.fullName);
+    setVal("phone", data.phone);
+    setVal("documentType", data.documentType);
+    setVal("documentNumber", data.documentNumber);
+    setVal("address", data.address);
+    setVal("observations", data.observations);
+    setVal("referralSource", data.referralSource);
+    setVal("cleaningDays", data.cleaningDays);
+    setVal("paymentMethod", data.paymentMethod);
+
+    var daysDisplay = document.getElementById("daysDisplay");
+    if (daysDisplay && data.cleaningDays) {
+        daysDisplay.value = data.cleaningDays;
+    }
+
+    var promo = document.getElementById("promoPrimerServicio");
+    if (promo) promo.checked = !!data.promoPrimerServicio;
+
+    var consent = document.getElementById("dataConsent");
+    if (consent) consent.checked = !!data.dataConsent;
+
+    var services = data.services || [];
+    document.querySelectorAll('input[name="services"]').forEach(function (cb) {
+        cb.checked = services.indexOf(cb.value) !== -1;
+    });
+
+    if (typeof calcularPrecioDinamico === "function") {
+        calcularPrecioDinamico();
+    }
+
+    window.setTimeout(function () {
+        if (typeof calcularPrecioDinamico === "function") {
+            calcularPrecioDinamico();
+        }
+    }, 100);
+}
+
+// Si la página se recarga manualmente (F5/refresco), limpiamos todo el agendamiento
+function esRefrescoManual() {
+    try {
+        if (window.performance && performance.getEntriesByType) {
+            var entries = performance.getEntriesByType("navigation");
+            if (entries.length && entries[0].type === "reload") {
+                return true;
+            }
+        }
+    } catch (error) { }
+    return false;
+}
+
+if (esRefrescoManual()) {
+    sessionStorage.removeItem("formularioServicio");
+    sessionStorage.removeItem("productosServicio");
+    sessionStorage.removeItem("modoCatalogo");
+} else {
+    // Al volver del catálogo hacia el formulario, restauramos los datos guardados
+    if (sessionStorage.getItem("productosServicio")) {
+        if (document.readyState === "loading") {
+            window.addEventListener("DOMContentLoaded", restaurarFormularioServicio);
+        } else {
+            restaurarFormularioServicio();
+        }
+    }
 }
 
         const slides = [...document.querySelectorAll('.hero-slide')];
@@ -2363,7 +2476,7 @@ function calcularPrecioDinamico() {
         if (box.value === "Home Pet Grooming") {
 
             // Precio fijo para mascotas
-            sumaTarifasBase += 85000;
+            sumaTarifasBase += 178000;
 
         } else {
 
@@ -2481,11 +2594,14 @@ function calcularPrecioDinamico() {
 
     // =========================================================
     // TOTAL FINAL
-    // SERVICIO + PRODUCTOS
+    // SERVICIO + PRODUCTOS + DOMICILIO (si hay productos)
     // =========================================================
 
+    let costoDomicilio =
+        productosServicio.length > 0 ? 12000 : 0;
+
     let totalFinal =
-        precioCalculadoFila + totalProductos;
+        precioCalculadoFila + totalProductos + costoDomicilio;
 
 
     // =========================================================
@@ -2557,6 +2673,21 @@ function calcularPrecioDinamico() {
                         <strong class="text-[#0F162A]">
 
                             $${totalProductos.toLocaleString("es-CO")}
+
+                        </strong>
+
+                    </div>
+
+                    <div class="flex justify-between text-sm mt-2">
+
+                        <span class="text-slate-600">
+                            Domicilio de productos
+                        </span>
+
+
+                        <strong class="text-[#0F162A]">
+
+                            $${costoDomicilio.toLocaleString("es-CO")}
 
                         </strong>
 
@@ -2797,6 +2928,9 @@ function saveService() {
         console.log(data);
 
         document.getElementById("bookingForm").reset();
+
+        sessionStorage.removeItem("formularioServicio");
+        sessionStorage.removeItem("productosServicio");
 
         selectedDate = null;
 
